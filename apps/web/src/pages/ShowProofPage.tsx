@@ -5,7 +5,9 @@ import type { ShowProofUploadData, ShowProof, TechnicianXPProfile, LotteryStatus
 
 export function ShowProofPage() {
   // State management for show proof page
+  // @ts-ignore - Placeholder for future functionality
   const [uploadModalOpen, setUploadModalOpen] = useState(false)
+  // @ts-ignore - Placeholder for future functionality
   const [selectedProof, setSelectedProof] = useState<ShowProof | null>(null)
 
   const handleUploadShowProof = async (uploadData: ShowProofUploadData) => {

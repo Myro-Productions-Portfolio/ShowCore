@@ -43,17 +43,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     // Check for existing session
     const initAuth = async () => {
+      console.log('useAuth: Initializing authentication...')
       try {
         // TODO: Replace with actual auth service (Clerk)
         const storedUser = localStorage.getItem('showcore_user')
+        console.log('useAuth: Stored user data:', storedUser)
+        
         if (storedUser) {
           const user = JSON.parse(storedUser)
+          console.log('useAuth: Found stored user:', user)
           setAuthState({
             user,
             isLoading: false,
             isAuthenticated: true,
           })
         } else {
+          console.log('useAuth: No stored user found')
           setAuthState({
             user: null,
             isLoading: false,

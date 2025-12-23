@@ -1,0 +1,28 @@
+{
+  "title": "Settings",
+  "subtitle": "Manage your account preferences",
+  "appearance": {
+    "title": "Appearance Settings",
+    "subtitle": "Customize how the app looks and feels to match your preferences.",
+    "theme": {
+      "title": "Theme",
+      "subtitle": "Choose your preferred color scheme.",
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System"
+    },
+    "fontSize": {
+      "title": "Font Size",
+      "subtitle": "Adjust text size for better readability.",
+      "small": "Small - Compact and space-efficient",
+      "medium": "Medium - Default size (recommended)",
+      "large": "Large - Easier to read"
+    },
+    "language": {
+      "title": "Language",
+      "subtitle": "Select your preferred language."
+    }
+  },
+  "saveChanges": "Save Changes",
+  "saving": "Saving..."
+}

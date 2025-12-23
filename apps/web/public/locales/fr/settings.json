@@ -1,0 +1,28 @@
+{
+  "title": "Paramètres",
+  "subtitle": "Gérez vos préférences de compte",
+  "appearance": {
+    "title": "Paramètres d'Apparence",
+    "subtitle": "Personnalisez l'apparence de l'application selon vos préférences.",
+    "theme": {
+      "title": "Thème",
+      "subtitle": "Choisissez votre schéma de couleurs préféré.",
+      "light": "Clair",
+      "dark": "Sombre",
+      "system": "Système"
+    },
+    "fontSize": {
+      "title": "Taille de Police",
+      "subtitle": "Ajustez la taille du texte pour une meilleure lisibilité.",
+      "small": "Petit - Compact et efficace en espace",
+      "medium": "Moyen - Taille par défaut (recommandé)",
+      "large": "Grand - Plus facile à lire"
+    },
+    "language": {
+      "title": "Langue",
+      "subtitle": "Sélectionnez votre langue préférée."
+    }
+  },
+  "saveChanges": "Enregistrer les Modifications",
+  "saving": "Enregistrement..."
+}

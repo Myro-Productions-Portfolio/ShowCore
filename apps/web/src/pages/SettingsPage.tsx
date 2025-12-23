@@ -1,11 +1,15 @@
 import { SettingsLayout, ProfileSettings, SecuritySettings, NotificationSettings, PayoutSettings, BillingSettings, PrivacySettings, AppearanceSettings, ConnectedAccountsSettings, AccountSettings } from '@/sections/settings/components'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
+import { useTheme } from '@/hooks/useTheme'
+import { useTranslation } from 'react-i18next'
 import type { SettingsSectionId, SettingsProfile, ProfileUpdateData, SettingsNavigationGroup, SecuritySettings as SecuritySettingsType, PasswordChangeData, NotificationPreferences, PayoutMethod, BankAccountFormData, PayPalFormData, BillingInfo, PaymentMethodFormData, PrivacySettings as PrivacySettingsType, AppearanceSettings as AppearanceSettingsType, ConnectedAccount, AccountManagement, CompanyTier, BillingAddress } from '@/sections/settings/types'
 import sampleData from '@/sections/settings/data.json'
 
 export function SettingsPage() {
   const [currentSection, setCurrentSection] = useLocalStorage<SettingsSectionId>('showcore_settings_section', 'profile')
   const [currentRole, setCurrentRole] = useLocalStorage<'technician' | 'company'>('showcore_settings_role', 'technician')
+  const { theme, fontSize, language } = useTheme()
+  const { t } = useTranslation('settings')
 
   const profile: SettingsProfile = currentRole === 'technician'
     ? (sampleData.technicianProfile as SettingsProfile)
@@ -151,8 +155,8 @@ export function SettingsPage() {
       <div className="bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800 px-6 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div>
-            <h1 className="text-xl font-bold text-zinc-900 dark:text-white">Settings</h1>
-            <p className="text-sm text-zinc-600 dark:text-zinc-400 mt-0.5">Manage your account preferences</p>
+            <h1 className="text-xl font-bold text-zinc-900 dark:text-white">{t('title')}</h1>
+            <p className="text-sm text-zinc-600 dark:text-zinc-400 mt-0.5">{t('subtitle')}</p>
           </div>
           <div className="flex items-center gap-2 bg-zinc-100 dark:bg-zinc-800 p-1 rounded-lg">
             <button
@@ -228,12 +232,33 @@ export function SettingsPage() {
           />
         )}
         {currentSection === 'appearance' && (
-          <AppearanceSettings 
-            appearanceSettings={sampleData.appearanceSettings as AppearanceSettingsType}
-            onUpdateAppearance={handleUpdateAppearance}
-            isLoading={false}
-            error={null}
-          />
+          <div>
+            {/* Debug info */}
+            <div className="mb-4 p-4 bg-yellow-100 dark:bg-yellow-900 rounded-lg">
+              <h4 className="font-semibold text-yellow-800 dark:text-yellow-200">Debug Info:</h4>
+              <p className="text-sm text-yellow-700 dark:text-yellow-300">
+                Current theme: {theme} | Font size: {fontSize} | Language: {language}
+              </p>
+              <p className="text-sm text-yellow-700 dark:text-yellow-300">
+                HTML classes: {typeof document !== 'undefined' ? document.documentElement.className : 'N/A'}
+              </p>
+              <p className="text-sm text-yellow-700 dark:text-yellow-300">
+                HTML lang: {typeof document !== 'undefined' ? document.documentElement.getAttribute('lang') : 'N/A'}
+              </p>
+            </div>
+            
+            <AppearanceSettings 
+              appearanceSettings={{
+                ...sampleData.appearanceSettings as AppearanceSettingsType,
+                theme: theme, // Use actual theme from hook
+                fontSize: fontSize, // Use actual font size from hook
+                language: language, // Use actual language from hook
+              }}
+              onUpdateAppearance={handleUpdateAppearance}
+              isLoading={false}
+              error={null}
+            />
+          </div>
         )}
         {currentSection === 'connected-accounts' && (
           <ConnectedAccountsSettings 

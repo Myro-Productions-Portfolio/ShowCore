@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShowCore Test & Debug</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f9fafb;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .success { background: #d1fae5; color: #065f46; }
+        .error { background: #fee2e2; color: #991b1b; }
+        .info { background: #dbeafe; color: #1e40af; }
+        .warning { background: #fef3c7; color: #92400e; }
+        button {
+            background: #f59e0b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #d97706;
+        }
+        .section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+        }
+        .code {
+            background: #f3f4f6;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 14px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ShowCore App Test & Debug</h1>
+        <p>This tool helps test and debug the ShowCore application.</p>
+        
+        <div id="status" class="status info">
+            Ready to test...
+        </div>
+        
+        <div class="section">
+            <h3>🔧 Quick Fixes</h3>
+            <button onclick="createTestUser()">Create Test User</button>
+            <button onclick="clearStorage()">Clear All Storage</button>
+            <button onclick="checkStorage()">Check Current Storage</button>
+        </div>
+        
+        <div class="section">
+            <h3>🌐 App Access</h3>
+            <button onclick="testMainApp()">Open Main App</button>
+            <button onclick="testLogin()">Open Login Page</button>
+            <button onclick="testSettings()">Open Settings</button>
+        </div>
+        
+        <div class="section">
+            <h3>📊 Debug Info</h3>
+            <div id="debug-info" class="code">
+                Click "Check Current Storage" to see debug information
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3>💡 Troubleshooting Steps</h3>
+            <ol>
+                <li><strong>Create Test User:</strong> Click "Create Test User" to add a mock user to localStorage</li>
+                <li><strong>Open Main App:</strong> Click "Open Main App" to access http://localhost:5173/</li>
+                <li><strong>Check Console:</strong> Open browser DevTools (F12) and check the Console tab for errors</li>
+                <li><strong>Clear Storage:</strong> If issues persist, click "Clear All Storage" and try again</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        function updateStatus(message, type = 'info') {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.className = `status ${type}`;
+        }
+
+        function createTestUser() {
+            const testUser = {
+                id: 'test_user_123',
+                email: 'test@showcore.com',
+                name: 'Test User',
+                role: 'technician',
+                profileComplete: true,
+                emailVerified: true,
+                avatar: null
+            };
+
+            // Set the user in localStorage
+            localStorage.setItem('showcore_user', JSON.stringify(testUser));
+            
+            // Also set some default settings
+            localStorage.setItem('showcore_theme', JSON.stringify('system'));
+            localStorage.setItem('showcore_font_size', JSON.stringify('medium'));
+            localStorage.setItem('showcore_language', JSON.stringify('en'));
+
+            updateStatus('✅ Test user and settings created successfully!', 'success');
+            checkStorage();
+        }
+
+        function clearStorage() {
+            localStorage.clear();
+            sessionStorage.clear();
+            updateStatus('✅ All browser storage cleared', 'success');
+            checkStorage();
+        }
+
+        function checkStorage() {
+            const user = localStorage.getItem('showcore_user');
+            const theme = localStorage.getItem('showcore_theme');
+            const fontSize = localStorage.getItem('showcore_font_size');
+            const language = localStorage.getItem('showcore_language');
+            
+            const debugInfo = document.getElementById('debug-info');
+            debugInfo.innerHTML = `
+                <strong>Current Storage:</strong><br>
+                User: ${user ? '✅ Present' : '❌ Missing'}<br>
+                Theme: ${theme || 'Not set'}<br>
+                Font Size: ${fontSize || 'Not set'}<br>
+                Language: ${language || 'Not set'}<br><br>
+                
+                <strong>User Data:</strong><br>
+                ${user ? JSON.stringify(JSON.parse(user), null, 2) : 'No user data'}
+            `;
+        }
+
+        function testMainApp() {
+            updateStatus('Opening main app...', 'info');
+            window.open('http://localhost:5173/', '_blank');
+        }
+
+        function testLogin() {
+            updateStatus('Opening login page...', 'info');
+            window.open('http://localhost:5173/login', '_blank');
+        }
+
+        function testSettings() {
+            updateStatus('Opening settings page...', 'info');
+            window.open('http://localhost:5173/settings', '_blank');
+        }
+
+        // Auto-check storage on load
+        window.onload = function() {
+            checkStorage();
+        };
+    </script>
+</body>
+</html>

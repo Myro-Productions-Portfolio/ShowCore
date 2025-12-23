@@ -1,0 +1,16 @@
+{
+  "loading": "Cargando...",
+  "save": "Guardar",
+  "cancel": "Cancelar",
+  "edit": "Editar",
+  "delete": "Eliminar",
+  "confirm": "Confirmar",
+  "back": "Atrás",
+  "next": "Siguiente",
+  "previous": "Anterior",
+  "close": "Cerrar",
+  "search": "Buscar",
+  "filter": "Filtrar",
+  "sort": "Ordenar",
+  "refresh": "Actualizar"
+}

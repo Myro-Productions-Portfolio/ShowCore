@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useTheme } from '../../../hooks/useTheme';
 import type { AppearanceSettingsProps, AppearanceSettings as AppearanceSettingsType } from '../types';
 
 interface LanguageOption {
@@ -12,27 +14,62 @@ export function AppearanceSettings({
   isLoading = false,
   error = null,
 }: AppearanceSettingsProps) {
-  const [settings, setSettings] = useState<AppearanceSettingsType>(appearanceSettings);
+  const { t } = useTranslation('settings');
+  const { theme, setTheme, fontSize, setFontSize, language, setLanguage } = useTheme();
+  const [settings, setSettings] = useState<AppearanceSettingsType>({
+    ...appearanceSettings,
+    theme: theme, // Use actual theme from hook
+    fontSize: fontSize, // Use actual font size from hook
+    language: language, // Use actual language from hook
+  });
   const [hasChanges, setHasChanges] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
 
+  // Update local settings when theme, fontSize, or language changes from hook
+  useEffect(() => {
+    setSettings(prev => ({
+      ...prev,
+      theme: theme,
+      fontSize: fontSize,
+      language: language,
+    }));
+  }, [theme, fontSize, language]);
+
   // Mock language options (in a real app, this would be passed as a prop or imported)
   const languageOptions: LanguageOption[] = [
-    { code: 'en-US', name: 'English (US)' },
-    { code: 'en-GB', name: 'English (UK)' },
-    { code: 'es-ES', name: 'Spanish' },
-    { code: 'fr-FR', name: 'French' },
-    { code: 'de-DE', name: 'German' },
-    { code: 'it-IT', name: 'Italian' },
-    { code: 'pt-BR', name: 'Portuguese (Brazil)' },
-    { code: 'ja-JP', name: 'Japanese' },
-    { code: 'zh-CN', name: 'Chinese (Simplified)' },
-    { code: 'ko-KR', name: 'Korean' },
+    { code: 'en', name: 'English' },
+    { code: 'es', name: 'Español' },
+    { code: 'fr', name: 'Français' },
+    { code: 'de', name: 'Deutsch' },
+    { code: 'it', name: 'Italiano' },
+    { code: 'pt', name: 'Português' },
+    { code: 'ja', name: '日本語' },
+    { code: 'zh', name: '中文' },
+    { code: 'ko', name: '한국어' },
   ];
 
   const handleChange = (field: keyof AppearanceSettingsType, value: any) => {
+    console.log('AppearanceSettings: changing', field, 'to', value)
     setSettings(prev => ({ ...prev, [field]: value }));
     setHasChanges(true);
+    
+    // If theme is being changed, apply it immediately
+    if (field === 'theme') {
+      console.log('AppearanceSettings: calling setTheme with', value)
+      setTheme(value);
+    }
+    
+    // If font size is being changed, apply it immediately
+    if (field === 'fontSize') {
+      console.log('AppearanceSettings: calling setFontSize with', value)
+      setFontSize(value);
+    }
+    
+    // If language is being changed, apply it immediately
+    if (field === 'language') {
+      console.log('AppearanceSettings: calling setLanguage with', value)
+      setLanguage(value);
+    }
   };
 
   const handleSave = async () => {
@@ -57,10 +94,10 @@ export function AppearanceSettings({
       {/* Header */}
       <div>
         <h2 className="text-2xl font-semibold text-zinc-900 dark:text-white">
-          Appearance Settings
+          {t('appearance.title')}
         </h2>
         <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-          Customize how the app looks and feels to match your preferences.
+          {t('appearance.subtitle')}
         </p>
       </div>
 
@@ -75,10 +112,10 @@ export function AppearanceSettings({
         <div className="space-y-4">
           <div>
             <h3 className="text-base font-medium text-zinc-900 dark:text-white">
-              Theme
+              {t('appearance.theme.title')}
             </h3>
             <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-              Choose your preferred color scheme.
+              {t('appearance.theme.subtitle')}
             </p>
           </div>
 
@@ -111,7 +148,7 @@ export function AppearanceSettings({
                   </div>
                   <div className="flex justify-center">
                     <div className="text-xs font-medium text-zinc-900 dark:text-white">
-                      Light
+                      {t('appearance.theme.light')}
                     </div>
                   </div>
                 </div>
@@ -153,7 +190,7 @@ export function AppearanceSettings({
                   </div>
                   <div className="flex justify-center">
                     <div className="text-xs font-medium text-zinc-900 dark:text-white">
-                      Dark
+                      {t('appearance.theme.dark')}
                     </div>
                   </div>
                 </div>
@@ -195,7 +232,7 @@ export function AppearanceSettings({
                   </div>
                   <div className="flex justify-center">
                     <div className="text-xs font-medium text-zinc-900 dark:text-white">
-                      System
+                      {t('appearance.theme.system')}
                     </div>
                   </div>
                 </div>
@@ -217,10 +254,10 @@ export function AppearanceSettings({
         <div className="space-y-4">
           <div>
             <h3 className="text-base font-medium text-zinc-900 dark:text-white">
-              Font Size
+              {t('appearance.fontSize.title')}
             </h3>
             <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-              Adjust text size for better readability.
+              {t('appearance.fontSize.subtitle')}
             </p>
           </div>
 
@@ -235,7 +272,7 @@ export function AppearanceSettings({
                 className="h-4 w-4 text-amber-500 border-zinc-300 dark:border-zinc-600 focus:ring-amber-500 dark:focus:ring-amber-400"
               />
               <span className="text-xs text-zinc-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400">
-                Small - Compact and space-efficient
+                {t('appearance.fontSize.small')}
               </span>
             </label>
 
@@ -249,7 +286,7 @@ export function AppearanceSettings({
                 className="h-4 w-4 text-amber-500 border-zinc-300 dark:border-zinc-600 focus:ring-amber-500 dark:focus:ring-amber-400"
               />
               <span className="text-sm text-zinc-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400">
-                Medium - Default size (recommended)
+                {t('appearance.fontSize.medium')}
               </span>
             </label>
 
@@ -263,7 +300,7 @@ export function AppearanceSettings({
                 className="h-4 w-4 text-amber-500 border-zinc-300 dark:border-zinc-600 focus:ring-amber-500 dark:focus:ring-amber-400"
               />
               <span className="text-base text-zinc-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400">
-                Large - Easier to read
+                {t('appearance.fontSize.large')}
               </span>
             </label>
           </div>
@@ -323,10 +360,10 @@ export function AppearanceSettings({
         <div className="space-y-4">
           <div>
             <h3 className="text-base font-medium text-zinc-900 dark:text-white">
-              Language
+              {t('appearance.language.title')}
             </h3>
             <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-              Select your preferred language.
+              {t('appearance.language.subtitle')}
             </p>
           </div>
 
@@ -364,7 +401,7 @@ export function AppearanceSettings({
               text-white dark:text-zinc-900 rounded-lg font-medium text-sm transition-colors
               disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {isSaving ? 'Saving...' : 'Save Changes'}
+            {isSaving ? t('saving') : t('saveChanges')}
           </button>
           <button
             type="button"
@@ -374,7 +411,7 @@ export function AppearanceSettings({
               text-zinc-900 dark:text-white rounded-lg font-medium text-sm transition-colors
               disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Cancel
+            {t('common:cancel')}
           </button>
         </div>
       )}

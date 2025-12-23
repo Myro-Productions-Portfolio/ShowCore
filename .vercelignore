@@ -1,0 +1,13 @@
+node_modules
+.git
+.env.local
+.env.*.local
+backend/
+data-model/
+instructions/
+prompts/
+design-system/
+sections/
+shell/
+*.md
+!README.md

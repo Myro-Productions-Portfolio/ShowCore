@@ -8,13 +8,17 @@ export function AnalyticsPage() {
   const data = analyticsData as unknown as MarketAnalyticsData
 
   // State management for analytics page
+  // @ts-ignore - Placeholder for future functionality
   const [dateRange, setDateRange] = useState({ start: '2024-01-01', end: '2024-12-31' })
+  // @ts-ignore - Placeholder for future functionality
   const [chartType, setChartType] = useState<'line' | 'bar' | 'pie' | 'area'>('line')
+  // @ts-ignore - Placeholder for future functionality
   const [layoutPreferences, setLayoutPreferences] = useLocalStorage('showcore_analytics_layout', {
     showPersonalBenchmark: true,
     showPredictions: false,
     defaultView: 'overview'
   })
+  // @ts-ignore - Placeholder for future functionality
   const [isLoading, setIsLoading] = useState(false)
 
   return (

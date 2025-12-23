@@ -1,0 +1,28 @@
+{
+  "title": "Configuración",
+  "subtitle": "Gestiona las preferencias de tu cuenta",
+  "appearance": {
+    "title": "Configuración de Apariencia",
+    "subtitle": "Personaliza cómo se ve y se siente la aplicación según tus preferencias.",
+    "theme": {
+      "title": "Tema",
+      "subtitle": "Elige tu esquema de colores preferido.",
+      "light": "Claro",
+      "dark": "Oscuro",
+      "system": "Sistema"
+    },
+    "fontSize": {
+      "title": "Tamaño de Fuente",
+      "subtitle": "Ajusta el tamaño del texto para mejor legibilidad.",
+      "small": "Pequeño - Compacto y eficiente en espacio",
+      "medium": "Mediano - Tamaño predeterminado (recomendado)",
+      "large": "Grande - Más fácil de leer"
+    },
+    "language": {
+      "title": "Idioma",
+      "subtitle": "Selecciona tu idioma preferido."
+    }
+  },
+  "saveChanges": "Guardar Cambios",
+  "saving": "Guardando..."
+}

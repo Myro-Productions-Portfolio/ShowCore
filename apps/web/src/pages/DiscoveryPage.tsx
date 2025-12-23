@@ -84,11 +84,10 @@ export function DiscoveryPage() {
       onSearch={handleSearch}
       onFilterChange={handleFilterChange}
       onClearFilters={handleClearFilters}
-      onViewProfile={(id) => navigate(`/bookings?technician=${id}`)}
-      onRequestBooking={(id) => navigate(`/bookings?action=create&technician=${id}`)}
+      onViewProfile={(id: string) => navigate(`/technician/${id}`)}
       onToggleBookmark={handleToggleBookmark}
-      onViewRanking={(id) => console.log('View ranking:', id)}
-      onPageChange={(page) => setSearchState((prev) => ({ ...prev, page }))}
+      onViewRanking={(id: string) => console.log('View ranking:', id)}
+      onPageChange={(page: number) => setSearchState((prev) => ({ ...prev, page }))}
     />
   )
 }

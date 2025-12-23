@@ -1,6 +1,8 @@
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useEffect, useState, useRef } from 'react'
 import { Home, Search, Calendar, Award, Star, BarChart3, Settings, HelpCircle, Bell, X, CheckCircle, MessageCircle } from 'lucide-react'
+import { useTheme } from '../hooks/useTheme'
+import { useAuth } from '../hooks/useAuth'
 import { AppShell } from './shell/AppShell'
 import type { NavItem } from './shell/MainNav'
 import type { AIAssistantState, AIMessage, QuickAction, SuggestedAction } from '../../../../shell/components/AIAssistant'
@@ -10,7 +12,8 @@ export function AppLayout() {
   // Test comment for HMR refresh
   const navigate = useNavigate()
   const location = useLocation()
-  const [currentUser, setCurrentUser] = useState<{ name: string; email: string } | null>(null)
+  const { } = useTheme() // Theme hook is used for side effects (initialization)
+  const { user, isLoading, isAuthenticated, logout } = useAuth()
   const [notificationsOpen, setNotificationsOpen] = useState(false)
   const notificationsRef = useRef<HTMLDivElement>(null)
   
@@ -86,21 +89,15 @@ export function AppLayout() {
 
   // Check authentication state on mount
   useEffect(() => {
-    const storedUser = localStorage.getItem('showcore_user')
-    if (storedUser) {
-      try {
-        const user = JSON.parse(storedUser)
-        setCurrentUser(user)
-      } catch (error) {
-        console.error('Error parsing stored user:', error)
-        localStorage.removeItem('showcore_user')
-        navigate('/login')
-      }
-    } else {
-      // No user found, redirect to login
+    // Temporarily bypass auth check for debugging
+    console.log('Auth state:', { isLoading, isAuthenticated, user })
+    
+    // Only redirect if we're sure there's no user and loading is complete
+    if (!isLoading && !isAuthenticated && !user) {
+      console.log('Redirecting to login - no authenticated user found')
       navigate('/login')
     }
-  }, [navigate])
+  }, [isLoading, isAuthenticated, user, navigate])
 
   // Update AI context when page changes
   useEffect(() => {
@@ -143,11 +140,15 @@ export function AppLayout() {
     { label: 'Help', href: '/help', icon: HelpCircle },
   ]
 
-  const handleLogout = () => {
-    // Clear user data from localStorage
-    localStorage.removeItem('showcore_user')
-    // Navigate to login page
-    navigate('/login')
+  const handleLogout = async () => {
+    try {
+      await logout()
+      navigate('/login')
+    } catch (error) {
+      console.error('Logout error:', error)
+      // Fallback: navigate to login anyway
+      navigate('/login')
+    }
   }
 
   const handleSettings = () => {
@@ -273,16 +274,32 @@ export function AppLayout() {
     handleAIMessage(quickAction.prompt)
   }
 
-  // Don't render the app shell if user is not authenticated
-  if (!currentUser) {
-    return null // or a loading spinner
+  // Show loading state while checking authentication
+  if (isLoading) {
+    console.log('AppLayout: Showing loading state')
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-white dark:bg-zinc-900">
+        <div className="text-center">
+          <div className="w-8 h-8 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-zinc-600 dark:text-zinc-400">Loading ShowCore...</p>
+        </div>
+      </div>
+    )
   }
+
+  // Don't render the app shell if user is not authenticated
+  if (!isAuthenticated || !user) {
+    console.log('AppLayout: No authenticated user, returning null')
+    return null // This will trigger the redirect in useEffect
+  }
+
+  console.log('AppLayout: Rendering app shell for user:', user?.email)
 
   return (
     <div className="relative">
       <AppShell
         navigationItems={navigationItems}
-        user={currentUser}
+        user={user}
         notificationCount={unreadCount}
         onNavigate={(href) => navigate(href)}
         onLogout={handleLogout}
