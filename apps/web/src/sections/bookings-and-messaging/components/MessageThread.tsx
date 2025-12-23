@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { User, MessageAttachment, Message } from '../../../../product/sections/bookings-and-messaging/types';
+import type { User, MessageAttachment, Message } from '../types';
 
 interface MessageThreadProps {
   messages: Message[];

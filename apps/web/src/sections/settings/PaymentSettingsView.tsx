@@ -8,7 +8,7 @@
 import { useState } from 'react';
 import { PayoutSettings } from './components/PayoutSettings';
 import { BillingSettings } from './components/BillingSettings';
-import sampleData from '../../../product/sections/settings/data.json';
+import sampleData from '../data.json';
 import type {
   PayoutMethod,
   BankAccountFormData,
@@ -17,7 +17,7 @@ import type {
   CompanyTier,
   PaymentMethodFormData,
   BillingAddress,
-} from '../../../product/sections/settings/types';
+} from '../types';
 
 export default function PaymentSettingsView() {
   const [role, setRole] = useState<'technician' | 'company'>('technician');

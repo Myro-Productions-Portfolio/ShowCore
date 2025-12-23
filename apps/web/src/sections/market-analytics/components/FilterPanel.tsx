@@ -7,7 +7,7 @@ import type {
   EventType,
   LayoutFilters,
   DateRange,
-} from '../../../../product/sections/market-analytics/types'
+} from '../types'
 
 const SKILLS: Skill[] = ['Audio/Sound', 'Lighting', 'Video', 'LED Wall', 'Rigging']
 const TIERS: Tier[] = ['Beginner', 'Intermediate', 'Advanced', 'Pro', 'Master']

@@ -1,6 +1,6 @@
 import { Check, ChevronDown, Star, Trash2 } from 'lucide-react'
 import { useState } from 'react'
-import type { SavedLayout } from '../../../../product/sections/market-analytics/types'
+import type { SavedLayout } from '../types'
 
 export interface SavedLayoutsProps {
   layouts: SavedLayout[]

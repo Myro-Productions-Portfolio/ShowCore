@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { AppearanceSettings } from './components/AppearanceSettings';
-import type { AppearanceSettings as AppearanceSettingsType } from '../../../product/sections/settings/types';
+import type { AppearanceSettings as AppearanceSettingsType } from '../types';
 
 // Sample data
 const sampleAppearanceSettings: AppearanceSettingsType = {

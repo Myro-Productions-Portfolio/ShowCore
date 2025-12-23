@@ -1,4 +1,4 @@
-import type { EmailVerificationProps } from '../../../../product/sections/authentication/types'
+import type { EmailVerificationProps } from '../types'
 
 export function EmailVerification({
   email,

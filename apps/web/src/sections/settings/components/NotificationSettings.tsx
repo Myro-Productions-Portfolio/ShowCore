@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import type { NotificationSettingsProps, NotificationPreferences } from '../../../../product/sections/settings/types'
+import type { NotificationSettingsProps, NotificationPreferences } from '../types'
 
 export function NotificationSettings({
   preferences,

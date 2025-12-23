@@ -4,7 +4,7 @@ import type {
   ModerationStatus,
   ModerationAction,
   FlaggedContentType,
-} from '../../../../product/sections/admin-portal/types';
+} from '../types';
 
 export default function ContentModeration({
   flaggedContent,

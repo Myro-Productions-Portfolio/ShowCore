@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import type {
   PasswordResetProps,
-} from '../../../../product/sections/authentication/types'
+} from '../types'
 
 type PasswordStrength = 'weak' | 'medium' | 'strong'
 

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import type {
   ProfileCompletionProps,
-} from '../../../../product/sections/authentication/types'
+} from '../types'
 
 export function ProfileCompletion({
   role,

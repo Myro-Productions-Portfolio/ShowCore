@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react';
 import type {
   BookingsMessagingProps,
   BookingStatus,
-} from '../../../../product/sections/bookings-and-messaging/types';
+} from '../types';
 import { BookingCard } from './BookingCard';
 import { BookingDetail } from './BookingDetail';
 import { CalendarView } from './CalendarView';

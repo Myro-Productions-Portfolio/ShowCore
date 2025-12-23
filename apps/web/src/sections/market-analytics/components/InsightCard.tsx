@@ -1,5 +1,5 @@
 import { Sparkles, TrendingUp, Award, MapPin, Calendar, X } from 'lucide-react'
-import type { AIInsight } from '../../../../product/sections/market-analytics/types'
+import type { AIInsight } from '../types'
 
 export interface InsightCardProps {
   insight: AIInsight

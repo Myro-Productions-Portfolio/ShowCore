@@ -6,7 +6,7 @@ import type {
   DisputeResolution as DisputeResolutionType,
   DisputeMessage,
   DisputeEvidence,
-} from '../../../../product/sections/admin-portal/types';
+} from '../types';
 
 export default function DisputeResolution({
   disputes,

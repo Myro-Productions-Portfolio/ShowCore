@@ -1,4 +1,4 @@
-import type { Booking, User } from '../../../../product/sections/bookings-and-messaging/types';
+import type { Booking, User } from '../types';
 
 interface BookingCardProps {
   booking: Booking;

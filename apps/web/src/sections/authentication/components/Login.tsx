@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import type {
   LoginProps,
   OAuthProvider,
-} from '../../../../product/sections/authentication/types'
+} from '../types'
 
 export function Login({
   onLogin,

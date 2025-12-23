@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { ProfileCompletion } from './components'
-import type { UserRole, ProfileCompletionData } from '../../../product/sections/authentication/types'
+import type { UserRole, ProfileCompletionData } from '../types'
 
 export default function ProfileCompletionView() {
   const [isLoading, setIsLoading] = useState(false)

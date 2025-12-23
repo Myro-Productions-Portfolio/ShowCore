@@ -10,7 +10,7 @@ import type {
   PayoutMethod,
   BankAccountFormData,
   PayPalFormData,
-} from '../../../../product/sections/settings/types';
+} from '../types';
 
 export interface PayoutSettingsProps {
   payoutMethods: PayoutMethod[];

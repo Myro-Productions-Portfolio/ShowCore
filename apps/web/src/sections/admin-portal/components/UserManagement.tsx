@@ -3,7 +3,7 @@ import type {
   UserManagementProps,
   AccountStatus,
   AdminNote,
-} from '../../../../product/sections/admin-portal/types';
+} from '../types';
 
 export function UserManagement({
   users,

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { PrivacySettings } from './components/PrivacySettings';
-import type { PrivacySettings as PrivacySettingsType } from '../../../product/sections/settings/types';
+import type { PrivacySettings as PrivacySettingsType } from '../types';
 
 // Sample data
 const samplePrivacySettings: PrivacySettingsType = {

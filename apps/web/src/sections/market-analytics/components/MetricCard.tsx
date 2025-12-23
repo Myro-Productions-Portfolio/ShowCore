@@ -1,5 +1,5 @@
 import { TrendingUp, TrendingDown, Minus } from 'lucide-react'
-import type { TrendDirection } from '../../../../product/sections/market-analytics/types'
+import type { TrendDirection } from '../types'
 
 export interface MetricCardProps {
   label: string

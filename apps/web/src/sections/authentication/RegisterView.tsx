@@ -1,6 +1,6 @@
 import { Register } from './components'
-import type { RegisterFormData, OAuthProviderId, OAuthProvider } from '../../../product/sections/authentication/types'
-import sampleData from '../../../product/sections/authentication/data.json'
+import type { RegisterFormData, OAuthProviderId, OAuthProvider } from '../types'
+import sampleData from '../data.json'
 
 export default function RegisterView() {
   const handleRegister = async (data: RegisterFormData) => {

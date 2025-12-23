@@ -5,7 +5,7 @@ import type {
   CompanySettingsProfile,
   TechnicianProfileUpdateData,
   CompanyProfileUpdateData,
-} from '../../../../product/sections/settings/types'
+} from '../types'
 
 export function ProfileSettings({
   profile,

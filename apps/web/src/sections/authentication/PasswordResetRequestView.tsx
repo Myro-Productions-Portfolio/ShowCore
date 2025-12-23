@@ -3,8 +3,8 @@ import { PasswordResetRequest } from './components/PasswordResetRequest'
 import type {
   PasswordResetRequestData,
   AuthError,
-} from '../../../product/sections/authentication/types'
-import authData from '../../../product/sections/authentication/data.json'
+} from '../types'
+import authData from '../data.json'
 
 export default function PasswordResetRequestView() {
   const [isLoading, setIsLoading] = useState(false)

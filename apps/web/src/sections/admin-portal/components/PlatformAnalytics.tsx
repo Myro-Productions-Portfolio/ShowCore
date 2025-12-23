@@ -1,4 +1,4 @@
-import type { AnalyticsProps, TimeSeriesData } from '../../../../product/sections/admin-portal/types';
+import type { AnalyticsProps, TimeSeriesData } from '../types';
 
 /**
  * PlatformAnalytics Component

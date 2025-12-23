@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { ConnectedAccountsProps } from '../../../../product/sections/settings/types';
+import type { ConnectedAccountsProps } from '../types';
 
 const PROVIDER_INFO = {
   google: {

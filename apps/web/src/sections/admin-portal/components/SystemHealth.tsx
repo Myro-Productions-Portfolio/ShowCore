@@ -2,7 +2,7 @@ import type {
   SystemHealthProps,
   SystemHealth as SystemHealthType,
   PerformanceMetric,
-} from '../../../../product/sections/admin-portal/types';
+} from '../types';
 
 /**
  * SystemHealth Component

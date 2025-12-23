@@ -1,6 +1,6 @@
 import { MarketAnalytics } from './components'
-import analyticsDataRaw from '../../../product/sections/market-analytics/data.json'
-import type { MarketAnalyticsData } from '../../../product/sections/market-analytics/types'
+import analyticsDataRaw from '../data.json'
+import type { MarketAnalyticsData } from '../types'
 
 export default function MarketAnalyticsView() {
   const data = analyticsDataRaw as unknown as MarketAnalyticsData

@@ -7,7 +7,7 @@ import type {
   Invoice,
   Message,
   Booking,
-} from '../../../../product/sections/bookings-and-messaging/types';
+} from '../types';
 import { MessageThread } from './MessageThread';
 
 interface BookingDetailProps {

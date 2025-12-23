@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { AccountManagementProps } from '../../../../product/sections/settings/types';
+import type { AccountManagementProps } from '../types';
 
 export function AccountSettings({
   accountManagement,

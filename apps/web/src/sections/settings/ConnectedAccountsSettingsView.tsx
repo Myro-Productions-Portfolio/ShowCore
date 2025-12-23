@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ConnectedAccountsSettings } from './components/ConnectedAccountsSettings';
-import type { ConnectedAccount } from '../../../product/sections/settings/types';
+import type { ConnectedAccount } from '../types';
 
 // Sample data
 const sampleConnectedAccounts: ConnectedAccount[] = [

@@ -1,5 +1,5 @@
 import { ArrowRight, ExternalLink, Maximize2, Info } from 'lucide-react'
-import type { SuggestedAction } from '../../../../product/sections/dashboard/ai-assistant-types'
+import type { SuggestedAction } from '@/sections/dashboard-and-onboarding/ai-assistant-types'
 
 interface SuggestedActionButtonProps {
   action: SuggestedAction

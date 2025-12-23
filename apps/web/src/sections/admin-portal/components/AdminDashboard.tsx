@@ -1,4 +1,4 @@
-import type { DashboardProps, DashboardAlert, RecentActivity } from '../../../../product/sections/admin-portal/types';
+import type { DashboardProps, DashboardAlert, RecentActivity } from '../types';
 
 /**
  * AdminDashboard Component

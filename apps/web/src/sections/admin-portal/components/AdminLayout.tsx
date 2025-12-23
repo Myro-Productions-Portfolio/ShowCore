@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { AdminUser, AdminNavItem, AdminQuickAction } from '../../../../product/sections/admin-portal/types';
+import type { AdminUser, AdminNavItem, AdminQuickAction } from '../types';
 
 // Icon component that maps icon names to SVG icons
 function NavIcon({ name, className = "w-5 h-5" }: { name: string; className?: string }) {

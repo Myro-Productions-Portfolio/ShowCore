@@ -1,5 +1,5 @@
 import { HelpCircle, BookOpen, MapPin, CheckCircle } from 'lucide-react'
-import type { QuickActionsGridProps, QuickAction } from '../../../../product/sections/dashboard/ai-assistant-types'
+import type { QuickActionsGridProps, QuickAction } from '@/sections/dashboard-and-onboarding/ai-assistant-types'
 
 /**
  * Quick Actions Grid

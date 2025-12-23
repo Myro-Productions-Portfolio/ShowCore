@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { AppearanceSettingsProps, AppearanceSettings as AppearanceSettingsType } from '../../../../product/sections/settings/types';
+import type { AppearanceSettingsProps, AppearanceSettings as AppearanceSettingsType } from '../types';
 
 interface LanguageOption {
   code: string;

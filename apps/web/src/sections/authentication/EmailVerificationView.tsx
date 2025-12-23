@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { EmailVerification } from './components'
-import type { AuthError } from '../../../product/sections/authentication/types'
+import type { AuthError } from '../types'
 
 /**
  * EmailVerificationView - Preview wrapper for the EmailVerification component

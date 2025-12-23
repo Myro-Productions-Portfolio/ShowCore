@@ -11,7 +11,7 @@ import type {
   CompanyTier,
   PaymentMethodFormData,
   BillingAddress,
-} from '../../../../product/sections/settings/types';
+} from '../types';
 
 export interface BillingSettingsProps {
   billingInfo: BillingInfo;

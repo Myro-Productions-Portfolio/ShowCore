@@ -1,4 +1,4 @@
-import type { AIAssistantWidgetProps } from '../../../../product/sections/dashboard/ai-assistant-types'
+import type { AIAssistantWidgetProps } from '@/sections/dashboard-and-onboarding/ai-assistant-types'
 import { AIAssistantButton } from './AIAssistantButton'
 import { AIAssistantPanel } from './AIAssistantPanel'
 

@@ -1,6 +1,6 @@
-import data from '../../../product/sections/settings/data.json'
+import data from '../data.json'
 import { SecuritySettings } from './components'
-import type { SecuritySettings as SecuritySettingsType } from '../../../product/sections/settings/types'
+import type { SecuritySettings as SecuritySettingsType } from '../types'
 
 export default function SecuritySettingsView() {
   return (

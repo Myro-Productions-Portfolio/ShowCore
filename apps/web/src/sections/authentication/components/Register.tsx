@@ -3,7 +3,7 @@ import type {
   RegisterProps,
   OAuthProvider,
   UserRole,
-} from '../../../../product/sections/authentication/types'
+} from '../types'
 
 export function Register({
   onRegister,

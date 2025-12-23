@@ -1,4 +1,4 @@
-import type { AIMessageBubbleProps } from '../../../../product/sections/dashboard/ai-assistant-types'
+import type { AIMessageBubbleProps } from '@/sections/dashboard-and-onboarding/ai-assistant-types'
 import { SuggestedActionButton } from './SuggestedActionButton'
 
 /**

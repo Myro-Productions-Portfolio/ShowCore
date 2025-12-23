@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { PrivacySettingsProps, PrivacySettings as PrivacySettingsType } from '../../../../product/sections/settings/types';
+import type { PrivacySettingsProps, PrivacySettings as PrivacySettingsType } from '../types';
 
 export function PrivacySettings({
   privacySettings,

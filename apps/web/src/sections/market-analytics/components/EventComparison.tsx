@@ -1,5 +1,5 @@
 import { Calendar, Users, DollarSign, TrendingUp } from 'lucide-react'
-import type { NamedEvent } from '../../../../product/sections/market-analytics/types'
+import type { NamedEvent } from '../types'
 
 export interface EventComparisonProps {
   events: NamedEvent[]

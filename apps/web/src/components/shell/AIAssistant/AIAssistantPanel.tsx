@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { X, Minus, Send } from 'lucide-react'
-import type { AIAssistantPanelProps } from '../../../../product/sections/dashboard/ai-assistant-types'
+import type { AIAssistantPanelProps } from '@/sections/dashboard-and-onboarding/ai-assistant-types'
 import { AIMessage } from './AIMessage'
 import { QuickActionsGrid } from './QuickActionsGrid'
 

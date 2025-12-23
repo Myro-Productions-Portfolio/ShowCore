@@ -3,7 +3,7 @@ import type {
   SecuritySettingsProps,
   PasswordChangeData,
   ActiveSession,
-} from '../../../../product/sections/settings/types'
+} from '../types'
 
 export function SecuritySettings({
   securitySettings,

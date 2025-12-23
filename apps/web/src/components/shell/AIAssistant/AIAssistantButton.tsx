@@ -1,5 +1,5 @@
 import { MessageCircle } from 'lucide-react'
-import type { AIAssistantButtonProps } from '../../../../product/sections/dashboard/ai-assistant-types'
+import type { AIAssistantButtonProps } from '@/sections/dashboard-and-onboarding/ai-assistant-types'
 
 /**
  * AI Assistant Floating Button

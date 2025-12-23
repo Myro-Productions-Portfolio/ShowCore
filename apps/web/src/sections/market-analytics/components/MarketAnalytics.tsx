@@ -10,7 +10,7 @@ import {
   Save,
   LayoutGrid,
 } from 'lucide-react'
-import type { MarketAnalyticsProps } from '../../../../product/sections/market-analytics/types'
+import type { MarketAnalyticsProps } from '../types'
 import { MetricCard } from './MetricCard'
 import { FilterPanel } from './FilterPanel'
 import { LineChart, BarChart, DistributionChart } from './ChartPlaceholder'

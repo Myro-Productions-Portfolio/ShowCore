@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import type { SettingsLayoutProps } from '../../../../product/sections/settings/types'
+import type { SettingsLayoutProps } from '../types'
 
 export function SettingsLayout({
   currentSection,
