@@ -13,6 +13,8 @@ export interface AppShellProps {
   notificationCount?: number
   onNavigate?: (href: string) => void
   onLogout?: () => void
+  onViewProfile?: () => void
+  onSettings?: () => void
   onNotificationsClick?: () => void
   aiAssistantState?: AIAssistantState
   showAIAssistant?: boolean
@@ -49,6 +51,8 @@ export function AppShell({
   notificationCount = 0,
   onNavigate,
   onLogout,
+  onViewProfile,
+  onSettings,
   onNotificationsClick,
   aiAssistantState,
   showAIAssistant = true,
@@ -132,7 +136,7 @@ export function AppShell({
               </button>
 
               {/* User menu */}
-              {user && <UserMenu user={user} onLogout={onLogout} />}
+              {user && <UserMenu user={user} onLogout={onLogout} onViewProfile={onViewProfile} onSettings={onSettings} />}
             </div>
           </header>
 

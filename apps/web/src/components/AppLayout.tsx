@@ -1,11 +1,135 @@
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
-import { Home, Search, Calendar, Award, Star, BarChart3, Settings, HelpCircle } from 'lucide-react'
+import { useEffect, useState, useRef } from 'react'
+import { Home, Search, Calendar, Award, Star, BarChart3, Settings, HelpCircle, Bell, X, CheckCircle, MessageCircle } from 'lucide-react'
 import { AppShell } from './shell/AppShell'
 import type { NavItem } from './shell/MainNav'
+import type { AIAssistantState, AIMessage, QuickAction, SuggestedAction } from '../../../../shell/components/AIAssistant'
+import { getAIResponse, getQuickActions, getGreetingMessage } from '../lib/aiResponses'
 
 export function AppLayout() {
+  // Test comment for HMR refresh
   const navigate = useNavigate()
   const location = useLocation()
+  const [currentUser, setCurrentUser] = useState<{ name: string; email: string } | null>(null)
+  const [notificationsOpen, setNotificationsOpen] = useState(false)
+  const notificationsRef = useRef<HTMLDivElement>(null)
+  
+  // Mock notifications data
+  const [notifications] = useState([
+    {
+      id: 'notif-1',
+      type: 'booking',
+      title: 'New Booking Request',
+      message: 'Sarah Martinez sent you a booking request for Corporate Annual Gala 2025',
+      timestamp: '2 minutes ago',
+      read: false,
+      actionUrl: '/bookings/booking-001'
+    },
+    {
+      id: 'notif-2',
+      type: 'message',
+      title: 'New Message',
+      message: 'Marcus Chen: "Perfect! The CL5 and Meyer system are great..."',
+      timestamp: '1 hour ago',
+      read: false,
+      actionUrl: '/bookings/booking-001'
+    },
+    {
+      id: 'notif-3',
+      type: 'review',
+      title: 'New Review',
+      message: 'You received a 5-star review from Jamie Thompson',
+      timestamp: '3 hours ago',
+      read: true,
+      actionUrl: '/reviews'
+    },
+    {
+      id: 'notif-4',
+      type: 'system',
+      title: 'Profile Verification Complete',
+      message: 'Your ID verification has been approved',
+      timestamp: '1 day ago',
+      read: true,
+      actionUrl: '/settings'
+    },
+    {
+      id: 'notif-5',
+      type: 'booking',
+      title: 'Booking Confirmed',
+      message: 'Your booking for Live Music Festival - Main Stage has been confirmed',
+      timestamp: '2 days ago',
+      read: true,
+      actionUrl: '/bookings/booking-003'
+    }
+  ])
+
+  const unreadCount = notifications.filter(n => !n.read).length
+  
+  // AI Assistant state
+  const [aiState, setAiState] = useState<AIAssistantState>({
+    state: 'closed',
+    conversation: {
+      id: 'main-conversation',
+      messages: [],
+      context: {
+        currentPage: location.pathname,
+        userRole: 'technician', // This would come from user data in real implementation
+        userId: 'current-user',
+        onboardingComplete: false
+      },
+      createdAt: new Date().toISOString(),
+      lastMessageAt: new Date().toISOString()
+    },
+    quickActions: getQuickActions(location.pathname),
+    isTyping: false
+  })
+
+  // Check authentication state on mount
+  useEffect(() => {
+    const storedUser = localStorage.getItem('showcore_user')
+    if (storedUser) {
+      try {
+        const user = JSON.parse(storedUser)
+        setCurrentUser(user)
+      } catch (error) {
+        console.error('Error parsing stored user:', error)
+        localStorage.removeItem('showcore_user')
+        navigate('/login')
+      }
+    } else {
+      // No user found, redirect to login
+      navigate('/login')
+    }
+  }, [navigate])
+
+  // Update AI context when page changes
+  useEffect(() => {
+    setAiState((prev: AIAssistantState) => ({
+      ...prev,
+      conversation: {
+        ...prev.conversation,
+        context: {
+          ...prev.conversation.context,
+          currentPage: location.pathname
+        }
+      },
+      quickActions: getQuickActions(location.pathname)
+    }))
+  }, [location.pathname])
+
+  // Close notifications dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (notificationsRef.current && !notificationsRef.current.contains(event.target as Node)) {
+        setNotificationsOpen(false)
+      }
+    }
+
+    if (notificationsOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+      return () => document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [notificationsOpen])
 
   const navigationItems: NavItem[] = [
     { label: 'Dashboard', href: '/', icon: Home, isActive: location.pathname === '/' },
@@ -19,22 +143,241 @@ export function AppLayout() {
     { label: 'Help', href: '/help', icon: HelpCircle },
   ]
 
-  const currentUser = {
-    name: 'Demo User',
-    email: 'demo@showcore.com',
+  const handleLogout = () => {
+    // Clear user data from localStorage
+    localStorage.removeItem('showcore_user')
+    // Navigate to login page
+    navigate('/login')
+  }
+
+  const handleSettings = () => {
+    navigate('/settings')
+  }
+
+  const handleViewProfile = () => {
+    navigate('/settings')
+  }
+
+  const handleNotificationsClick = () => {
+    setNotificationsOpen(!notificationsOpen)
+  }
+
+  const handleNotificationClick = (notification: any) => {
+    navigate(notification.actionUrl)
+    setNotificationsOpen(false)
+  }
+
+  const getNotificationIcon = (type: string) => {
+    switch (type) {
+      case 'booking':
+        return <Calendar className="w-4 h-4 text-blue-500" />
+      case 'message':
+        return <MessageCircle className="w-4 h-4 text-green-500" />
+      case 'review':
+        return <Star className="w-4 h-4 text-amber-500" />
+      case 'system':
+        return <CheckCircle className="w-4 h-4 text-emerald-500" />
+      default:
+        return <Bell className="w-4 h-4 text-zinc-500" />
+    }
+  }
+
+  // AI Assistant handlers
+  const handleAIStateChange = (state: 'closed' | 'minimized' | 'open') => {
+    setAiState((prev: AIAssistantState) => {
+      // If opening for the first time and no messages, add greeting
+      if (state === 'open' && prev.state === 'closed' && prev.conversation.messages.length === 0) {
+        const greetingMessage: AIMessage = {
+          id: `msg-${Date.now()}-greeting`,
+          sender: 'assistant',
+          content: getGreetingMessage(location.pathname, prev.conversation.context.userRole),
+          contentType: 'text',
+          timestamp: new Date().toISOString(),
+          relativeTime: 'now'
+        }
+        
+        return {
+          ...prev,
+          state,
+          conversation: {
+            ...prev.conversation,
+            messages: [greetingMessage],
+            lastMessageAt: new Date().toISOString()
+          }
+        }
+      }
+      
+      return { ...prev, state }
+    })
+  }
+
+  const handleAIMessage = async (message: string) => {
+    // Add user message
+    const userMessage: AIMessage = {
+      id: `msg-${Date.now()}-user`,
+      sender: 'user',
+      content: message,
+      contentType: 'text',
+      timestamp: new Date().toISOString(),
+      relativeTime: 'now'
+    }
+
+    setAiState((prev: AIAssistantState) => ({
+      ...prev,
+      conversation: {
+        ...prev.conversation,
+        messages: [...prev.conversation.messages, userMessage],
+        lastMessageAt: new Date().toISOString()
+      },
+      isTyping: true
+    }))
+
+    // Simulate AI response delay
+    setTimeout(() => {
+      const aiResponse = getAIResponse(
+        message, 
+        location.pathname, 
+        aiState.conversation.context.userRole
+      )
+
+      const assistantMessage: AIMessage = {
+        id: `msg-${Date.now()}-assistant`,
+        sender: 'assistant',
+        content: aiResponse.message,
+        contentType: 'text',
+        timestamp: new Date().toISOString(),
+        relativeTime: 'now',
+        actions: aiResponse.suggestedActions
+      }
+
+      setAiState((prev: AIAssistantState) => ({
+        ...prev,
+        conversation: {
+          ...prev.conversation,
+          messages: [...prev.conversation.messages, assistantMessage],
+          lastMessageAt: new Date().toISOString()
+        },
+        isTyping: false
+      }))
+    }, 1000 + Math.random() * 1000) // Random delay between 1-2 seconds
+  }
+
+  const handleAIActionClick = (action: SuggestedAction) => {
+    if (action.type === 'navigate' && action.url) {
+      navigate(action.url)
+    }
+    // Other action types would be handled here in a real implementation
+  }
+
+  const handleAIQuickActionClick = (quickAction: QuickAction) => {
+    handleAIMessage(quickAction.prompt)
+  }
+
+  // Don't render the app shell if user is not authenticated
+  if (!currentUser) {
+    return null // or a loading spinner
   }
 
   return (
-    <AppShell
-      navigationItems={navigationItems}
-      user={currentUser}
-      notificationCount={3}
-      onNavigate={(href) => navigate(href)}
-      onLogout={() => console.log('Logout')}
-      onNotificationsClick={() => console.log('Notifications')}
-      showAIAssistant={false}
-    >
-      <Outlet />
-    </AppShell>
+    <div className="relative">
+      <AppShell
+        navigationItems={navigationItems}
+        user={currentUser}
+        notificationCount={unreadCount}
+        onNavigate={(href) => navigate(href)}
+        onLogout={handleLogout}
+        onSettings={handleSettings}
+        onViewProfile={handleViewProfile}
+        onNotificationsClick={handleNotificationsClick}
+        showAIAssistant={true}
+        aiAssistantState={aiState}
+        onAIAssistantStateChange={handleAIStateChange}
+        onAIAssistantSendMessage={handleAIMessage}
+        onAIAssistantActionClick={handleAIActionClick}
+        onAIAssistantQuickActionClick={handleAIQuickActionClick}
+      >
+        <Outlet />
+      </AppShell>
+
+      {/* Notifications Dropdown */}
+      {notificationsOpen && (
+        <div
+          ref={notificationsRef}
+          className="fixed top-16 right-4 z-50 w-80 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg shadow-lg max-h-96 overflow-hidden"
+        >
+          {/* Header */}
+          <div className="flex items-center justify-between p-4 border-b border-zinc-200 dark:border-zinc-800">
+            <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+              Notifications
+            </h3>
+            <button
+              onClick={() => setNotificationsOpen(false)}
+              className="p-1 rounded-md text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+
+          {/* Notifications List */}
+          <div className="max-h-80 overflow-y-auto">
+            {notifications.length === 0 ? (
+              <div className="p-8 text-center">
+                <Bell className="w-8 h-8 text-zinc-400 mx-auto mb-2" />
+                <p className="text-zinc-500 dark:text-zinc-400">No notifications</p>
+              </div>
+            ) : (
+              <div className="divide-y divide-zinc-200 dark:divide-zinc-800">
+                {notifications.map((notification) => (
+                  <div
+                    key={notification.id}
+                    onClick={() => handleNotificationClick(notification)}
+                    className={`p-4 hover:bg-zinc-50 dark:hover:bg-zinc-800 cursor-pointer transition-colors ${
+                      !notification.read ? 'bg-amber-50 dark:bg-amber-900/10' : ''
+                    }`}
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="flex-shrink-0 mt-0.5">
+                        {getNotificationIcon(notification.type)}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-1">
+                          <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100 truncate">
+                            {notification.title}
+                          </p>
+                          {!notification.read && (
+                            <div className="w-2 h-2 bg-amber-500 rounded-full flex-shrink-0" />
+                          )}
+                        </div>
+                        <p className="text-sm text-zinc-600 dark:text-zinc-400 line-clamp-2">
+                          {notification.message}
+                        </p>
+                        <p className="text-xs text-zinc-500 dark:text-zinc-500 mt-1">
+                          {notification.timestamp}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Footer */}
+          {notifications.length > 0 && (
+            <div className="p-3 border-t border-zinc-200 dark:border-zinc-800">
+              <button
+                onClick={() => {
+                  navigate('/notifications')
+                  setNotificationsOpen(false)
+                }}
+                className="w-full text-sm text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 font-medium"
+              >
+                View all notifications
+              </button>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
   )
 }

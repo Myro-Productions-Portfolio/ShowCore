@@ -3,8 +3,8 @@ import { PasswordReset } from './components/PasswordReset'
 import type {
   PasswordResetData,
   AuthError,
-} from '../types'
-import authData from '../data.json'
+} from './types'
+import authData from './data.json'
 
 export default function PasswordResetView() {
   const [isLoading, setIsLoading] = useState(false)
@@ -32,7 +32,7 @@ export default function PasswordResetView() {
     }
 
     if (data.password.length < 8) {
-      setError(authData.authErrors.find(e => e.code === 'weak_password') || {
+      setError(authData.authErrors.find((e: any) => e.code === 'weak_password') || {
         code: 'weak_password',
         message: 'Password is too weak.',
         field: undefined

@@ -1,5 +1,5 @@
 import { useRef, useEffect, type RefObject } from 'react';
-import { useAIActionsOptional } from '../context/AIActionContext';
+import { useAIActionsOptional } from './AIActionContext';
 
 type FieldElement = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 

@@ -1,6 +1,6 @@
-import data from '../data.json'
+import data from './data.json'
 import { Login } from './components'
-import type { OAuthProvider } from '../types'
+import type { OAuthProvider } from './types'
 
 export default function LoginView() {
   return (

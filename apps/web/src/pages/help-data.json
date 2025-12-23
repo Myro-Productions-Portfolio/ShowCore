@@ -1,0 +1,198 @@
+{
+  "faqItems": [
+    {
+      "id": "getting-started-1",
+      "question": "How do I create my technician profile?",
+      "answer": "To create your technician profile, complete the registration process and then navigate to your profile settings. Add your skills, experience, certifications, and upload photos of your work. The more complete your profile, the better your visibility to potential clients.",
+      "category": "Getting Started"
+    },
+    {
+      "id": "getting-started-2", 
+      "question": "How do I find and hire technicians?",
+      "answer": "Use our discovery page to search for technicians by location, skills, availability, and tier level. You can filter by specific equipment expertise, read reviews, and view their show proof portfolio. Send direct messages to discuss your project needs.",
+      "category": "Getting Started"
+    },
+    {
+      "id": "getting-started-3",
+      "question": "What are the different tier levels?",
+      "answer": "ShowCore has 4 tier levels: Beginner (0-499 XP), Experienced (500-1999 XP), Advanced (2000-4999 XP), and Pro (5000+ XP). Higher tiers indicate more experience and typically command higher rates.",
+      "category": "Getting Started"
+    },
+    {
+      "id": "xp-system-1",
+      "question": "How do I earn XP points?",
+      "answer": "You earn XP by completing verified gigs, uploading show proof with photos/videos, receiving positive reviews, and achieving milestones. Each completed job with show proof verification earns base XP plus bonuses for quality submissions.",
+      "category": "XP System"
+    },
+    {
+      "id": "xp-system-2",
+      "question": "What is show proof verification?",
+      "answer": "Show proof is our verification system where you upload photos, videos, and documentation from your gigs. Our team reviews submissions to ensure authenticity and quality, which helps build trust and earns you XP points.",
+      "category": "XP System"
+    },
+    {
+      "id": "bookings-1",
+      "question": "How does the booking process work?",
+      "answer": "Companies can send booking requests through our platform. You'll receive notifications and can accept, decline, or negotiate terms. Once accepted, use our messaging system to coordinate details. Payment is processed after job completion and review.",
+      "category": "Bookings"
+    },
+    {
+      "id": "bookings-2",
+      "question": "What happens if there's a dispute?",
+      "answer": "Our dispute resolution system allows both parties to submit evidence and explanations. Our admin team reviews all materials and makes fair decisions. We encourage clear communication and detailed contracts to prevent disputes.",
+      "category": "Bookings"
+    },
+    {
+      "id": "payments-1",
+      "question": "How do I get paid?",
+      "answer": "Set up your payout method in Settings > Payment. We support bank transfers and PayPal. Payments are released after job completion, client review, and any dispute resolution period. Processing typically takes 2-3 business days.",
+      "category": "Payments"
+    },
+    {
+      "id": "payments-2",
+      "question": "What are the platform fees?",
+      "answer": "ShowCore charges a small transaction fee on completed bookings. The exact percentage depends on your tier level and subscription plan. Higher tiers and premium subscriptions have lower fees.",
+      "category": "Payments"
+    },
+    {
+      "id": "safety-1",
+      "question": "How do you verify technician credentials?",
+      "answer": "We verify technicians through multiple methods: ID verification, skill assessments, reference checks, and ongoing show proof submissions. Our tier system and review system provide additional quality indicators.",
+      "category": "Safety & Trust"
+    },
+    {
+      "id": "safety-2",
+      "question": "What safety measures are in place?",
+      "answer": "All users undergo background verification. We have secure messaging, dispute resolution, and insurance options. Report any safety concerns immediately through our support channels.",
+      "category": "Safety & Trust"
+    },
+    {
+      "id": "technical-1",
+      "question": "Why can't I see certain features?",
+      "answer": "Some features are tier-restricted or require subscription upgrades. Check your current tier level and subscription plan in your settings. Contact support if you believe you should have access to specific features.",
+      "category": "Technical"
+    },
+    {
+      "id": "technical-2",
+      "question": "The app is running slowly, what should I do?",
+      "answer": "Try refreshing your browser, clearing cache, or switching to a different browser. Check your internet connection. If problems persist, contact our technical support team with details about your device and browser.",
+      "category": "Technical"
+    }
+  ],
+  "helpTopics": {
+    "technician": [
+      {
+        "id": "profile-setup",
+        "title": "Complete Your Profile",
+        "description": "Set up your technician profile with skills, portfolio, and availability",
+        "icon": "User",
+        "href": "/settings/profile"
+      },
+      {
+        "id": "show-proof",
+        "title": "Upload Show Proof",
+        "description": "Document your work and earn XP through verified submissions",
+        "icon": "Camera",
+        "href": "/show-proof"
+      },
+      {
+        "id": "manage-bookings",
+        "title": "Manage Bookings",
+        "description": "View and respond to booking requests from companies",
+        "icon": "Calendar",
+        "href": "/bookings"
+      },
+      {
+        "id": "payout-setup",
+        "title": "Set Up Payouts",
+        "description": "Configure your payment methods to receive earnings",
+        "icon": "CreditCard",
+        "href": "/settings/payment"
+      },
+      {
+        "id": "tier-progression",
+        "title": "Advance Your Tier",
+        "description": "Learn how to earn XP and progress to higher tier levels",
+        "icon": "TrendingUp",
+        "href": "/analytics"
+      }
+    ],
+    "company": [
+      {
+        "id": "find-technicians",
+        "title": "Find Technicians",
+        "description": "Search and discover qualified AV technicians for your events",
+        "icon": "Search",
+        "href": "/discovery"
+      },
+      {
+        "id": "create-bookings",
+        "title": "Create Bookings",
+        "description": "Send booking requests and manage your event staffing",
+        "icon": "Plus",
+        "href": "/bookings"
+      },
+      {
+        "id": "billing-setup",
+        "title": "Billing & Subscriptions",
+        "description": "Manage your subscription plan and payment methods",
+        "icon": "Receipt",
+        "href": "/settings/billing"
+      },
+      {
+        "id": "team-management",
+        "title": "Team Management",
+        "description": "Add team members and manage company account permissions",
+        "icon": "Users",
+        "href": "/settings/team"
+      },
+      {
+        "id": "market-insights",
+        "title": "Market Analytics",
+        "description": "View market rates and hiring trends in your area",
+        "icon": "BarChart3",
+        "href": "/analytics"
+      }
+    ],
+    "common": [
+      {
+        "id": "messaging",
+        "title": "Messaging System",
+        "description": "Communicate securely with other platform users",
+        "icon": "MessageSquare",
+        "href": "/messages"
+      },
+      {
+        "id": "reviews",
+        "title": "Reviews & Ratings",
+        "description": "Leave and manage reviews for completed work",
+        "icon": "Star",
+        "href": "/reviews"
+      },
+      {
+        "id": "account-settings",
+        "title": "Account Settings",
+        "description": "Manage your account preferences and security settings",
+        "icon": "Settings",
+        "href": "/settings"
+      },
+      {
+        "id": "notifications",
+        "title": "Notifications",
+        "description": "Configure how you receive platform updates and alerts",
+        "icon": "Bell",
+        "href": "/settings/notifications"
+      }
+    ]
+  },
+  "supportContact": {
+    "email": "support@showcore.com",
+    "chatEnabled": true,
+    "chatHours": "Monday-Friday, 9 AM - 6 PM EST"
+  },
+  "platformStatus": {
+    "status": "operational",
+    "message": "All systems operational",
+    "lastUpdated": "2024-01-15T10:30:00Z"
+  }
+}

@@ -1,11 +1,18 @@
+import { useState } from 'react'
 import { ShowProofXP } from '@/sections/show-proof-and-xp/components'
 import data from '@/sections/show-proof-and-xp/data.json'
 import type { ShowProofUploadData, ShowProof, TechnicianXPProfile, LotteryStatus, TierDefinition } from '@/sections/show-proof-and-xp/types'
 
 export function ShowProofPage() {
+  // State management for show proof page
+  const [uploadModalOpen, setUploadModalOpen] = useState(false)
+  const [selectedProof, setSelectedProof] = useState<ShowProof | null>(null)
+
   const handleUploadShowProof = async (uploadData: ShowProofUploadData) => {
     console.log('Upload show proof:', uploadData)
     await new Promise((resolve) => setTimeout(resolve, 1500))
+    // Close modal after upload
+    setUploadModalOpen(false)
   }
 
   const handleEditShowProof = async (id: string, editData: Partial<ShowProofUploadData>) => {
@@ -34,7 +41,10 @@ export function ShowProofPage() {
         onEditShowProof={handleEditShowProof}
         onDeleteShowProof={handleDeleteShowProof}
         onVerifyShowProof={handleVerifyShowProof}
-        onViewShowProofDetail={(id) => console.log('View show proof detail:', id)}
+        onViewShowProofDetail={(id) => {
+          const proof = (data.showProofs as ShowProof[]).find(p => p.id === id)
+          setSelectedProof(proof || null)
+        }}
         onViewLotteryRules={() => console.log('View lottery rules')}
       />
     </div>

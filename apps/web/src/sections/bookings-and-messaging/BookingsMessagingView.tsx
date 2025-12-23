@@ -1,5 +1,5 @@
 import { BookingsMessaging } from './components';
-import data from '../data.json';
+import data from './data.json';
 import type {
   Booking,
   User,
@@ -10,7 +10,7 @@ import type {
   TimeEntry,
   Invoice,
   Message,
-} from '../types';
+} from './types';
 
 // Type assertions for imported data
 const bookings = data.bookings as unknown as Booking[];

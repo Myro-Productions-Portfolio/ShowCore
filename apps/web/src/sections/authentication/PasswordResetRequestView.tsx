@@ -3,8 +3,8 @@ import { PasswordResetRequest } from './components/PasswordResetRequest'
 import type {
   PasswordResetRequestData,
   AuthError,
-} from '../types'
-import authData from '../data.json'
+} from './types'
+import authData from './data.json'
 
 export default function PasswordResetRequestView() {
   const [isLoading, setIsLoading] = useState(false)
@@ -20,7 +20,7 @@ export default function PasswordResetRequestView() {
     // Simulate validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(data.email)) {
-      setError(authData.authErrors.find(e => e.code === 'email_not_found') || {
+      setError(authData.authErrors.find((e: any) => e.code === 'email_not_found') || {
         code: 'validation_error',
         message: 'Please enter a valid email address.',
         field: undefined

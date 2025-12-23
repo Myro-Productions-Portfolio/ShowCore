@@ -1,7 +1,7 @@
 import React from 'react';
 import { ShowProofXP } from './components';
-import data from '../data.json';
-import type { ShowProofUploadData, ShowProof, TechnicianXPProfile, LotteryStatus, TierDefinition } from '../types';
+import data from './data.json';
+import type { ShowProofUploadData, ShowProof, TechnicianXPProfile, LotteryStatus, TierDefinition } from './types';
 
 const ShowProofXPView: React.FC = () => {
   const handleUploadShowProof = async (uploadData: ShowProofUploadData) => {

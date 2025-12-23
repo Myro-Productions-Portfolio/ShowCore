@@ -8,7 +8,6 @@ import type { AIAssistantButtonProps } from '@/sections/dashboard-and-onboarding
  * Shows notification badge when there are unread messages.
  */
 export function AIAssistantButton({
-  state,
   hasUnreadMessages,
   onClick,
 }: AIAssistantButtonProps) {

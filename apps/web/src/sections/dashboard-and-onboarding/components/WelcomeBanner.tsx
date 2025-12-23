@@ -1,5 +1,3 @@
-import React from 'react';
-
 export interface WelcomeBannerProps {
   userName: string;
   avatarUrl?: string;

@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { BookingsMessaging } from '@/sections/bookings-and-messaging/components'
 import data from '@/sections/bookings-and-messaging/data.json'
 import type {
@@ -27,6 +28,12 @@ const messages = data.messages as unknown as Message[]
 const currentUser = users[0]
 
 export function BookingsPage() {
+  // State management for bookings page
+  const [selectedBookingId, setSelectedBookingId] = useState<string | null>(null)
+  const [viewMode, setViewMode] = useState<'list' | 'calendar' | 'kanban'>('list')
+  const [statusFilter, setStatusFilter] = useState<string[]>([])
+  const [isLoading, setIsLoading] = useState(false)
+
   return (
     <BookingsMessaging
       currentUserId={currentUser.id}
@@ -68,10 +75,24 @@ export function BookingsPage() {
       onSendMessage={(bookingId: string, message: any) => console.log('Send message:', bookingId, message)}
       onMarkMessageRead={(messageId: string) => console.log('Mark message read:', messageId)}
       onUploadAttachment={(file: File) => Promise.resolve({ id: `attach-${Date.now()}`, filename: file.name, fileSize: file.size, mimeType: file.type, url: URL.createObjectURL(file) })}
-      onSelectBooking={(bookingId: string) => console.log('Select booking:', bookingId)}
-      onChangeView={(view: any) => console.log('Change view:', view)}
-      onFilterByStatus={(status: any) => console.log('Filter by status:', status)}
-      onSearchBookings={(query: string) => console.log('Search bookings:', query)}
+      onSelectBooking={(bookingId: string) => setSelectedBookingId(bookingId)}
+      onChangeView={(view: any) => setViewMode(view)}
+      onFilterByStatus={(status: any) => {
+        setIsLoading(true)
+        // Simulate loading delay for filter changes
+        setTimeout(() => {
+          setStatusFilter(Array.isArray(status) ? status : [status])
+          setIsLoading(false)
+        }, 300)
+      }}
+      onSearchBookings={(query: string) => {
+        setIsLoading(true)
+        // Simulate loading delay for search
+        setTimeout(() => {
+          console.log('Search bookings:', query)
+          setIsLoading(false)
+        }, 500)
+      }}
     />
   )
 }

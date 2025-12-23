@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>localStorage Persistence Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ccc; border-radius: 5px; }
+        button { padding: 8px 16px; margin: 5px; cursor: pointer; }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>ShowCore Settings Persistence Test</h1>
+    
+    <div class="test-section">
+        <h3>Test 1: Role Persistence</h3>
+        <button onclick="setRole('technician')">Set Technician</button>
+        <button onclick="setRole('company')">Set Company</button>
+        <button onclick="getRole()">Get Current Role</button>
+        <div id="role-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>Test 2: Section Persistence</h3>
+        <button onclick="setSection('profile')">Set Profile</button>
+        <button onclick="setSection('security')">Set Security</button>
+        <button onclick="setSection('billing')">Set Billing</button>
+        <button onclick="getSection()">Get Current Section</button>
+        <div id="section-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>Test 3: Page Refresh Test</h3>
+        <p>Set some values above, then <button onclick="location.reload()">Refresh Page</button> to test persistence</p>
+    </div>
+
+    <script>
+        function setRole(role) {
+            localStorage.setItem('showcore_settings_role', JSON.stringify(role));
+            document.getElementById('role-result').innerHTML = `<span class="success">Role set to: ${role}</span>`;
+        }
+
+        function getRole() {
+            const role = JSON.parse(localStorage.getItem('showcore_settings_role') || '"technician"');
+            document.getElementById('role-result').innerHTML = `<span class="success">Current role: ${role}</span>`;
+        }
+
+        function setSection(section) {
+            localStorage.setItem('showcore_settings_section', JSON.stringify(section));
+            document.getElementById('section-result').innerHTML = `<span class="success">Section set to: ${section}</span>`;
+        }
+
+        function getSection() {
+            const section = JSON.parse(localStorage.getItem('showcore_settings_section') || '"profile"');
+            document.getElementById('section-result').innerHTML = `<span class="success">Current section: ${section}</span>`;
+        }
+
+        // Initialize display on page load
+        window.onload = function() {
+            getRole();
+            getSection();
+        }
+    </script>
+</body>
+</html>

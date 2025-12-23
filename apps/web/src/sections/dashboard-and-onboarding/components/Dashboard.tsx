@@ -1,5 +1,4 @@
-import React from 'react';
-import { WelcomeBanner, type WelcomeBannerProps } from './WelcomeBanner';
+import { WelcomeBanner } from './WelcomeBanner';
 import {
   OnboardingChecklist,
   type OnboardingChecklistProps,

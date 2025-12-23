@@ -1,4 +1,3 @@
-import React from 'react';
 import { Circle, CheckCircle2, Loader2, ChevronRight, Award } from 'lucide-react';
 
 export interface OnboardingTask {

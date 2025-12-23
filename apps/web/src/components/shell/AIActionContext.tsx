@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useRef, useCallback, useState, type ReactNode, type RefObject } from 'react';
+import { createContext, useContext, useRef, useCallback, useState, type ReactNode, type RefObject } from 'react';
 import type { SuggestedAction } from './AIAssistant';
 
 /**

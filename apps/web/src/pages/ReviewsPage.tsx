@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { ReviewsAndTrust } from '@/sections/reviews-and-trust/components'
 import type { Review, TrustProfile, Dispute, ReviewStats } from '@/sections/reviews-and-trust/types'
 import dataImport from '@/sections/reviews-and-trust/data.json'
@@ -14,6 +15,16 @@ export function ReviewsPage() {
   const currentUserId = 'usr_tech_015'
   const currentUserType = 'technician'
 
+  // State management for reviews page
+  const [filterState, setFilterState] = useState({
+    rating: 'all',
+    dateRange: 'all',
+    verified: false,
+    disputed: false
+  })
+  const [voteState, setVoteState] = useState<Record<string, 'up' | 'down' | null>>({})
+  const [isLoading, setIsLoading] = useState(false)
+
   return (
     <ReviewsAndTrust
       reviews={reviews}
@@ -24,9 +35,32 @@ export function ReviewsPage() {
       currentUserType={currentUserType}
       onSubmitReview={(review) => console.log('Submit review:', review)}
       onEditReview={(reviewId, updates) => console.log('Edit review:', reviewId, updates)}
-      onVoteReview={(reviewId, voteType) => console.log('Vote review:', reviewId, voteType)}
-      onRemoveVote={(reviewId) => console.log('Remove vote:', reviewId)}
-      onFilterReviews={(filters) => console.log('Filter reviews:', filters)}
+      onVoteReview={(reviewId, voteType) => {
+        setIsLoading(true)
+        // Simulate loading delay for vote operations
+        setTimeout(() => {
+          // Map the vote types correctly
+          const mappedVoteType = voteType === 'helpful' ? 'up' : voteType === 'not_helpful' ? 'down' : voteType
+          setVoteState(prev => ({ ...prev, [reviewId]: mappedVoteType }))
+          setIsLoading(false)
+        }, 200)
+      }}
+      onRemoveVote={(reviewId) => setVoteState(prev => ({ ...prev, [reviewId]: null }))}
+      onFilterReviews={(filters) => {
+        setIsLoading(true)
+        // Simulate loading delay for filter changes
+        setTimeout(() => {
+          // Only update compatible filter properties
+          const compatibleFilters = {
+            rating: typeof filters.rating === 'number' ? filters.rating.toString() : filters.rating || 'all',
+            dateRange: 'all',
+            verified: false,
+            disputed: false
+          }
+          setFilterState(prev => ({ ...prev, ...compatibleFilters }))
+          setIsLoading(false)
+        }, 300)
+      }}
       onUploadVerifiedId={(technicianId, file, documentType) => console.log('Upload verified ID:', technicianId, file, documentType)}
       onUploadInsurance={(technicianId, file, details) => console.log('Upload insurance:', technicianId, file, details)}
       onUploadCertification={(technicianId, file, details) => console.log('Upload certification:', technicianId, file, details)}

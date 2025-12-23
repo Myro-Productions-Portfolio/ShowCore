@@ -1,6 +1,6 @@
 import { ReviewsAndTrust } from './components';
-import type { Review, TrustProfile, Dispute, ReviewStats } from '../types';
-import dataImport from '../data.json';
+import type { Review, TrustProfile, Dispute, ReviewStats } from './types';
+import dataImport from './data.json';
 
 export default function ReviewsAndTrustView() {
   // Extract data from the JSON file with proper type assertions

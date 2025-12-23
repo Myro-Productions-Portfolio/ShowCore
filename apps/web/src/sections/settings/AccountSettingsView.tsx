@@ -1,7 +1,7 @@
 import React from 'react';
 import { AccountSettings } from './components/AccountSettings';
-import sampleData from '../data.json';
-import type { AccountManagement } from '../types';
+import sampleData from './data.json';
+import type { AccountManagement } from './types';
 
 // Sample account management data with different states for testing
 const accountManagement: AccountManagement = sampleData.accountManagement as AccountManagement;

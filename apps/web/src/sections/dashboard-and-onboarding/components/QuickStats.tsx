@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Briefcase,
   TrendingUp,
@@ -7,7 +6,6 @@ import {
   Users,
   Calendar,
   Award,
-  MessageSquare,
 } from 'lucide-react';
 
 export interface DashboardStats {
@@ -23,13 +21,22 @@ export interface DashboardStats {
   savedTechnicians?: number;
 }
 
+interface StatItem {
+  label: string;
+  value: string | number;
+  icon: any;
+  color: string;
+  bgColor: string;
+  suffix?: string;
+}
+
 export interface QuickStatsProps {
   stats: DashboardStats;
   userRole: 'technician' | 'company';
 }
 
 export function QuickStats({ stats, userRole }: QuickStatsProps) {
-  const technicianStats = [
+  const technicianStats: StatItem[] = [
     {
       label: 'Total Bookings',
       value: stats.totalBookings ?? 0,
@@ -63,7 +70,7 @@ export function QuickStats({ stats, userRole }: QuickStatsProps) {
     },
   ];
 
-  const companyStats = [
+  const companyStats: StatItem[] = [
     {
       label: 'Total Hires',
       value: stats.totalHires ?? 0,

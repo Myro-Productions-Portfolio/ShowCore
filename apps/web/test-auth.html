@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Authentication</title>
+</head>
+<body>
+    <h1>Authentication Test</h1>
+    <button onclick="setUser()">Set User in localStorage</button>
+    <button onclick="clearUser()">Clear User from localStorage</button>
+    <button onclick="checkUser()">Check User</button>
+    <div id="result"></div>
+
+    <script>
+        function setUser() {
+            const user = {
+                name: 'Test User',
+                email: 'test@showcore.com'
+            };
+            localStorage.setItem('showcore_user', JSON.stringify(user));
+            document.getElementById('result').innerHTML = 'User set in localStorage';
+        }
+
+        function clearUser() {
+            localStorage.removeItem('showcore_user');
+            document.getElementById('result').innerHTML = 'User cleared from localStorage';
+        }
+
+        function checkUser() {
+            const user = localStorage.getItem('showcore_user');
+            if (user) {
+                document.getElementById('result').innerHTML = 'User found: ' + user;
+            } else {
+                document.getElementById('result').innerHTML = 'No user found in localStorage';
+            }
+        }
+    </script>
+</body>
+</html>

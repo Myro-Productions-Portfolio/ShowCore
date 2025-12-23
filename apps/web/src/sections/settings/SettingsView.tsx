@@ -5,8 +5,8 @@ import type {
   SettingsProfile,
   ProfileUpdateData,
   SettingsNavigationGroup,
-} from '../types'
-import sampleData from '../data.json'
+} from './types'
+import sampleData from './data.json'
 
 export default function SettingsView() {
   const [currentSection, setCurrentSection] = useState<SettingsSectionId>('profile')

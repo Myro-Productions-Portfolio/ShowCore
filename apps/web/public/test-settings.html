@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings Persistence Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ccc; border-radius: 5px; }
+        .success { color: green; }
+        .error { color: red; }
+        button { margin: 5px; padding: 8px 16px; }
+        .result { margin: 10px 0; padding: 10px; background: #f5f5f5; border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <h1>ShowCore Settings Persistence Test</h1>
+    
+    <div class="test-section">
+        <h2>localStorage Test</h2>
+        <button onclick="testSetRole()">Set Role to Technician</button>
+        <button onclick="testSetSection()">Set Section to Security</button>
+        <button onclick="testGetValues()">Get Current Values</button>
+        <button onclick="testClearValues()">Clear Values</button>
+        <div id="localStorage-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Authentication Test</h2>
+        <button onclick="testSetUser()">Set Test User</button>
+        <button onclick="testGetUser()">Get Current User</button>
+        <button onclick="testClearUser()">Clear User (Simulate Logout)</button>
+        <div id="auth-result" class="result"></div>
+    </div>
+
+    <script>
+        function testSetRole() {
+            localStorage.setItem('showcore_settings_role', JSON.stringify('technician'));
+            document.getElementById('localStorage-result').innerHTML = '<span class="success">✅ Role set to technician</span>';
+        }
+
+        function testSetSection() {
+            localStorage.setItem('showcore_settings_section', JSON.stringify('security'));
+            document.getElementById('localStorage-result').innerHTML = '<span class="success">✅ Section set to security</span>';
+        }
+
+        function testGetValues() {
+            const role = localStorage.getItem('showcore_settings_role');
+            const section = localStorage.getItem('showcore_settings_section');
+            
+            const roleValue = role ? JSON.parse(role) : 'not set';
+            const sectionValue = section ? JSON.parse(section) : 'not set';
+            
+            document.getElementById('localStorage-result').innerHTML = `
+                <strong>Current Values:</strong><br>
+                Role: ${roleValue}<br>
+                Section: ${sectionValue}
+            `;
+        }
+
+        function testClearValues() {
+            localStorage.removeItem('showcore_settings_role');
+            localStorage.removeItem('showcore_settings_section');
+            document.getElementById('localStorage-result').innerHTML = '<span class="success">✅ Values cleared</span>';
+        }
+
+        function testSetUser() {
+            const testUser = {
+                id: 'test_user_1',
+                name: 'Test User',
+                email: 'test@example.com',
+                role: 'technician'
+            };
+            localStorage.setItem('showcore_user', JSON.stringify(testUser));
+            document.getElementById('auth-result').innerHTML = '<span class="success">✅ Test user set</span>';
+        }
+
+        function testGetUser() {
+            const user = localStorage.getItem('showcore_user');
+            const userValue = user ? JSON.parse(user) : 'not set';
+            
+            document.getElementById('auth-result').innerHTML = `
+                <strong>Current User:</strong><br>
+                ${typeof userValue === 'object' ? JSON.stringify(userValue, null, 2) : userValue}
+            `;
+        }
+
+        function testClearUser() {
+            localStorage.removeItem('showcore_user');
+            document.getElementById('auth-result').innerHTML = '<span class="success">✅ User cleared (logout simulation)</span>';
+        }
+
+        // Auto-run initial test
+        window.onload = function() {
+            testGetValues();
+            testGetUser();
+        };
+    </script>
+</body>
+</html>

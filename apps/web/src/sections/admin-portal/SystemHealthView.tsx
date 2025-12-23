@@ -1,5 +1,5 @@
-import data from '../data.json'
-import type { AdminPortalSampleData } from '../types'
+import data from './data.json'
+import type { AdminPortalSampleData } from './types'
 import { AdminLayout, SystemHealth } from './components'
 
 const typedData = data as unknown as AdminPortalSampleData
@@ -11,7 +11,7 @@ export default function SystemHealthView() {
       navigation={typedData.adminNavigation}
       quickActions={typedData.quickActions}
       activeNavItem="system-health"
-      alertCount={typedData.dashboardAlerts.filter(a => a.actionRequired).length}
+      alertCount={typedData.dashboardAlerts.filter((a: any) => a.actionRequired).length}
       onSearch={(query) => console.log('Search:', query)}
       onNavItemClick={(navId) => console.log('Navigate to:', navId)}
       onQuickAction={(actionId) => console.log('Quick action:', actionId)}

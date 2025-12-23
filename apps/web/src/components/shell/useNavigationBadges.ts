@@ -39,9 +39,7 @@ function saveVisitedSections(userId: string, sections: Set<string>): void {
  * Hook to track which sections have been visited
  * Returns a record mapping hrefs to isNew status (true = not yet visited)
  */
-export function useNavigationBadges(userId: string): Record<string, boolean> {
-  const visited = getVisitedSections(userId);
-
+export function useNavigationBadges(_userId: string): Record<string, boolean> {
   // This is a simple implementation that returns an empty object
   // In a real app, you'd track all known hrefs and compare against visited
   // For now, consumers can check if a specific href is new by seeing if it's not in visited

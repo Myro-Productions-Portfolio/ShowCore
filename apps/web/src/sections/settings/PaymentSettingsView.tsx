@@ -8,7 +8,7 @@
 import { useState } from 'react';
 import { PayoutSettings } from './components/PayoutSettings';
 import { BillingSettings } from './components/BillingSettings';
-import sampleData from '../data.json';
+import sampleData from './data.json';
 import type {
   PayoutMethod,
   BankAccountFormData,
@@ -17,7 +17,7 @@ import type {
   CompanyTier,
   PaymentMethodFormData,
   BillingAddress,
-} from '../types';
+} from './types';
 
 export default function PaymentSettingsView() {
   const [role, setRole] = useState<'technician' | 'company'>('technician');
@@ -125,7 +125,7 @@ export default function PaymentSettingsView() {
     await new Promise((resolve) => setTimeout(resolve, 500));
     setBillingInfo({
       ...billingInfo,
-      paymentMethods: billingInfo.paymentMethods.filter((m) => m.id !== methodId),
+      paymentMethods: billingInfo.paymentMethods.filter((m: any) => m.id !== methodId),
     });
     setIsLoading(false);
   };
@@ -135,7 +135,7 @@ export default function PaymentSettingsView() {
     await new Promise((resolve) => setTimeout(resolve, 500));
     setBillingInfo({
       ...billingInfo,
-      paymentMethods: billingInfo.paymentMethods.map((m) => ({
+      paymentMethods: billingInfo.paymentMethods.map((m: any) => ({
         ...m,
         isDefault: m.id === methodId,
       })),
@@ -154,7 +154,7 @@ export default function PaymentSettingsView() {
   };
 
   const handleDownloadInvoice = (invoiceId: string) => {
-    const invoice = billingInfo.invoices.find((inv) => inv.id === invoiceId);
+    const invoice = billingInfo.invoices.find((inv: any) => inv.id === invoiceId);
     if (invoice) {
       window.open(invoice.downloadUrl, '_blank');
     }

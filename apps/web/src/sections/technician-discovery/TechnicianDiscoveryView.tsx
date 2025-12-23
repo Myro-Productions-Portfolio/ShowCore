@@ -1,6 +1,6 @@
-import data from '../data.json'
+import data from './data.json'
 import { TechnicianDiscovery } from './components/TechnicianDiscovery'
-import type { Technician, Filters, SearchState } from '../types'
+import type { Technician, Filters, SearchState } from './types'
 
 export default function TechnicianDiscoveryView() {
   // Cast the JSON data to proper types
