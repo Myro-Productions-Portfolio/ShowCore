@@ -1,6 +1,4 @@
-import { initTRPC, TRPCError } from '@trpc/server'
-import { OpenApiMeta } from 'trpc-openapi'
-import type { Context } from './context.js'
+import { router } from './trpc.js'
 
 // Import entity routers
 import { userRouter } from './procedures/user.js'
@@ -15,40 +13,6 @@ import { disputeRouter } from './procedures/dispute.js'
 import { notificationRouter } from './procedures/notification.js'
 import { onboardingRouter } from './procedures/onboarding.js'
 import { aiAssistantRouter } from './procedures/aiAssistant.js'
-
-const t = initTRPC.context<Context>().meta<OpenApiMeta>().create()
-
-export const router = t.router
-export const publicProcedure = t.procedure
-
-// Protected procedure - requires authentication
-export const protectedProcedure = t.procedure.use(async ({ ctx, next }) => {
-  if (!ctx.user) {
-    throw new TRPCError({ code: 'UNAUTHORIZED', message: 'You must be logged in' })
-  }
-  return next({
-    ctx: {
-      ...ctx,
-      user: ctx.user,
-    },
-  })
-})
-
-// Admin procedure - requires admin role
-export const adminProcedure = t.procedure.use(async ({ ctx, next }) => {
-  if (!ctx.user) {
-    throw new TRPCError({ code: 'UNAUTHORIZED', message: 'You must be logged in' })
-  }
-  if (ctx.user.role !== 'ADMIN') {
-    throw new TRPCError({ code: 'FORBIDDEN', message: 'Admin access required' })
-  }
-  return next({
-    ctx: {
-      ...ctx,
-      user: ctx.user,
-    },
-  })
-})
 
 export const appRouter = router({
   user: userRouter,

@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { router, publicProcedure, adminProcedure } from '../router.js'
+import { router, publicProcedure, adminProcedure } from '../trpc.js'
 import { prisma } from '../../db.js'
 
 export const skillRouter = router({

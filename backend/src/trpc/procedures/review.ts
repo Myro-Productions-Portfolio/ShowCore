@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { router, publicProcedure, protectedProcedure } from '../router.js'
+import { router, publicProcedure, protectedProcedure } from '../trpc.js'
 import { prisma } from '../../db.js'
 import { TRPCError } from '@trpc/server'
 
