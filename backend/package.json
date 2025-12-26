@@ -17,6 +17,7 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
+    "@hono/node-server": "^1.13.0",
     "@hono/trpc-server": "^0.3.2",
     "@prisma/client": "^5.22.0",
     "@trpc/server": "^10.45.0",
