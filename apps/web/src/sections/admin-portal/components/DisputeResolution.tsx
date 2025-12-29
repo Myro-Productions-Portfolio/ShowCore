@@ -412,7 +412,7 @@ export default function DisputeResolution({
                         type="checkbox"
                         checked={isInternalNote}
                         onChange={(e) => setIsInternalNote(e.target.checked)}
-                        className="w-4 h-4 rounded border-zinc-300 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 text-amber-600 focus:ring-2 focus:ring-amber-500"
+                        className="w-4 h-4 rounded border-zinc-300 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 text-amber-800 focus:ring-2 focus:ring-amber-500"
                       />
                       Internal admin note (not visible to parties)
                     </label>

@@ -3,8 +3,8 @@ import type { ShowProofCardProps } from '../types';
 
 const ShowProofCard: React.FC<ShowProofCardProps> = ({ showProof, onView, onEdit, onDelete }) => {
   const statusColors = {
-    pending_ai: 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20',
-    pending_admin: 'bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 border-yellow-500/20',
+    pending_ai: 'bg-amber-500/10 text-amber-800 dark:text-amber-100 border-amber-500/20',
+    pending_admin: 'bg-yellow-500/10 text-yellow-600 dark:text-yellow-300 border-yellow-500/20',
     approved: 'bg-green-500/10 text-green-600 dark:text-green-400 border-green-500/20',
     rejected: 'bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20',
   };
@@ -120,7 +120,7 @@ const ShowProofCard: React.FC<ShowProofCardProps> = ({ showProof, onView, onEdit
 
       {/* Content */}
       <div className="p-4">
-        <h3 className="font-bold text-zinc-900 dark:text-zinc-100 mb-1.5 line-clamp-1 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
+        <h3 className="font-bold text-zinc-900 dark:text-zinc-100 mb-1.5 line-clamp-1 group-hover:text-amber-800 dark:group-hover:text-amber-100 transition-colors">
           {showProof.title}
         </h3>
 
@@ -146,7 +146,7 @@ const ShowProofCard: React.FC<ShowProofCardProps> = ({ showProof, onView, onEdit
             {showProof.role}
           </span>
           {showProof.complexity === 'complex' && (
-            <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-medium rounded border border-amber-500/20">
+            <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-amber-500/10 text-amber-800 dark:text-amber-100 text-xs font-medium rounded border border-amber-500/20">
               <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
               </svg>

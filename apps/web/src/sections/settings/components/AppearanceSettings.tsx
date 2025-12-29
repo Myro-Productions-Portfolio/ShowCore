@@ -271,7 +271,7 @@ export function AppearanceSettings({
                 onChange={() => handleChange('fontSize', 'small')}
                 className="h-4 w-4 text-amber-500 border-zinc-300 dark:border-zinc-600 focus:ring-amber-500 dark:focus:ring-amber-400"
               />
-              <span className="text-xs text-zinc-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400">
+              <span className="text-xs text-zinc-900 dark:text-white group-hover:text-amber-800 dark:group-hover:text-amber-100">
                 {t('appearance.fontSize.small')}
               </span>
             </label>
@@ -285,7 +285,7 @@ export function AppearanceSettings({
                 onChange={() => handleChange('fontSize', 'medium')}
                 className="h-4 w-4 text-amber-500 border-zinc-300 dark:border-zinc-600 focus:ring-amber-500 dark:focus:ring-amber-400"
               />
-              <span className="text-sm text-zinc-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400">
+              <span className="text-sm text-zinc-900 dark:text-white group-hover:text-amber-800 dark:group-hover:text-amber-100">
                 {t('appearance.fontSize.medium')}
               </span>
             </label>
@@ -299,7 +299,7 @@ export function AppearanceSettings({
                 onChange={() => handleChange('fontSize', 'large')}
                 className="h-4 w-4 text-amber-500 border-zinc-300 dark:border-zinc-600 focus:ring-amber-500 dark:focus:ring-amber-400"
               />
-              <span className="text-base text-zinc-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400">
+              <span className="text-base text-zinc-900 dark:text-white group-hover:text-amber-800 dark:group-hover:text-amber-100">
                 {t('appearance.fontSize.large')}
               </span>
             </label>
@@ -321,7 +321,7 @@ export function AppearanceSettings({
 
           <label className="flex items-center justify-between cursor-pointer group">
             <div className="flex-1 pr-4">
-              <div className="text-sm font-medium text-zinc-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400">
+              <div className="text-sm font-medium text-zinc-900 dark:text-white group-hover:text-amber-800 dark:group-hover:text-amber-100">
                 Reduced motion
               </div>
               <div className="text-sm text-zinc-600 dark:text-zinc-400">

@@ -151,7 +151,7 @@ export default function ReviewCard({
           )}
         </div>
         {review.xpAwarded && (
-          <div className="flex items-center gap-1 ml-auto bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 px-2 py-1 rounded-full text-xs font-medium">
+          <div className="flex items-center gap-1 ml-auto bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-100 px-2 py-1 rounded-full text-xs font-medium">
             <Award className="w-3 h-3" />
             <span>{review.xpAwarded} XP</span>
           </div>

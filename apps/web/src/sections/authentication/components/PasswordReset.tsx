@@ -192,7 +192,7 @@ export function PasswordReset({
                   </div>
                   <p className={`text-xs font-medium ${
                     passwordStrength === 'weak' ? 'text-red-600 dark:text-red-400' :
-                    passwordStrength === 'medium' ? 'text-amber-600 dark:text-amber-400' :
+                    passwordStrength === 'medium' ? 'text-amber-800 dark:text-amber-100' :
                     'text-green-600 dark:text-green-400'
                   }`}>
                     Password strength: {passwordStrength.charAt(0).toUpperCase() + passwordStrength.slice(1)}

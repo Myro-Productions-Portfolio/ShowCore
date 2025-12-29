@@ -19,7 +19,7 @@ export default function DisputeCard({ dispute, onViewDetails }: DisputeCardProps
   const getStageColor = (stage: string) => {
     switch (stage) {
       case 'self_resolution':
-        return 'bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800';
+        return 'bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-100 border-amber-200 dark:border-amber-800';
       case 'mediation':
         return 'bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800';
       case 'arbitration':
@@ -34,7 +34,7 @@ export default function DisputeCard({ dispute, onViewDetails }: DisputeCardProps
       case 'resolved':
         return 'bg-green-100 dark:bg-green-950 text-green-700 dark:text-green-300';
       case 'active':
-        return 'bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300';
+        return 'bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-100';
       case 'under_review':
         return 'bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300';
       case 'awaiting_decision':

@@ -352,7 +352,7 @@ const UploadForm: React.FC<ShowProofUploadProps> = ({
               <div className="flex-1">
                 <div className="text-sm font-medium text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
                   Complex
-                  <span className="inline-flex items-center gap-1 px-1.5 py-0.5 bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs rounded">
+                  <span className="inline-flex items-center gap-1 px-1.5 py-0.5 bg-amber-500/10 text-amber-800 dark:text-amber-100 text-xs rounded">
                     +50 XP
                   </span>
                 </div>

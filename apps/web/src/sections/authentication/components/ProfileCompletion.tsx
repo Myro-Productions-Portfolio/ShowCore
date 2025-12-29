@@ -395,7 +395,7 @@ export function ProfileCompletion({
                               return (
                                 <div
                                   key={index}
-                                  className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 text-amber-700 dark:text-amber-300 text-sm"
+                                  className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 text-amber-800 dark:text-amber-100 text-sm"
                                 >
                                   {skillIcon && (
                                     <img
@@ -462,7 +462,7 @@ export function ProfileCompletion({
                           </div>
                         </div>
                         <div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800">
-                          <p className="text-sm text-amber-700 dark:text-amber-300 text-center font-medium">
+                          <p className="text-sm text-amber-800 dark:text-amber-100 text-center font-medium">
                             ${techMinRate} - ${techMaxRate} per hour
                           </p>
                         </div>
@@ -530,7 +530,7 @@ export function ProfileCompletion({
                             type="button"
                             onClick={handleAddPortfolioLink}
                             disabled={isLoading}
-                            className="text-sm text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 font-medium flex items-center gap-2"
+                            className="text-sm text-amber-800 dark:text-amber-100 hover:text-amber-900 dark:hover:text-amber-50 font-medium flex items-center gap-2"
                           >
                             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />

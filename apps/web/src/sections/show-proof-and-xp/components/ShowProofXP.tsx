@@ -151,7 +151,7 @@ const ShowProofXP: React.FC<ShowProofAndXPProps> = ({
               onClick={() => setActiveTab(tab.id)}
               className={`flex items-center gap-2 px-4 py-3 border-b-2 font-medium text-sm whitespace-nowrap transition-colors ${
                 activeTab === tab.id
-                  ? 'border-amber-500 text-amber-600 dark:text-amber-400'
+                  ? 'border-amber-500 text-amber-800 dark:text-amber-100'
                   : 'border-transparent text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:border-zinc-300 dark:hover:border-zinc-700'
               }`}
             >
@@ -239,7 +239,7 @@ const ShowProofXP: React.FC<ShowProofAndXPProps> = ({
                 <div className="text-sm text-zinc-600 dark:text-zinc-400">Total Shows</div>
               </div>
               <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-4">
-                <div className="text-2xl font-bold text-amber-600 dark:text-amber-400">
+                <div className="text-2xl font-bold text-amber-800 dark:text-amber-100">
                   {technicianProfile.totalXp.toLocaleString()}
                 </div>
                 <div className="text-sm text-zinc-600 dark:text-zinc-400">Total XP</div>

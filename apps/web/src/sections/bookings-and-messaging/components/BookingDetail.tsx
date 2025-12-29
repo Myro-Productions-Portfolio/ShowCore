@@ -77,7 +77,7 @@ interface BookingDetailProps {
 const getStatusColor = (status: string) => {
   switch (status) {
     case 'pending':
-      return 'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300';
+      return 'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-100';
     case 'confirmed':
       return 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300';
     case 'in-progress':
@@ -193,7 +193,7 @@ export function BookingDetail({
               onClick={() => setActiveTab(tab as any)}
               className={`px-4 py-2.5 rounded-t-lg font-medium text-sm transition-colors ${
                 activeTab === tab
-                  ? 'bg-white dark:bg-zinc-900 text-amber-600 dark:text-amber-400 border-b-2 border-amber-600 dark:border-amber-400'
+                  ? 'bg-white dark:bg-zinc-900 text-amber-800 dark:text-amber-100 border-b-2 border-amber-600 dark:border-amber-400'
                   : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-800/50'
               }`}
             >

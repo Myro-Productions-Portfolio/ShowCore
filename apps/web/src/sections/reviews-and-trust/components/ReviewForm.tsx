@@ -103,7 +103,7 @@ export default function ReviewForm({
               </button>
             ))}
             {(hoverRating || rating) > 0 && (
-              <span className="ml-3 text-sm font-medium text-amber-600 dark:text-amber-400">
+              <span className="ml-3 text-sm font-medium text-amber-800 dark:text-amber-100">
                 {ratingLabels[hoverRating || rating]}
               </span>
             )}
@@ -135,7 +135,7 @@ export default function ReviewForm({
               <div key={key}>
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-sm text-zinc-700 dark:text-zinc-300">{label}</span>
-                  <span className="text-sm font-semibold text-amber-600 dark:text-amber-400">
+                  <span className="text-sm font-semibold text-amber-800 dark:text-amber-100">
                     {skillRatings[key] || 5}/5
                   </span>
                 </div>
@@ -176,7 +176,7 @@ export default function ReviewForm({
 
         {revieweeType === 'technician' && (
           <div className="p-4 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg">
-            <p className="text-xs text-amber-700 dark:text-amber-300">
+            <p className="text-xs text-amber-800 dark:text-amber-100">
               Submitting this review will award XP to the technician and make your review public on their profile.
               You can edit your review later if needed.
             </p>

@@ -26,7 +26,7 @@ export default function ReviewStats({ stats }: ReviewStatsProps) {
   return (
     <div className="space-y-6">
       <div className="bg-gradient-to-br from-amber-50 to-amber-100 dark:from-amber-950 dark:to-amber-900 p-6 rounded-xl border border-amber-200 dark:border-amber-800">
-        <div className="text-base font-medium text-amber-700 dark:text-amber-300 mb-2">
+        <div className="text-base font-medium text-amber-800 dark:text-amber-100 mb-2">
           Average Rating
         </div>
         <div className="flex items-end gap-3">

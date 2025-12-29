@@ -193,13 +193,13 @@ export default function SettingsPage() {
               <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm p-1 rounded-lg">
                 <button
                   onClick={() => { setCurrentRole('technician'); handleNavigate('profile') }}
-                  className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${currentRole === 'technician' ? 'bg-white text-amber-600 shadow-sm' : 'text-white hover:bg-white/10'}`}
+                  className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${currentRole === 'technician' ? 'bg-white text-amber-800 shadow-sm' : 'text-white hover:bg-white/10'}`}
                 >
                   Technician
                 </button>
                 <button
                   onClick={() => { setCurrentRole('company'); handleNavigate('profile') }}
-                  className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${currentRole === 'company' ? 'bg-white text-amber-600 shadow-sm' : 'text-white hover:bg-white/10'}`}
+                  className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${currentRole === 'company' ? 'bg-white text-amber-800 shadow-sm' : 'text-white hover:bg-white/10'}`}
                 >
                   Company
                 </button>

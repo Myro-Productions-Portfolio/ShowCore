@@ -176,10 +176,10 @@ export default function HelpPage({ userRole = 'technician' }: HelpPageProps) {
               >
                 <div className="flex items-start gap-3">
                   {IconComponent && (
-                    <IconComponent className="w-6 h-6 text-amber-600 dark:text-amber-400 mt-0.5 group-hover:scale-110 transition-transform" />
+                    <IconComponent className="w-6 h-6 text-amber-800 dark:text-amber-100 mt-0.5 group-hover:scale-110 transition-transform" />
                   )}
                   <div className="flex-1">
-                    <h3 className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-amber-600 dark:group-hover:text-amber-400">
+                    <h3 className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-amber-800 dark:group-hover:text-amber-100">
                       {topic.title}
                     </h3>
                     <p className="text-sm text-zinc-600 dark:text-zinc-400 mt-1">
@@ -187,7 +187,7 @@ export default function HelpPage({ userRole = 'technician' }: HelpPageProps) {
                     </p>
                   </div>
                   {!isInternal && (
-                    <ExternalLink className="w-4 h-4 text-zinc-400 group-hover:text-amber-600 dark:group-hover:text-amber-400 mt-0.5" />
+                    <ExternalLink className="w-4 h-4 text-zinc-400 group-hover:text-amber-800 dark:group-hover:text-amber-100 mt-0.5" />
                   )}
                 </div>
               </div>
@@ -250,7 +250,7 @@ export default function HelpPage({ userRole = 'technician' }: HelpPageProps) {
                     <h3 className="font-semibold text-zinc-900 dark:text-zinc-100">
                       {faq.question}
                     </h3>
-                    <span className="text-sm text-amber-600 dark:text-amber-400 mt-1">
+                    <span className="text-sm text-amber-800 dark:text-amber-100 mt-1">
                       {faq.category}
                     </span>
                   </div>
@@ -285,12 +285,12 @@ export default function HelpPage({ userRole = 'technician' }: HelpPageProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Email Support */}
           <div className="flex items-center gap-3 p-4 bg-white dark:bg-zinc-800 rounded-lg">
-            <Mail className="w-6 h-6 text-amber-600 dark:text-amber-400" />
+            <Mail className="w-6 h-6 text-amber-800 dark:text-amber-100" />
             <div>
               <h3 className="font-semibold text-zinc-900 dark:text-zinc-100">Email Support</h3>
               <a 
                 href={`mailto:${helpData.supportContact.email}`}
-                className="text-amber-600 dark:text-amber-400 hover:underline"
+                className="text-amber-800 dark:text-amber-100 hover:underline"
               >
                 {helpData.supportContact.email}
               </a>
@@ -300,7 +300,7 @@ export default function HelpPage({ userRole = 'technician' }: HelpPageProps) {
           {/* Live Chat */}
           {helpData.supportContact.chatEnabled && (
             <div className="flex items-center gap-3 p-4 bg-white dark:bg-zinc-800 rounded-lg">
-              <MessageCircle className="w-6 h-6 text-amber-600 dark:text-amber-400" />
+              <MessageCircle className="w-6 h-6 text-amber-800 dark:text-amber-100" />
               <div>
                 <h3 className="font-semibold text-zinc-900 dark:text-zinc-100">Live Chat</h3>
                 <p className="text-sm text-zinc-600 dark:text-zinc-400">
@@ -322,32 +322,32 @@ export default function HelpPage({ userRole = 'technician' }: HelpPageProps) {
             onClick={() => handleLinkClick('/docs/getting-started')}
             className="flex items-center gap-3 p-4 bg-white dark:bg-zinc-800 rounded-lg border border-zinc-200 dark:border-zinc-700 hover:border-amber-300 dark:hover:border-amber-600 transition-colors group cursor-pointer"
           >
-            <Book className="w-6 h-6 text-amber-600 dark:text-amber-400" />
+            <Book className="w-6 h-6 text-amber-800 dark:text-amber-100" />
             <div className="flex-1">
-              <h3 className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-amber-600 dark:group-hover:text-amber-400">
+              <h3 className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-amber-800 dark:group-hover:text-amber-100">
                 Getting Started Guide
               </h3>
               <p className="text-sm text-zinc-600 dark:text-zinc-400">
                 Complete guide for new users
               </p>
             </div>
-            <ExternalLink className="w-4 h-4 text-zinc-400 group-hover:text-amber-600 dark:group-hover:text-amber-400" />
+            <ExternalLink className="w-4 h-4 text-zinc-400 group-hover:text-amber-800 dark:group-hover:text-amber-100" />
           </div>
 
           <div
             onClick={() => handleLinkClick('/docs/api')}
             className="flex items-center gap-3 p-4 bg-white dark:bg-zinc-800 rounded-lg border border-zinc-200 dark:border-zinc-700 hover:border-amber-300 dark:hover:border-amber-600 transition-colors group cursor-pointer"
           >
-            <FileText className="w-6 h-6 text-amber-600 dark:text-amber-400" />
+            <FileText className="w-6 h-6 text-amber-800 dark:text-amber-100" />
             <div className="flex-1">
-              <h3 className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-amber-600 dark:group-hover:text-amber-400">
+              <h3 className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-amber-800 dark:group-hover:text-amber-100">
                 API Documentation
               </h3>
               <p className="text-sm text-zinc-600 dark:text-zinc-400">
                 Developer resources and API reference
               </p>
             </div>
-            <ExternalLink className="w-4 h-4 text-zinc-400 group-hover:text-amber-600 dark:group-hover:text-amber-400" />
+            <ExternalLink className="w-4 h-4 text-zinc-400 group-hover:text-amber-800 dark:group-hover:text-amber-100" />
           </div>
         </div>
       </div>

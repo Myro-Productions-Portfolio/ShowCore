@@ -223,10 +223,10 @@ export function NotificationSettings({
       {/* SMS Phone Number Input */}
       {!phoneNumber && categories.some((cat) => localPreferences[cat.id].sms) && (
         <div className="mb-8 p-6 bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800 rounded-lg">
-          <h3 className="text-sm font-semibold text-amber-900 dark:text-amber-300 mb-2">
+          <h3 className="text-sm font-semibold text-amber-900 dark:text-amber-100 mb-2">
             SMS Phone Number Required
           </h3>
-          <p className="text-sm text-amber-800 dark:text-amber-400 mb-4">
+          <p className="text-sm text-amber-800 dark:text-amber-100 mb-4">
             Add your phone number to receive SMS notifications
           </p>
           <div className="flex flex-col sm:flex-row gap-3">

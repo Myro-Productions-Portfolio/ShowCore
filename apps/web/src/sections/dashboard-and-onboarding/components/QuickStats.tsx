@@ -55,7 +55,7 @@ export function QuickStats({ stats, userRole }: QuickStatsProps) {
       label: 'Average Rating',
       value: stats.averageRating ? stats.averageRating.toFixed(1) : '0.0',
       icon: Star,
-      color: 'text-amber-600 dark:text-amber-400',
+      color: 'text-amber-800 dark:text-amber-100',
       bgColor: 'bg-amber-50 dark:bg-amber-950/20',
       suffix: '/5',
     },
@@ -65,7 +65,7 @@ export function QuickStats({ stats, userRole }: QuickStatsProps) {
         ? `$${stats.totalEarnings.toLocaleString()}`
         : '$0',
       icon: DollarSign,
-      color: 'text-lime-600 dark:text-lime-400',
+      color: 'text-lime-800 dark:text-lime-100',
       bgColor: 'bg-lime-50 dark:bg-lime-950/20',
     },
   ];
@@ -89,14 +89,14 @@ export function QuickStats({ stats, userRole }: QuickStatsProps) {
       label: 'Saved Technicians',
       value: stats.savedTechnicians ?? 0,
       icon: Award,
-      color: 'text-amber-600 dark:text-amber-400',
+      color: 'text-amber-800 dark:text-amber-100',
       bgColor: 'bg-amber-50 dark:bg-amber-950/20',
     },
     {
       label: 'Total Spent',
       value: stats.totalSpent ? `$${stats.totalSpent.toLocaleString()}` : '$0',
       icon: DollarSign,
-      color: 'text-lime-600 dark:text-lime-400',
+      color: 'text-lime-800 dark:text-lime-100',
       bgColor: 'bg-lime-50 dark:bg-lime-950/20',
     },
   ];

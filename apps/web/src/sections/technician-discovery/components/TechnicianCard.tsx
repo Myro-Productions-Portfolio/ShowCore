@@ -65,7 +65,7 @@ const tierColors = {
   Beginner: 'bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400',
   Experienced: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
   Advanced: 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400',
-  Pro: 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400',
+  Pro: 'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-100',
 }
 
 const tierGlow = {
@@ -116,8 +116,8 @@ export function TechnicianCard({ technician, onClick, onBookmark, onViewRanking 
         }}
         className={`absolute top-3 right-3 z-10 p-1.5 rounded-full transition-all duration-200 ${
           technician.isBookmarked
-            ? 'bg-amber-100 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400'
-            : 'bg-white/80 dark:bg-zinc-800/80 text-zinc-400 hover:text-amber-500 dark:hover:text-amber-400 opacity-0 group-hover:opacity-100'
+            ? 'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-100'
+            : 'bg-white/80 dark:bg-zinc-800/80 text-zinc-400 hover:text-amber-500 dark:hover:text-amber-200 opacity-0 group-hover:opacity-100'
         }`}
       >
         <Bookmark className={`w-4 h-4 ${technician.isBookmarked ? 'fill-current' : ''}`} />
@@ -151,7 +151,7 @@ export function TechnicianCard({ technician, onClick, onBookmark, onViewRanking 
               <MapPin className="w-3.5 h-3.5" />
               <span>{technician.location.city}, {technician.location.state}</span>
               <span className="text-zinc-300 dark:text-zinc-600 mx-1">·</span>
-              <span className="text-amber-600 dark:text-amber-400 font-medium">
+              <span className="text-amber-800 dark:text-amber-100 font-medium">
                 {technician.location.distance} mi
               </span>
             </div>
@@ -217,7 +217,7 @@ export function TechnicianCard({ technician, onClick, onBookmark, onViewRanking 
           <div className="flex items-center gap-1.5">
             <div className="flex items-center gap-0.5 px-2 py-0.5 rounded bg-amber-50 dark:bg-amber-900/20">
               <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
-              <span className="text-sm font-semibold text-amber-700 dark:text-amber-400">
+              <span className="text-sm font-semibold text-amber-800 dark:text-amber-100">
                 {technician.averageRating.toFixed(1)}
               </span>
             </div>
@@ -241,7 +241,7 @@ export function TechnicianCard({ technician, onClick, onBookmark, onViewRanking 
                 e.stopPropagation()
                 onViewRanking?.()
               }}
-              className="flex items-center gap-1 px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:bg-amber-100 dark:hover:bg-amber-900/20 hover:text-amber-600 dark:hover:text-amber-400 transition-colors"
+              className="flex items-center gap-1 px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:bg-amber-100 dark:hover:bg-amber-900/20 hover:text-amber-800 dark:hover:text-amber-100 transition-colors"
             >
               <TrendingUp className="w-3.5 h-3.5" />
               <span className="text-xs font-mono font-medium">{technician.rankingScore}</span>

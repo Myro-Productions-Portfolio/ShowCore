@@ -221,7 +221,7 @@ function AlertItem({ alert, onDismiss, onView }: AlertItemProps) {
     warning: {
       bg: 'bg-amber-500/10',
       border: 'border-amber-500/20',
-      text: 'text-amber-400',
+      text: 'text-amber-300',
       icon: 'text-amber-500',
     },
     info: {

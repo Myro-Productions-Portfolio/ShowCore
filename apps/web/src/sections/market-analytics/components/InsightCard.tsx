@@ -32,7 +32,7 @@ export function InsightCard({
       case 'prediction':
         return 'text-blue-600 dark:text-blue-400 bg-blue-500/10'
       case 'recommendation':
-        return 'text-amber-600 dark:text-amber-400 bg-amber-500/10'
+        return 'text-amber-800 dark:text-amber-100 bg-amber-500/10'
       case 'demand-forecast':
         return 'text-emerald-600 dark:text-emerald-400 bg-emerald-500/10'
       default:
@@ -134,7 +134,7 @@ export function InsightCard({
       {onViewDetails && (
         <button
           onClick={() => onViewDetails(insight.id)}
-          className="text-sm font-medium text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300"
+          className="text-sm font-medium text-amber-800 dark:text-amber-100 hover:text-amber-900 dark:hover:text-amber-50"
         >
           View details →
         </button>

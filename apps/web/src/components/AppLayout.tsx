@@ -387,7 +387,7 @@ export function AppLayout() {
                   navigate('/notifications')
                   setNotificationsOpen(false)
                 }}
-                className="w-full text-sm text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 font-medium"
+                className="w-full text-sm text-amber-800 dark:text-amber-100 hover:text-amber-900 dark:hover:text-amber-50 font-medium"
               >
                 View all notifications
               </button>

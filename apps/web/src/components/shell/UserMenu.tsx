@@ -52,7 +52,7 @@ export function UserMenu({ user, onLogout, onViewProfile, onSettings }: UserMenu
             className="h-8 w-8 rounded-full object-cover"
           />
         ) : (
-          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-amber-100 dark:bg-amber-500/20 text-amber-600 dark:text-amber-400 text-sm font-medium">
+          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-amber-100 dark:bg-amber-500/20 text-amber-800 dark:text-amber-100 text-sm font-medium">
             {initials}
           </div>
         )}

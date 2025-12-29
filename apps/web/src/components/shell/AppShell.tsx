@@ -77,8 +77,7 @@ export function AppShell({
         )}
 
         {/* Sidebar */}
-        <aside
-          role="navigation"
+        <nav
           aria-label="Main navigation"
           className={`fixed top-0 left-0 z-50 h-full w-60 transform bg-white dark:bg-zinc-900 border-r border-zinc-200 dark:border-zinc-800 transition-transform duration-200 ease-in-out lg:translate-x-0 ${
             sidebarOpen ? 'translate-x-0' : '-translate-x-full'
@@ -114,7 +113,7 @@ export function AppShell({
               setSidebarOpen(false)
             }}
           />
-        </aside>
+        </nav>
 
         {/* Main content area */}
         <div className="lg:pl-60">

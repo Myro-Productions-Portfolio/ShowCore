@@ -102,7 +102,7 @@ export function FilterPanel({
           {activeFilterCount > 0 && (
             <button
               onClick={clearAll}
-              className="text-sm text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 font-medium"
+              className="text-sm text-amber-800 dark:text-amber-100 hover:text-amber-900 dark:hover:text-amber-50 font-medium"
             >
               Clear all
             </button>
@@ -259,7 +259,7 @@ function FilterSection({
             {title}
           </span>
           {count > 0 && (
-            <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-amber-500/10 px-1.5 text-xs font-medium text-amber-700 dark:text-amber-300">
+            <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-amber-500/10 px-1.5 text-xs font-medium text-amber-800 dark:text-amber-100">
               {count}
             </span>
           )}

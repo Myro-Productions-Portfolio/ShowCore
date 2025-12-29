@@ -114,7 +114,7 @@ export function SavedLayouts({
                           e.stopPropagation()
                           onSetDefaultLayout(layout.id)
                         }}
-                        className="p-1.5 rounded-md hover:bg-amber-500/10 text-amber-600 dark:text-amber-400"
+                        className="p-1.5 rounded-md hover:bg-amber-500/10 text-amber-800 dark:text-amber-100"
                         title="Set as default"
                       >
                         <Star className="h-3.5 w-3.5" />

@@ -157,7 +157,7 @@ export function BookingsMessaging({
                     onClick={() => handleChangeView('list')}
                     className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                       localView === 'list'
-                        ? 'bg-white text-amber-600 shadow-sm'
+                        ? 'bg-white text-amber-800 shadow-sm'
                         : 'text-white hover:bg-white/20'
                     }`}
                   >
@@ -170,7 +170,7 @@ export function BookingsMessaging({
                     onClick={() => handleChangeView('calendar')}
                     className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                       localView === 'calendar'
-                        ? 'bg-white text-amber-600 shadow-sm'
+                        ? 'bg-white text-amber-800 shadow-sm'
                         : 'text-white hover:bg-white/20'
                     }`}
                   >

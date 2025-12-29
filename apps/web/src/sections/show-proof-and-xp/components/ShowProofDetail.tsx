@@ -7,8 +7,8 @@ const ShowProofDetail: React.FC<ShowProofDetailProps> = ({ showProof, onEdit, on
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
   const statusColors = {
-    pending_ai: 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20',
-    pending_admin: 'bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 border-yellow-500/20',
+    pending_ai: 'bg-amber-500/10 text-amber-800 dark:text-amber-100 border-amber-500/20',
+    pending_admin: 'bg-yellow-500/10 text-yellow-600 dark:text-yellow-300 border-yellow-500/20',
     approved: 'bg-green-500/10 text-green-600 dark:text-green-400 border-green-500/20',
     rejected: 'bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20',
   };
@@ -66,7 +66,7 @@ const ShowProofDetail: React.FC<ShowProofDetailProps> = ({ showProof, onEdit, on
                   {privacyLabels[showProof.privacy]}
                 </span>
                 {showProof.complexity === 'complex' && (
-                  <span className="inline-flex items-center gap-1 px-3 py-1 bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-medium rounded-full border border-amber-500/20">
+                  <span className="inline-flex items-center gap-1 px-3 py-1 bg-amber-500/10 text-amber-800 dark:text-amber-100 text-xs font-medium rounded-full border border-amber-500/20">
                     <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
                     </svg>
@@ -303,7 +303,7 @@ const ShowProofDetail: React.FC<ShowProofDetailProps> = ({ showProof, onEdit, on
 
               <div className="space-y-2">
                 <div className="flex items-center justify-between text-sm">
-                  <span className="text-amber-700 dark:text-amber-300">Base XP</span>
+                  <span className="text-amber-800 dark:text-amber-100">Base XP</span>
                   <span className="font-semibold text-amber-900 dark:text-amber-100">
                     +{showProof.xpAwarded.baseXp} XP
                   </span>
@@ -311,7 +311,7 @@ const ShowProofDetail: React.FC<ShowProofDetailProps> = ({ showProof, onEdit, on
 
                 {showProof.xpAwarded.bonuses.map((bonus, index) => (
                   <div key={index} className="flex items-center justify-between text-sm">
-                    <span className="text-amber-700 dark:text-amber-300">{bonus.reason}</span>
+                    <span className="text-amber-800 dark:text-amber-100">{bonus.reason}</span>
                     <span className="font-semibold text-amber-900 dark:text-amber-100">
                       +{bonus.amount} XP
                     </span>
@@ -320,7 +320,7 @@ const ShowProofDetail: React.FC<ShowProofDetailProps> = ({ showProof, onEdit, on
 
                 <div className="pt-2 mt-2 border-t border-amber-300 dark:border-amber-700 flex items-center justify-between">
                   <span className="font-bold text-amber-900 dark:text-amber-100">Total XP</span>
-                  <span className="text-xl font-bold text-amber-600 dark:text-amber-400">
+                  <span className="text-xl font-bold text-amber-800 dark:text-amber-100">
                     +{showProof.xpAwarded.totalXp} XP
                   </span>
                 </div>

@@ -25,7 +25,7 @@ export default function TrustProfile({
         return 'text-white bg-green-600 dark:bg-green-700';
       case 'pending':
       case 'in_progress':
-        return 'text-amber-600 dark:text-amber-400 bg-amber-100 dark:bg-amber-950';
+        return 'text-amber-800 dark:text-amber-100 bg-amber-100 dark:bg-amber-950';
       case 'expired':
       case 'rejected':
         return 'text-red-600 dark:text-red-400 bg-red-100 dark:bg-red-950';
@@ -72,9 +72,9 @@ export default function TrustProfile({
     <div className="space-y-6">
       <div className="bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-amber-950 dark:to-yellow-950 p-6 rounded-xl border border-amber-200 dark:border-amber-800">
         <div className="flex items-center gap-3 mb-2">
-          <Shield className="w-8 h-8 text-amber-600 dark:text-amber-400" />
+          <Shield className="w-8 h-8 text-amber-800 dark:text-amber-100" />
           <div>
-            <div className="text-sm font-medium text-amber-700 dark:text-amber-300">
+            <div className="text-sm font-medium text-amber-800 dark:text-amber-100">
               Trust Score
             </div>
             <div className="text-3xl font-bold text-amber-900 dark:text-amber-100">
@@ -98,7 +98,7 @@ export default function TrustProfile({
           {isOwnProfile && trustProfile.verifiedId.status === 'not_submitted' && (
             <button
               onClick={onUploadId}
-              className="flex items-center gap-2 px-3 py-1.5 bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 rounded-lg hover:bg-amber-200 dark:hover:bg-amber-900 transition-colors text-sm font-medium"
+              className="flex items-center gap-2 px-3 py-1.5 bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-100 rounded-lg hover:bg-amber-200 dark:hover:bg-amber-900 transition-colors text-sm font-medium"
             >
               <Upload className="w-4 h-4" />
               Upload ID
@@ -131,7 +131,7 @@ export default function TrustProfile({
           {isOwnProfile && trustProfile.insurance.status === 'not_submitted' && (
             <button
               onClick={onUploadInsurance}
-              className="flex items-center gap-2 px-3 py-1.5 bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 rounded-lg hover:bg-amber-200 dark:hover:bg-amber-900 transition-colors text-sm font-medium"
+              className="flex items-center gap-2 px-3 py-1.5 bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-100 rounded-lg hover:bg-amber-200 dark:hover:bg-amber-900 transition-colors text-sm font-medium"
             >
               <Upload className="w-4 h-4" />
               Upload
@@ -155,7 +155,7 @@ export default function TrustProfile({
               </span>
             </div>
             {trustProfile.insurance.expiresAt && (
-              <div className={`${isExpiringSoon(trustProfile.insurance.expiresAt) ? 'text-amber-600 dark:text-amber-400' : 'text-zinc-600 dark:text-zinc-400'}`}>
+              <div className={`${isExpiringSoon(trustProfile.insurance.expiresAt) ? 'text-amber-800 dark:text-amber-100' : 'text-zinc-600 dark:text-zinc-400'}`}>
                 Expires: {formatDate(trustProfile.insurance.expiresAt)}
                 {isExpiringSoon(trustProfile.insurance.expiresAt) && (
                   <span className="ml-2 text-xs">(Expiring Soon)</span>
@@ -244,7 +244,7 @@ export default function TrustProfile({
               </div>
             )}
             {trustProfile.backgroundCheck.expiresAt && (
-              <div className={`${isExpiringSoon(trustProfile.backgroundCheck.expiresAt) ? 'text-amber-600 dark:text-amber-400' : 'text-zinc-600 dark:text-zinc-400'}`}>
+              <div className={`${isExpiringSoon(trustProfile.backgroundCheck.expiresAt) ? 'text-amber-800 dark:text-amber-100' : 'text-zinc-600 dark:text-zinc-400'}`}>
                 Expires: {formatDate(trustProfile.backgroundCheck.expiresAt)}
               </div>
             )}

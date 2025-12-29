@@ -63,7 +63,7 @@ export function FilterPanel({ filters, searchState, onChange, onClear }: FilterP
         {hasActiveFilters && (
           <button
             onClick={onClear}
-            className="text-xs text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 font-medium"
+            className="text-xs text-amber-800 dark:text-amber-100 hover:text-amber-900 dark:hover:text-amber-50 font-medium"
           >
             Clear all
           </button>

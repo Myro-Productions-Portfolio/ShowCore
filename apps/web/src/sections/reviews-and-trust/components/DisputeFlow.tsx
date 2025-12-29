@@ -206,7 +206,7 @@ export default function DisputeFlow({ bookingId = '', onSubmit, onCancel }: Disp
                   onChange={handleFileChange}
                   className="hidden"
                 />
-                <span className="text-sm text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 cursor-pointer font-medium">
+                <span className="text-sm text-amber-800 dark:text-amber-100 hover:text-amber-900 dark:hover:text-amber-50 cursor-pointer font-medium">
                   Choose files
                 </span>
                 <span className="text-sm text-zinc-500 dark:text-zinc-400"> or drag and drop</span>
@@ -287,7 +287,7 @@ export default function DisputeFlow({ bookingId = '', onSubmit, onCancel }: Disp
               )}
             </div>
             <div className="p-3 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg">
-              <div className="flex gap-2 text-xs text-amber-700 dark:text-amber-300">
+              <div className="flex gap-2 text-xs text-amber-800 dark:text-amber-100">
                 <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />
                 <p>
                   Your dispute will initially enter self-resolution, where you'll have a chance to

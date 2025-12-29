@@ -41,7 +41,7 @@ export default function ContentModeration({
   const getStatusColor = (status: ModerationStatus) => {
     switch (status) {
       case 'pending':
-        return 'bg-amber-500/10 text-amber-400 border-amber-500/20';
+        return 'bg-amber-500/10 text-amber-300 border-amber-500/20';
       case 'under_review':
         return 'bg-blue-500/10 text-blue-400 border-blue-500/20';
       case 'resolved':
@@ -59,7 +59,7 @@ export default function ContentModeration({
       case 'profile':
         return 'bg-blue-500/10 text-blue-400 border-blue-500/20';
       case 'message':
-        return 'bg-amber-500/10 text-amber-400 border-amber-500/20';
+        return 'bg-amber-500/10 text-amber-300 border-amber-500/20';
       case 'photo':
         return 'bg-pink-500/10 text-pink-400 border-pink-500/20';
     }

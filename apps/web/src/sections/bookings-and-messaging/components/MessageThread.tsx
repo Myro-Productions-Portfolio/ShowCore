@@ -203,7 +203,7 @@ export function MessageThread({
 
         <div className="flex items-end gap-2">
           {/* File Upload Button */}
-          <label className="flex-shrink-0 p-2 text-zinc-600 dark:text-zinc-400 hover:text-amber-600 dark:hover:text-amber-400 hover:bg-amber-50 dark:hover:bg-amber-900/20 rounded-lg transition-colors cursor-pointer">
+          <label className="flex-shrink-0 p-2 text-zinc-600 dark:text-zinc-400 hover:text-amber-800 dark:hover:text-amber-100 hover:bg-amber-50 dark:hover:bg-amber-900/20 rounded-lg transition-colors cursor-pointer">
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
             </svg>

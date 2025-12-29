@@ -94,7 +94,7 @@ export function PayoutSettings({
       <div className="rounded-lg bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 p-4">
         <div className="flex gap-3">
           <svg
-            className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5"
+            className="w-5 h-5 text-amber-800 dark:text-amber-100 flex-shrink-0 mt-0.5"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -110,7 +110,7 @@ export function PayoutSettings({
             <h3 className="text-sm font-medium text-amber-900 dark:text-amber-100">
               Payout Schedule
             </h3>
-            <p className="mt-1 text-sm text-amber-800 dark:text-amber-200">
+            <p className="mt-1 text-sm text-amber-800 dark:text-amber-100">
               Payments are processed every Friday for bookings completed in the previous week.
               Funds typically arrive within 2-3 business days.
             </p>
@@ -164,7 +164,7 @@ export function PayoutSettings({
                           {method.bankName}
                         </h3>
                         {method.isDefault && (
-                          <span className="inline-flex items-center rounded-full bg-amber-100 dark:bg-amber-900/30 px-2 py-0.5 text-xs font-medium text-amber-800 dark:text-amber-300">
+                          <span className="inline-flex items-center rounded-full bg-amber-100 dark:bg-amber-900/30 px-2 py-0.5 text-xs font-medium text-amber-800 dark:text-amber-100">
                             Default
                           </span>
                         )}
@@ -183,7 +183,7 @@ export function PayoutSettings({
                           PayPal
                         </h3>
                         {method.isDefault && (
-                          <span className="inline-flex items-center rounded-full bg-amber-100 dark:bg-amber-900/30 px-2 py-0.5 text-xs font-medium text-amber-800 dark:text-amber-300">
+                          <span className="inline-flex items-center rounded-full bg-amber-100 dark:bg-amber-900/30 px-2 py-0.5 text-xs font-medium text-amber-800 dark:text-amber-100">
                             Default
                           </span>
                         )}
@@ -210,7 +210,7 @@ export function PayoutSettings({
                   <button
                     onClick={() => onSetDefaultMethod(method.id)}
                     disabled={isLoading}
-                    className="text-sm text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="text-sm text-amber-800 dark:text-amber-100 hover:text-amber-900 dark:hover:text-amber-50 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     Set Default
                   </button>

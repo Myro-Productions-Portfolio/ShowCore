@@ -102,7 +102,7 @@ const XPDashboard: React.FC<XPDashboardProps> = ({ profile, tierDefinitions }) =
             <div className="text-xs text-zinc-600 dark:text-zinc-400">Verified</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-amber-600 dark:text-amber-400 flex items-center justify-center gap-1">
+            <div className="text-2xl font-bold text-amber-800 dark:text-amber-100 flex items-center justify-center gap-1">
               {profile.averageRating.toFixed(1)}
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
@@ -181,7 +181,7 @@ const XPDashboard: React.FC<XPDashboardProps> = ({ profile, tierDefinitions }) =
               className="flex items-start gap-4 pb-4 last:pb-0 last:border-0 border-b border-zinc-200 dark:border-zinc-800"
             >
               <div className="flex-shrink-0 w-10 h-10 bg-amber-500/10 dark:bg-amber-500/20 rounded-full flex items-center justify-center">
-                <svg className="w-5 h-5 text-amber-600 dark:text-amber-400" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-amber-800 dark:text-amber-100" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
                 </svg>
               </div>
@@ -194,7 +194,7 @@ const XPDashboard: React.FC<XPDashboardProps> = ({ profile, tierDefinitions }) =
                 </p>
               </div>
               <div className="flex-shrink-0 text-right">
-                <div className="text-sm font-bold text-amber-600 dark:text-amber-400">
+                <div className="text-sm font-bold text-amber-800 dark:text-amber-100">
                   +{activity.xpEarned} XP
                 </div>
               </div>

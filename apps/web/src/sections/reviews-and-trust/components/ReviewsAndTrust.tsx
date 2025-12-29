@@ -93,7 +93,7 @@ export default function ReviewsAndTrust({
                   onClick={() => setActiveTab(tab.id)}
                   className={`flex items-center gap-2 px-4 py-3 border-b-2 transition-colors whitespace-nowrap ${
                     activeTab === tab.id
-                      ? 'border-amber-500 text-amber-600 dark:text-amber-400'
+                      ? 'border-amber-500 text-amber-800 dark:text-amber-100'
                       : 'border-transparent text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100'
                   }`}
                 >
@@ -102,7 +102,7 @@ export default function ReviewsAndTrust({
                   {tab.count !== undefined && (
                     <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${
                       activeTab === tab.id
-                        ? 'bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300'
+                        ? 'bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-100'
                         : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400'
                     }`}>
                       {tab.count}

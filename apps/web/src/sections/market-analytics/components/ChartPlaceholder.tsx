@@ -310,7 +310,7 @@ export function DistributionChart({
         </div>
         <div>
           <div className="text-zinc-500 dark:text-zinc-400">Average</div>
-          <div className="font-bold text-amber-600 dark:text-amber-400">
+          <div className="font-bold text-amber-800 dark:text-amber-100">
             ${data.average}
           </div>
         </div>

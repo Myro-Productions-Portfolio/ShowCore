@@ -70,13 +70,13 @@ export function RecentActivity({ activities, onActivityClick }: RecentActivityPr
       case 'booking_completed':
         return { Icon: CheckCircle2, color: 'text-green-600 dark:text-green-400', bg: 'bg-green-50 dark:bg-green-950/20' };
       case 'review_received':
-        return { Icon: Star, color: 'text-amber-600 dark:text-amber-400', bg: 'bg-amber-50 dark:bg-amber-950/20' };
+        return { Icon: Star, color: 'text-amber-800 dark:text-amber-100', bg: 'bg-amber-50 dark:bg-amber-950/20' };
       case 'message_received':
         return { Icon: MessageSquare, color: 'text-blue-600 dark:text-blue-400', bg: 'bg-blue-50 dark:bg-blue-950/20' };
       case 'xp_earned':
         return { Icon: Award, color: 'text-purple-600 dark:text-purple-400', bg: 'bg-purple-50 dark:bg-purple-950/20' };
       case 'booking_scheduled':
-        return { Icon: Calendar, color: 'text-lime-600 dark:text-lime-400', bg: 'bg-lime-50 dark:bg-lime-950/20' };
+        return { Icon: Calendar, color: 'text-lime-800 dark:text-lime-100', bg: 'bg-lime-50 dark:bg-lime-950/20' };
       case 'technician_hired':
         return { Icon: UserPlus, color: 'text-indigo-600 dark:text-indigo-400', bg: 'bg-indigo-50 dark:bg-indigo-950/20' };
       case 'milestone_reached':
@@ -158,7 +158,7 @@ export function RecentActivity({ activities, onActivityClick }: RecentActivityPr
                   {activity.metadata && (
                     <div className="mt-1 flex items-center gap-2 text-xs">
                       {activity.metadata.rating !== undefined && (
-                        <span className="text-amber-600 dark:text-amber-400 font-medium">
+                        <span className="text-amber-800 dark:text-amber-100 font-medium">
                           {activity.metadata.rating}/5 stars
                         </span>
                       )}
@@ -168,7 +168,7 @@ export function RecentActivity({ activities, onActivityClick }: RecentActivityPr
                         </span>
                       )}
                       {activity.metadata.amount !== undefined && (
-                        <span className="text-lime-600 dark:text-lime-400 font-medium">
+                        <span className="text-lime-800 dark:text-lime-100 font-medium">
                           ${activity.metadata.amount.toLocaleString()}
                         </span>
                       )}

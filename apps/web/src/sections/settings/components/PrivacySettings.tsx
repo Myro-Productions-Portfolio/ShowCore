@@ -75,7 +75,7 @@ export function PrivacySettings({
                 className="mt-0.5 h-4 w-4 text-amber-500 border-zinc-300 dark:border-zinc-600 focus:ring-amber-500 dark:focus:ring-amber-400"
               />
               <div className="flex-1">
-                <div className="text-sm font-medium text-zinc-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400">
+                <div className="text-sm font-medium text-zinc-900 dark:text-white group-hover:text-amber-800 dark:group-hover:text-amber-100">
                   Public
                 </div>
                 <div className="text-sm text-zinc-600 dark:text-zinc-400">
@@ -93,7 +93,7 @@ export function PrivacySettings({
                 className="mt-0.5 h-4 w-4 text-amber-500 border-zinc-300 dark:border-zinc-600 focus:ring-amber-500 dark:focus:ring-amber-400"
               />
               <div className="flex-1">
-                <div className="text-sm font-medium text-zinc-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400">
+                <div className="text-sm font-medium text-zinc-900 dark:text-white group-hover:text-amber-800 dark:group-hover:text-amber-100">
                   Private
                 </div>
                 <div className="text-sm text-zinc-600 dark:text-zinc-400">
@@ -131,7 +131,7 @@ export function PrivacySettings({
                   onChange={() => handleChange('emailVisibility', 'public')}
                   className="h-4 w-4 text-amber-500 border-zinc-300 dark:border-zinc-600 focus:ring-amber-500 dark:focus:ring-amber-400"
                 />
-                <span className="text-sm text-zinc-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400">
+                <span className="text-sm text-zinc-900 dark:text-white group-hover:text-amber-800 dark:group-hover:text-amber-100">
                   Public
                 </span>
               </label>
@@ -143,7 +143,7 @@ export function PrivacySettings({
                   onChange={() => handleChange('emailVisibility', 'connections')}
                   className="h-4 w-4 text-amber-500 border-zinc-300 dark:border-zinc-600 focus:ring-amber-500 dark:focus:ring-amber-400"
                 />
-                <span className="text-sm text-zinc-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400">
+                <span className="text-sm text-zinc-900 dark:text-white group-hover:text-amber-800 dark:group-hover:text-amber-100">
                   Connections only
                 </span>
               </label>
@@ -155,7 +155,7 @@ export function PrivacySettings({
                   onChange={() => handleChange('emailVisibility', 'private')}
                   className="h-4 w-4 text-amber-500 border-zinc-300 dark:border-zinc-600 focus:ring-amber-500 dark:focus:ring-amber-400"
                 />
-                <span className="text-sm text-zinc-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400">
+                <span className="text-sm text-zinc-900 dark:text-white group-hover:text-amber-800 dark:group-hover:text-amber-100">
                   Private
                 </span>
               </label>
@@ -176,7 +176,7 @@ export function PrivacySettings({
                   onChange={() => handleChange('phoneVisibility', 'public')}
                   className="h-4 w-4 text-amber-500 border-zinc-300 dark:border-zinc-600 focus:ring-amber-500 dark:focus:ring-amber-400"
                 />
-                <span className="text-sm text-zinc-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400">
+                <span className="text-sm text-zinc-900 dark:text-white group-hover:text-amber-800 dark:group-hover:text-amber-100">
                   Public
                 </span>
               </label>
@@ -188,7 +188,7 @@ export function PrivacySettings({
                   onChange={() => handleChange('phoneVisibility', 'connections')}
                   className="h-4 w-4 text-amber-500 border-zinc-300 dark:border-zinc-600 focus:ring-amber-500 dark:focus:ring-amber-400"
                 />
-                <span className="text-sm text-zinc-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400">
+                <span className="text-sm text-zinc-900 dark:text-white group-hover:text-amber-800 dark:group-hover:text-amber-100">
                   Connections only
                 </span>
               </label>
@@ -200,7 +200,7 @@ export function PrivacySettings({
                   onChange={() => handleChange('phoneVisibility', 'private')}
                   className="h-4 w-4 text-amber-500 border-zinc-300 dark:border-zinc-600 focus:ring-amber-500 dark:focus:ring-amber-400"
                 />
-                <span className="text-sm text-zinc-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400">
+                <span className="text-sm text-zinc-900 dark:text-white group-hover:text-amber-800 dark:group-hover:text-amber-100">
                   Private
                 </span>
               </label>
@@ -224,7 +224,7 @@ export function PrivacySettings({
           <div className="space-y-4">
             <label className="flex items-center justify-between cursor-pointer group">
               <div className="flex-1 pr-4">
-                <div className="text-sm font-medium text-zinc-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400">
+                <div className="text-sm font-medium text-zinc-900 dark:text-white group-hover:text-amber-800 dark:group-hover:text-amber-100">
                   Allow data sharing
                 </div>
                 <div className="text-sm text-zinc-600 dark:text-zinc-400">
@@ -258,7 +258,7 @@ export function PrivacySettings({
 
             <label className="flex items-center justify-between cursor-pointer group">
               <div className="flex-1 pr-4">
-                <div className="text-sm font-medium text-zinc-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400">
+                <div className="text-sm font-medium text-zinc-900 dark:text-white group-hover:text-amber-800 dark:group-hover:text-amber-100">
                   Marketing communications
                 </div>
                 <div className="text-sm text-zinc-600 dark:text-zinc-400">

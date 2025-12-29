@@ -117,7 +117,7 @@ export function EmailVerification({
             <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
               We've sent a verification link to
             </p>
-            <p className="text-amber-600 dark:text-amber-400 font-medium mt-1 break-all">
+            <p className="text-amber-800 dark:text-amber-100 font-medium mt-1 break-all">
               {email}
             </p>
           </div>
@@ -125,12 +125,12 @@ export function EmailVerification({
           {/* Instructions */}
           <div className="mb-8 p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800">
             <div className="flex gap-3">
-              <svg className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg className="w-5 h-5 text-amber-800 dark:text-amber-100 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <div className="text-sm text-amber-700 dark:text-amber-300">
+              <div className="text-sm text-amber-800 dark:text-amber-100">
                 <p className="font-medium mb-1">Check your inbox</p>
-                <p className="text-amber-600 dark:text-amber-400">
+                <p className="text-amber-800 dark:text-amber-100">
                   Click the link in the email to verify your account. If you don't see it, check your spam folder.
                 </p>
               </div>
@@ -201,7 +201,7 @@ export function EmailVerification({
           {/* Help text */}
           <p className="mt-6 text-center text-sm text-zinc-500 dark:text-zinc-400">
             Having trouble?{' '}
-            <a href="mailto:support@showcore.com" className="font-medium text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300">
+            <a href="mailto:support@showcore.com" className="font-medium text-amber-800 dark:text-amber-100 hover:text-amber-900 dark:hover:text-amber-50">
               Contact support
             </a>
           </p>

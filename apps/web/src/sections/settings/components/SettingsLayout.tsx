@@ -65,7 +65,7 @@ export function SettingsLayout({
                           }}
                           className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${
                             currentSection === section.id
-                              ? 'bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-400'
+                              ? 'bg-amber-50 dark:bg-amber-900/20 text-amber-800 dark:text-amber-100'
                               : 'text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800'
                           }`}
                         >
@@ -109,7 +109,7 @@ export function SettingsLayout({
                           onClick={() => onNavigate(section.id)}
                           className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${
                             currentSection === section.id
-                              ? 'bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-400'
+                              ? 'bg-amber-50 dark:bg-amber-900/20 text-amber-800 dark:text-amber-100'
                               : 'text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800'
                           }`}
                         >

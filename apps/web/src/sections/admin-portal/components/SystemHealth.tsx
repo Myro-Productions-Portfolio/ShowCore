@@ -69,7 +69,7 @@ export function SystemHealth({
       case 'info':
         return 'bg-blue-500/10 text-blue-400 border-blue-500/20';
       case 'warning':
-        return 'bg-amber-500/10 text-amber-400 border-amber-500/20';
+        return 'bg-amber-500/10 text-amber-300 border-amber-500/20';
       case 'critical':
         return 'bg-red-500/10 text-red-400 border-red-500/20';
     }

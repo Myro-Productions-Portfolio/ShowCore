@@ -269,7 +269,7 @@ export function MarketAnalytics({
                 success:
                   'bg-emerald-500/10 border-emerald-500/20 text-emerald-700 dark:text-emerald-300',
                 warning:
-                  'bg-amber-500/10 border-amber-500/20 text-amber-700 dark:text-amber-300',
+                  'bg-amber-500/10 border-amber-500/20 text-amber-800 dark:text-amber-100',
                 error:
                   'bg-red-500/10 border-red-500/20 text-red-700 dark:text-red-300',
               }
@@ -435,7 +435,7 @@ export function MarketAnalytics({
                   onClick={togglePredictions}
                   className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm transition-colors ${
                     showPredictions
-                      ? 'bg-amber-500/10 text-amber-700 dark:text-amber-300'
+                      ? 'bg-amber-500/10 text-amber-800 dark:text-amber-100'
                       : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400'
                   }`}
                 >
@@ -536,7 +536,7 @@ export function MarketAnalytics({
                           insight.demandLevel === 'High'
                             ? 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-300'
                             : insight.demandLevel === 'Medium'
-                              ? 'bg-amber-500/10 text-amber-700 dark:text-amber-300'
+                              ? 'bg-amber-500/10 text-amber-800 dark:text-amber-100'
                               : 'bg-zinc-500/10 text-zinc-700 dark:text-zinc-300'
                         }`}
                       >

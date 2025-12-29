@@ -126,8 +126,8 @@ export default function TechnicianProfilePage() {
                     onClick={handleSaveTechnician}
                     className={`p-2 rounded-lg transition-colors ${
                       isBookmarked
-                        ? 'bg-amber-500/20 text-amber-400'
-                        : 'bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-amber-400'
+                        ? 'bg-amber-500/20 text-amber-300'
+                        : 'bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-amber-300'
                     }`}
                   >
                     <Bookmark className={`w-5 h-5 ${isBookmarked ? 'fill-current' : ''}`} />

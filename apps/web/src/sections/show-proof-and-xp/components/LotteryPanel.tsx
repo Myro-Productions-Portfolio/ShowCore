@@ -142,7 +142,7 @@ const LotteryPanel: React.FC<LotteryDashboardProps> = ({ lotteryStatus, onViewRu
             <div className="text-xs text-zinc-600 dark:text-zinc-400 mt-1">Draws Entered</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-amber-600 dark:text-amber-400">
+            <div className="text-2xl font-bold text-amber-800 dark:text-amber-100">
               {lotteryStatus.lifetimeWins}
             </div>
             <div className="text-xs text-zinc-600 dark:text-zinc-400 mt-1">Wins</div>
@@ -165,18 +165,18 @@ const LotteryPanel: React.FC<LotteryDashboardProps> = ({ lotteryStatus, onViewRu
                 Complete a show
               </span>
             </div>
-            <span className="text-lg font-bold text-amber-600 dark:text-amber-400">1 ticket</span>
+            <span className="text-lg font-bold text-amber-800 dark:text-amber-100">1 ticket</span>
           </div>
           <div className="flex items-center justify-between p-3 bg-zinc-50 dark:bg-zinc-800/50 rounded-lg">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-amber-500/10 dark:bg-amber-500/20 rounded-full flex items-center justify-center text-amber-600 dark:text-amber-400">
+              <div className="w-8 h-8 bg-amber-500/10 dark:bg-amber-500/20 rounded-full flex items-center justify-center text-amber-800 dark:text-amber-100">
                 {ticketTypeIcons.five_star_review}
               </div>
               <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
                 Receive 5-star review
               </span>
             </div>
-            <span className="text-lg font-bold text-amber-600 dark:text-amber-400">2 tickets</span>
+            <span className="text-lg font-bold text-amber-800 dark:text-amber-100">2 tickets</span>
           </div>
           <div className="flex items-center justify-between p-3 bg-zinc-50 dark:bg-zinc-800/50 rounded-lg">
             <div className="flex items-center gap-3">
@@ -187,7 +187,7 @@ const LotteryPanel: React.FC<LotteryDashboardProps> = ({ lotteryStatus, onViewRu
                 Complete mentorship
               </span>
             </div>
-            <span className="text-lg font-bold text-amber-600 dark:text-amber-400">2 tickets</span>
+            <span className="text-lg font-bold text-amber-800 dark:text-amber-100">2 tickets</span>
           </div>
           <div className="flex items-center justify-between p-3 bg-zinc-50 dark:bg-zinc-800/50 rounded-lg">
             <div className="flex items-center gap-3">
@@ -198,7 +198,7 @@ const LotteryPanel: React.FC<LotteryDashboardProps> = ({ lotteryStatus, onViewRu
                 Refer a technician
               </span>
             </div>
-            <span className="text-lg font-bold text-amber-600 dark:text-amber-400">3 tickets</span>
+            <span className="text-lg font-bold text-amber-800 dark:text-amber-100">3 tickets</span>
           </div>
         </div>
       </div>
@@ -214,7 +214,7 @@ const LotteryPanel: React.FC<LotteryDashboardProps> = ({ lotteryStatus, onViewRu
               key={index}
               className="flex items-start gap-3 pb-3 last:pb-0 last:border-0 border-b border-zinc-200 dark:border-zinc-800"
             >
-              <div className="flex-shrink-0 w-8 h-8 bg-amber-500/10 dark:bg-amber-500/20 rounded-full flex items-center justify-center text-amber-600 dark:text-amber-400">
+              <div className="flex-shrink-0 w-8 h-8 bg-amber-500/10 dark:bg-amber-500/20 rounded-full flex items-center justify-center text-amber-800 dark:text-amber-100">
                 {ticketTypeIcons[entry.type]}
               </div>
               <div className="flex-1 min-w-0">
@@ -230,7 +230,7 @@ const LotteryPanel: React.FC<LotteryDashboardProps> = ({ lotteryStatus, onViewRu
                 </p>
               </div>
               <div className="flex-shrink-0 text-right">
-                <div className="text-sm font-bold text-amber-600 dark:text-amber-400">
+                <div className="text-sm font-bold text-amber-800 dark:text-amber-100">
                   +{entry.earned} {entry.earned === 1 ? 'ticket' : 'tickets'}
                 </div>
               </div>

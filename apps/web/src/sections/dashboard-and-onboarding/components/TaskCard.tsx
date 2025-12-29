@@ -20,7 +20,7 @@ export function TaskCard({ task, onClick }: TaskCardProps) {
       case 'complete':
         return <CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400" />;
       case 'in_progress':
-        return <Loader2 className="w-5 h-5 text-lime-600 dark:text-lime-400 animate-spin" />;
+        return <Loader2 className="w-5 h-5 text-lime-800 dark:text-lime-100 animate-spin" />;
       case 'incomplete':
       default:
         return <Circle className="w-5 h-5 text-zinc-300 dark:text-zinc-600" />;
@@ -66,7 +66,7 @@ export function TaskCard({ task, onClick }: TaskCardProps) {
             {task.description}
           </p>
           {task.xpReward && task.status !== 'complete' && (
-            <div className="mt-2 inline-flex items-center gap-1 px-2 py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 text-xs font-semibold rounded">
+            <div className="mt-2 inline-flex items-center gap-1 px-2 py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-100 text-xs font-semibold rounded">
               <Award className="w-3 h-3" />
               +{task.xpReward} XP
             </div>

@@ -166,7 +166,7 @@ export function BillingSettings({
             <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
               Current Plan: {tierDetails[subscriptionTier].name}
             </h3>
-            <p className="mt-1 text-2xl font-bold text-amber-600 dark:text-amber-400">
+            <p className="mt-1 text-2xl font-bold text-amber-800 dark:text-amber-100">
               ${tierDetails[subscriptionTier].price}
               <span className="text-base font-normal text-zinc-600 dark:text-zinc-400">/month</span>
             </p>
@@ -184,7 +184,7 @@ export function BillingSettings({
           {subscriptionTier !== 'Enterprise' && (
             <button
               onClick={() => setShowUpgrade(!showUpgrade)}
-              className="px-4 py-2 text-sm font-medium text-amber-600 dark:text-amber-400 hover:bg-amber-50 dark:hover:bg-amber-900/20 rounded-lg transition-colors"
+              className="px-4 py-2 text-sm font-medium text-amber-800 dark:text-amber-100 hover:bg-amber-50 dark:hover:bg-amber-900/20 rounded-lg transition-colors"
             >
               {showUpgrade ? 'Hide Plans' : 'Upgrade Plan'}
             </button>
@@ -206,7 +206,7 @@ export function BillingSettings({
                     className="rounded-lg border border-zinc-200 dark:border-zinc-600 p-4 hover:border-amber-400 dark:hover:border-amber-600 transition-colors"
                   >
                     <h5 className="font-semibold text-zinc-900 dark:text-zinc-100">{details.name}</h5>
-                    <p className="mt-1 text-xl font-bold text-amber-600 dark:text-amber-400">
+                    <p className="mt-1 text-xl font-bold text-amber-800 dark:text-amber-100">
                       ${details.price}<span className="text-sm font-normal">/mo</span>
                     </p>
                     <button
@@ -246,7 +246,7 @@ export function BillingSettings({
                         {method.cardBrand?.toUpperCase()} ••••{method.last4}
                       </h4>
                       {method.isDefault && (
-                        <span className="inline-flex items-center rounded-full bg-amber-100 dark:bg-amber-900/30 px-2 py-0.5 text-xs font-medium text-amber-800 dark:text-amber-300">
+                        <span className="inline-flex items-center rounded-full bg-amber-100 dark:bg-amber-900/30 px-2 py-0.5 text-xs font-medium text-amber-800 dark:text-amber-100">
                           Default
                         </span>
                       )}
@@ -268,7 +268,7 @@ export function BillingSettings({
                     <button
                       onClick={() => onSetDefaultPaymentMethod(method.id)}
                       disabled={isLoading}
-                      className="text-sm text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="text-sm text-amber-800 dark:text-amber-100 hover:text-amber-900 dark:hover:text-amber-50 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       Set Default
                     </button>
@@ -316,7 +316,7 @@ export function BillingSettings({
             <button
               onClick={() => setShowAddCard(true)}
               disabled={isLoading}
-              className="w-full sm:w-auto px-4 py-2 text-sm font-medium text-amber-600 dark:text-amber-400 hover:bg-amber-50 dark:hover:bg-amber-900/20 border border-amber-300 dark:border-amber-700 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full sm:w-auto px-4 py-2 text-sm font-medium text-amber-800 dark:text-amber-100 hover:bg-amber-50 dark:hover:bg-amber-900/20 border border-amber-300 dark:border-amber-700 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Add Payment Method
             </button>
@@ -430,7 +430,7 @@ export function BillingSettings({
                 setAddressForm(billingInfo.billingAddress);
                 setEditAddress(true);
               }}
-              className="text-sm text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300"
+              className="text-sm text-amber-800 dark:text-amber-100 hover:text-amber-900 dark:hover:text-amber-50"
             >
               Edit
             </button>
@@ -596,7 +596,7 @@ export function BillingSettings({
                     <td className="px-6 py-4 whitespace-nowrap text-sm">
                       <button
                         onClick={() => onDownloadInvoice(invoice.id)}
-                        className="text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 font-medium"
+                        className="text-amber-800 dark:text-amber-100 hover:text-amber-900 dark:hover:text-amber-50 font-medium"
                       >
                         Download
                       </button>

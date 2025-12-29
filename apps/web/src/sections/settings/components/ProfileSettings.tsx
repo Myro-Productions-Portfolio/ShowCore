@@ -168,7 +168,7 @@ export function ProfileSettings({
       </div>
 
       {/* Role badge */}
-      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 text-sm font-medium">
+      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-100 text-sm font-medium">
         {isTechnician ? (
           <>
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -443,7 +443,7 @@ export function ProfileSettings({
                   return (
                     <span
                       key={skill}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-400 text-sm font-medium"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-50 dark:bg-amber-900/20 text-amber-800 dark:text-amber-100 text-sm font-medium"
                     >
                       {skillIcon && (
                         <img
@@ -562,7 +562,7 @@ export function ProfileSettings({
                       href={link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 text-sm text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 truncate"
+                      className="flex-1 text-sm text-amber-800 dark:text-amber-100 hover:text-amber-900 dark:hover:text-amber-50 truncate"
                     >
                       {link}
                     </a>

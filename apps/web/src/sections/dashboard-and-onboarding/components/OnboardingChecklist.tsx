@@ -62,7 +62,7 @@ export function OnboardingChecklist({
           <span className="font-medium text-zinc-700 dark:text-zinc-300">
             {progress.completedTasks} of {progress.totalTasks} completed
           </span>
-          <span className="font-semibold text-lime-600 dark:text-lime-400">
+          <span className="font-semibold text-lime-800 dark:text-lime-100">
             {percentComplete}%
           </span>
         </div>

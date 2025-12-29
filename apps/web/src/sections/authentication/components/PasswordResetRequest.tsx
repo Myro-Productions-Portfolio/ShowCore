@@ -179,7 +179,7 @@ export function PasswordResetRequest({
               <div className="text-center">
                 {/* Success icon */}
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-amber-100 dark:bg-amber-900/20 mb-6">
-                  <svg className="w-8 h-8 text-amber-600 dark:text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="w-8 h-8 text-amber-800 dark:text-amber-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                 </div>
@@ -191,7 +191,7 @@ export function PasswordResetRequest({
                 <p className="text-zinc-600 dark:text-zinc-300 mb-2">
                   We've sent password reset instructions to
                 </p>
-                <p className="text-amber-600 dark:text-amber-400 font-medium mb-8">
+                <p className="text-amber-800 dark:text-amber-100 font-medium mb-8">
                   {email}
                 </p>
 
@@ -215,7 +215,7 @@ export function PasswordResetRequest({
                   type="button"
                   onClick={handleSubmit}
                   disabled={isLoading}
-                  className="text-sm font-medium text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 mb-6 disabled:opacity-50"
+                  className="text-sm font-medium text-amber-800 dark:text-amber-100 hover:text-amber-900 dark:hover:text-amber-50 mb-6 disabled:opacity-50"
                 >
                   Didn't receive it? Send again
                 </button>

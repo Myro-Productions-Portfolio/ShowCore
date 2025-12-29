@@ -64,7 +64,7 @@ export function UserManagement({
       case 'suspended':
         return 'bg-red-500/20 text-red-400 border-red-500/30';
       case 'pending_verification':
-        return 'bg-amber-500/20 text-amber-400 border-amber-500/30';
+        return 'bg-amber-500/20 text-amber-300 border-amber-500/30';
       case 'banned':
         return 'bg-red-600/20 text-red-300 border-red-600/30';
       case 'deactivated':
@@ -182,33 +182,33 @@ export function UserManagement({
         {(filters.role || filters.accountStatus || filters.location) && (
           <div className="flex flex-wrap gap-2 mt-3">
             {filters.role && (
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-amber-500/20 text-amber-400 text-xs rounded-md border border-amber-500/30">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-amber-500/20 text-amber-300 text-xs rounded-md border border-amber-500/30">
                 Role: {filters.role}
                 <button
                   onClick={() => onFilter({ ...filters, role: undefined })}
-                  className="hover:text-amber-300"
+                  className="hover:text-amber-200"
                 >
                   ×
                 </button>
               </span>
             )}
             {filters.accountStatus && (
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-amber-500/20 text-amber-400 text-xs rounded-md border border-amber-500/30">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-amber-500/20 text-amber-300 text-xs rounded-md border border-amber-500/30">
                 Status: {filters.accountStatus[0]}
                 <button
                   onClick={() => onFilter({ ...filters, accountStatus: undefined })}
-                  className="hover:text-amber-300"
+                  className="hover:text-amber-200"
                 >
                   ×
                 </button>
               </span>
             )}
             {filters.location && (
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-amber-500/20 text-amber-400 text-xs rounded-md border border-amber-500/30">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-amber-500/20 text-amber-300 text-xs rounded-md border border-amber-500/30">
                 Location: {filters.location}
                 <button
                   onClick={() => onFilter({ ...filters, location: undefined })}
-                  className="hover:text-amber-300"
+                  className="hover:text-amber-200"
                 >
                   ×
                 </button>

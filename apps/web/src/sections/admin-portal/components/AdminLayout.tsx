@@ -173,7 +173,7 @@ export default function AdminLayout({
                   }}
                   className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all ${
                     activeNavItem === item.id
-                      ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20'
+                      ? 'bg-amber-500/10 text-amber-300 border border-amber-500/20'
                       : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200 hover:bg-zinc-100/50 dark:hover:bg-zinc-800/50'
                   } ${sidebarCollapsed ? 'justify-center' : ''}`}
                   title={sidebarCollapsed ? item.label : undefined}
@@ -307,7 +307,7 @@ export default function AdminLayout({
                     <div className="flex items-center justify-between">
                       <h3 className="font-semibold text-sm">Notifications</h3>
                       {alertCount > 0 && (
-                        <span className="px-2 py-0.5 bg-amber-500/10 text-amber-400 text-xs font-medium rounded">
+                        <span className="px-2 py-0.5 bg-amber-500/10 text-amber-300 text-xs font-medium rounded">
                           {alertCount} new
                         </span>
                       )}
