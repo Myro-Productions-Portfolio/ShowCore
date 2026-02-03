@@ -234,34 +234,31 @@ All routes are under `/trpc/*`:
 
 ## Deployment
 
-### Cloudflare Workers
+### AWS (Target Platform)
+
+This application will be deployed to AWS as part of the migration project:
+
+- **ECS/Fargate**: Container orchestration for the backend API
+- **RDS PostgreSQL**: Managed database service
+- **ElastiCache Redis**: Managed cache layer
+- **Application Load Balancer**: HTTPS traffic routing
+
+### Local Development
+
+The backend uses `@hono/node-server` for local development:
 
 ```bash
-# Login to Cloudflare
-wrangler login
-
-# Deploy
-npm run deploy
+npm run dev:node
 ```
 
-Create `wrangler.toml`:
+### Docker
 
-```toml
-name = "showcore-backend"
-main = "src/index.ts"
-compatibility_date = "2024-01-01"
+Build and run the backend container:
 
-[vars]
-DATABASE_URL = "your-database-url"
+```bash
+docker build -t showcore-backend .
+docker run -p 3002:3002 --env-file .env showcore-backend
 ```
-
-### Other Platforms
-
-Adjust `src/index.ts` exports for your target:
-
-- **Vercel**: Export as default
-- **Node.js**: Use `@hono/node-server`
-- **Bun**: Works out of the box
 
 ## Testing
 

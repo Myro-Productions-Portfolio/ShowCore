@@ -22,14 +22,14 @@ type AppRouter = {
 // Create the tRPC React hooks
 export const trpc = createTRPCReact<AppRouter>()
 
-// Get the API URL from environment or use production default
+// Get the API URL from environment or use local default
 const getBaseUrl = () => {
   // Use environment variable if available
   if (import.meta.env.VITE_API_URL) {
     return import.meta.env.VITE_API_URL
   }
-  // Production default
-  return 'https://showcore-api.vercel.app'
+  // Local development default
+  return 'http://localhost:3002'
 }
 
 // Create tRPC client with links

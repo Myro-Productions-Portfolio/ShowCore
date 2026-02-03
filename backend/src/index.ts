@@ -55,9 +55,7 @@ app.use('/*', cors({
       'http://192.168.1.121:3003',
       'http://100.85.249.61:3003',
       'https://showcore.myroproductions.com',
-      'https://showcore-app.vercel.app',
     ]
-    // SECURITY: Removed wildcard *.vercel.app - only allow specific Vercel URL
     if (origin && allowedOrigins.includes(origin)) {
       return origin
     }
@@ -92,5 +90,4 @@ serve({
   port,
 })
 
-// Export for Vercel Functions
 export default app
