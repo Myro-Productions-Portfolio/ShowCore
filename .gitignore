@@ -24,6 +24,15 @@ out/
 *.swo
 .DS_Store
 
+# AI/Dev Tools
+.serena/
+.kiro/settings/
+.kiro/cache/
+*.code-workspace
+
+# Keep .kiro/specs/ for project documentation
+!.kiro/specs/
+
 # Logs
 npm-debug.log*
 yarn-debug.log*
