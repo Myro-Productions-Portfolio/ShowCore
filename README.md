@@ -2,7 +2,7 @@
 
 ## Mission Statement
 
-This repository documents the complete journey of migrating ShowCore, an AV industry technician discovery marketplace, from traditional on-premises hosting to a modern, scalable AWS cloud infrastructure.
+This repository documents the complete journey of migrating a web application from traditional on-premises hosting to a modern, scalable AWS cloud infrastructure.
 
 **Purpose**: To demonstrate practical AWS service integration, cloud architecture decisions, infrastructure-as-code practices, and real-world migration strategies as I build expertise in cloud engineering and solutions architecture.
 
@@ -12,31 +12,35 @@ This is a living portfolio project that will evolve from a simple lift-and-shift
 
 ## Project Background
 
-### Initial Client Request
+### Internal Project Memo
 
-**From**: Sarah Mitchell <sarah.mitchell@showcoreav.com>
-**To**: Nicolas Myers <pmnicolasm@gmail.com>
+**From**: Nicolas Myers <pmnicolasm@gmail.com>
+**To**: Project Development Team
 **Date**: February 3, 2026
-**Subject**: ShowCore Platform - AWS Migration Consultation
+**Subject**: ShowCore Platform - AWS Migration Initiative
 
-> Hi Nicolas,
+> Team,
 >
-> Hope this email finds you well. We've been running ShowCore on our on-premises infrastructure for the past year, and while it's been working, we're starting to hit some scaling challenges. Our current setup is a traditional VPS with manual deployments, and frankly, we're spending too much time on infrastructure maintenance rather than building features.
+> I'm initiating a new portfolio project to demonstrate practical AWS migration strategies and cloud-native architecture patterns. This project will serve dual purposes: building a production-ready application while documenting the entire cloud migration journey for my AWS Solutions Architect certification path.
 >
-> We've heard great things about AWS and cloud-native architectures, and we think it's time to make the move. Here's what we're dealing with:
+> **Current State**:
+> - Traditional VPS hosting with manual deployments
+> - PostgreSQL and Redis running on a single server
+> - Docker Compose orchestration
+> - No auto-scaling or high availability
 >
-> - **Current Setup**: Single VPS running PostgreSQL, Redis, and our Node.js application
-> - **Traffic**: Growing steadily, occasional slowdowns during peak hours
-> - **Team Size**: 2 developers, 1 designer (us), no dedicated DevOps
-> - **Budget**: Flexible, but want to start smart and scale intelligently
-> - **Timeline**: No hard deadline, we want to do this right
+> **The Challenge**:
+> We're going to migrate this application to AWS, treating it as if it were a real client engagement. I'll document every decision, every service choice, and every lesson learned along the way. This isn't just about moving infrastructure - it's about understanding *why* we choose each AWS service and *how* they work together.
 >
-> We're looking for someone who can not only migrate us to AWS but also help us understand the "why" behind each decision. We want to learn alongside the process and build something that can grow with us.
+> **Goals**:
+> - Build production-grade AWS infrastructure
+> - Implement proper monitoring, scaling, and disaster recovery
+> - Document the learning process for others
+> - Create a portfolio piece that demonstrates real-world cloud architecture
 >
-> What are your initial thoughts? Can we schedule a call this week to discuss the approach?
+> Let's build something that showcases not just the destination, but the journey of learning AWS.
 >
-> Best,
-> Sarah
+> - Nicolas
 
 ---
 
@@ -163,7 +167,7 @@ This is a living portfolio project that will evolve from a simple lift-and-shift
 ShowCore/
 ├── apps/                    # Frontend React application
 ├── backend/                 # Hono + tRPC backend
-├── sections/                # Feature modules (bookings, discovery, etc.)
+├── sections/                # Feature modules
 ├── design-system/           # UI components and tokens
 ├── data-model/              # TypeScript types and Prisma schema
 ├── shell/                   # Application layout and routing
@@ -218,7 +222,7 @@ As this migration progresses, I'll be documenting:
 - Performance benchmarks (on-prem vs AWS)
 - Lessons learned and gotchas
 
-**Certifications in Progress:**
+**Certifications:**
 - AWS Certified Cloud Practitioner (Passed January 2026)
 - AWS Certified Solutions Architect Associate (In Progress)
 
@@ -232,13 +236,21 @@ As this migration progresses, I'll be documenting:
 
 ---
 
-## Contact & Collaboration
+## About This Project
 
-**Portfolio**: [Coming Soon]
-**GitHub**: [@Myro-Productions-Portfolio](https://github.com/Myro-Productions-Portfolio)
-**Email**: pmnicolasm@gmail.com
+This is a portfolio project created by Nicolas Myers to demonstrate AWS cloud migration expertise and solutions architecture capabilities. The application serves as a practical learning platform for implementing production-grade AWS infrastructure, CI/CD pipelines, and cloud-native architecture patterns.
+
+**Contact:**
+- **GitHub**: [@Myro-Productions-Portfolio](https://github.com/Myro-Productions-Portfolio)
+- **Email**: pmnicolasm@gmail.com
 
 This project is open for feedback, suggestions, and collaboration. If you're also learning AWS or have experience with cloud migrations, feel free to open an issue or PR with recommendations.
+
+---
+
+## Legal & Disclaimer
+
+This is an independent portfolio project created for educational and demonstration purposes. All code, architecture decisions, and documentation are original work created to showcase cloud engineering capabilities.
 
 ---
 
