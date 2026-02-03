@@ -72,6 +72,29 @@ This is a living portfolio project that will evolve from a simple lift-and-shift
 
 ---
 
+## Application Preview
+
+### Current On-Premises Application
+
+Below are screenshots of the application in its current state before AWS migration. These serve as a baseline for comparing performance, scalability, and functionality improvements throughout the migration process.
+
+#### Authentication
+Modern authentication interface with multiple login methods including email/password, magic links, and OAuth providers (Google, Apple, Microsoft).
+
+![Login Page](docs/images/login-page.png)
+
+#### Dashboard
+Main dashboard showing welcome screen, setup progress, activity feed, and quick navigation to key features. Demonstrates the application's clean UI and user-friendly design.
+
+![Dashboard](docs/images/dashboard.png)
+
+#### Settings & Configuration
+Comprehensive settings interface allowing users to manage account preferences, security settings, and application configuration. Shows the depth of functionality built into the platform.
+
+![Settings Page](docs/images/settings.png)
+
+---
+
 ## Migration Goals & Success Criteria
 
 ### Phase 1: Foundation (Weeks 1-2)
