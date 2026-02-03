@@ -1,0 +1,24 @@
+{
+  "enabled": true,
+  "name": "Sensitive Data Check Before Commit",
+  "description": "Scans files for sensitive information (AWS account IDs, credentials, emails, IPs) before allowing commits to prevent leaking data to public GitHub repo",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "**/*.md",
+      "**/*.py",
+      "**/*.ts",
+      "**/*.js",
+      "**/*.json",
+      "**/*.yaml",
+      "**/*.yml",
+      "**/*.tf",
+      "**/*.sh"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A file was just edited that may be committed to the public GitHub repository. Please scan the modified file for sensitive information and warn the user if any is found.\n\n**CRITICAL: This is a PUBLIC repository. Check for:**\n\n**1. AWS Account IDs:**\n   - Pattern: 12-digit numbers like `498618930321`\n   - Action: Replace with placeholder `123456789012` or `<AWS_ACCOUNT_ID>`\n   - Check: CDK code, CloudFormation templates, documentation, ADRs\n\n**2. AWS Credentials:**\n   - AWS Access Key IDs (starts with AKIA)\n   - AWS Secret Access Keys\n   - AWS Session Tokens\n   - Action: NEVER commit these. Use AWS Secrets Manager or environment variables\n\n**3. Email Addresses:**\n   - Real email addresses in documentation, configs, or code\n   - Action: Replace with `admin@example.com`, `user@example.com`, etc.\n   - Exception: Generic examples already using example.com are OK\n\n**4. IP Addresses:**\n   - Public IP addresses that could identify infrastructure\n   - Action: Replace with RFC 5737 documentation IPs (192.0.2.x, 198.51.100.x, 203.0.113.x)\n   - Exception: Private IPs (10.x.x.x, 172.16.x.x, 192.168.x.x) and example CIDRs are OK\n\n**5. Database Credentials:**\n   - Usernames and passwords in connection strings\n   - Database endpoints with real hostnames\n   - Action: Use placeholders like `<DB_USERNAME>`, `<DB_PASSWORD>`, `db.example.com`\n\n**6. API Keys and Tokens:**\n   - Third-party API keys\n   - OAuth tokens\n   - Service account credentials\n   - Action: NEVER commit these. Use environment variables or secrets management\n\n**7. Personal Information:**\n   - Real names in examples (use placeholder names)\n   - Phone numbers\n   - Physical addresses\n   - Action: Replace with fictional examples\n\n**8. Internal URLs and Hostnames:**\n   - Internal service URLs\n   - Private DNS names\n   - Action: Replace with `internal.example.com` or similar\n\n**If sensitive data is found:**\n1. List each instance with file path and line number\n2. Suggest sanitized replacement\n3. Remind user this is a PUBLIC repository\n4. Recommend running: `git diff` to review all changes before commit\n\n**If no sensitive data found:**\n- Confirm the file is safe to commit\n- Remind user to always review diffs before pushing to public GitHub\n\n**Common safe patterns:**\n- AWS Account ID: `123456789012` (placeholder)\n- Email: `*@example.com` domain\n- IP: `10.0.0.0/16` (private), `192.0.2.x` (documentation)\n- Database: `showcore-db.cluster-xxxxx.us-east-1.rds.amazonaws.com` (with xxxxx placeholder)\n\nThis check helps maintain security and privacy for the public ShowCore portfolio repository."
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "enabled": true,
+  "name": "Test Execution Reminder",
+  "description": "Reminds to run appropriate tests after infrastructure code modifications",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "infrastructure/**/*.ts",
+      "infrastructure/**/*.py",
+      "*.tf",
+      "lib/stacks/**/*.py",
+      "lib/constructs/**/*.py",
+      "cdk.json"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Infrastructure code was just modified. Please remind the user to run the appropriate tests based on the changes made:\n\n1. ALWAYS Run Unit Tests for Modified Components:\n   - Run unit tests for the specific stack or construct that was modified\n   - Command: pytest tests/unit/test_<modified_component>.py -v\n   - Or run all unit tests: pytest tests/unit/ -v\n   - Verify all tests pass before proceeding\n   - Unit tests validate: Resources exist with correct configuration, Instance types are Free Tier eligible (db.t3.micro, cache.t3.micro), NO NAT Gateway exists (cost optimization), Encryption at rest is enabled, Backup retention meets requirements (>= 7 days)\n\n2. Run Property Tests IF Security or Tagging Changes Made:\n   - If security group rules were modified, run: pytest tests/property/test_security_groups.py -v\n   - Property: No security group allows 0.0.0.0/0 on sensitive ports (22, 5432, 6379)\n   - Validates: Requirements 6.2\n   - If resource tags were modified, run: pytest tests/property/test_tagging.py -v\n   - Property: All resources have required tags (Project, Phase, Environment, ManagedBy, CostCenter)\n   - Validates: Requirements 9.6\n   - Property tests validate universal correctness properties across ALL resources\n\n3. Run Integration Tests IF Connectivity Changes Made:\n   - If VPC, subnets, or security groups were modified, run: pytest tests/integration/test_connectivity.py -v\n   - Integration tests validate: RDS connectivity from private subnet, ElastiCache connectivity from private subnet, VPC Endpoints functionality (S3, CloudWatch, Systems Manager), S3 and CloudFront integration, Backup and restore procedures\n   - Note: Integration tests require deployed infrastructure\n\nTest Execution Order:\n1. Unit tests (always run first, fast feedback)\n2. Property tests (if security/tagging changes, validates universal properties)\n3. Integration tests (if connectivity changes, requires deployment)\n\nBefore Committing:\n- Ensure ALL unit tests pass (100% pass rate required)\n- Ensure ALL property tests pass (universal properties must hold)\n- Document any integration test failures and remediate\n- Run pytest tests/ -v to execute all tests\n\nTest Coverage Requirements:\n- Unit tests: 100% of stacks must have tests\n- Property tests: All universal properties must be tested\n- Integration tests: All connectivity paths must be tested\n- Minimum coverage: 80% code coverage for stack definitions\n\nRunning tests ensures infrastructure quality, security, and compliance with requirements. Do not skip testing!"
+  }
+}

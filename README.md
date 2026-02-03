@@ -1,5 +1,7 @@
 # ShowCore: On-Premises to AWS Cloud Migration
 
+> ⚠️ **Security Notice**: This is a PUBLIC repository. All sensitive information (AWS account IDs, credentials, emails) has been sanitized. See [Security Sanitization Guide](.kiro/specs/showcore-aws-migration-phase1/SECURITY-SANITIZATION-GUIDE.md) for details.
+
 ## Mission Statement
 
 This repository documents the complete journey of migrating a web application from traditional on-premises hosting to a modern, scalable AWS cloud infrastructure.
@@ -14,7 +16,7 @@ This is a living portfolio project that will evolve from a simple lift-and-shift
 
 ### Internal Project Memo
 
-**From**: Nicolas Myers <pmnicolasm@gmail.com>
+**From**: Nicolas Myers <nmyers@example.com>
 **To**: Project Development Team
 **Date**: February 3, 2026
 **Subject**: ShowCore Platform - AWS Migration Initiative
@@ -265,7 +267,7 @@ This is a portfolio project created by Nicolas Myers to demonstrate AWS cloud mi
 
 **Contact:**
 - **GitHub**: [@Myro-Productions-Portfolio](https://github.com/Myro-Productions-Portfolio)
-- **Email**: pmnicolasm@gmail.com
+- **Email**: contact@example.com
 
 This project is open for feedback, suggestions, and collaboration. If you're also learning AWS or have experience with cloud migrations, feel free to open an issue or PR with recommendations.
 

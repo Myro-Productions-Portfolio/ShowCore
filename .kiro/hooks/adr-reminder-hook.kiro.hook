@@ -1,0 +1,20 @@
+{
+  "enabled": true,
+  "name": "ADR Creation Reminder",
+  "description": "Reminds to create or update Architecture Decision Records when design documents or infrastructure code is modified",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      ".kiro/specs/**/design.md",
+      "infrastructure/**/*.ts",
+      "infrastructure/**/*.py",
+      "*.tf",
+      "cdk.json"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A design or infrastructure file was just modified. Check if this change involves a significant architectural decision that should be documented in an ADR. \n\nIf this is a significant decision (like choosing between services, architecture patterns, cost trade-offs, or security approaches), remind the user to:\n1. Create a new ADR in .kiro/specs/showcore-aws-migration-phase1/ (or appropriate spec directory)\n2. Use the format: adr-XXX-decision-name.md\n3. Document: Status, Context, Decision, Alternatives Considered, Rationale, Consequences, Implementation, When to revisit\n\nSignificant decisions include:\n- Service selection (RDS vs Aurora, ECS vs EKS, etc.)\n- Architecture patterns (monolith vs microservices, sync vs async)\n- Cost optimization trade-offs (managed vs self-managed)\n- Security approaches (IAM roles, encryption methods)\n- Deployment strategies (blue/green, rolling, canary)\n- Infrastructure as Code tool selection (Terraform vs CDK vs CloudFormation)\n\nIf this is just a minor update or implementation detail, no ADR needed."
+  }
+}

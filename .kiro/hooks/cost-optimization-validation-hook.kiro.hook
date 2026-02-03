@@ -1,0 +1,21 @@
+{
+  "enabled": true,
+  "name": "Cost Optimization Validation",
+  "description": "Reminds to verify cost optimization measures when infrastructure code is modified",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "infrastructure/**/*.ts",
+      "infrastructure/**/*.py",
+      "*.tf",
+      "cdk.json",
+      "lib/stacks/**/*.py",
+      "lib/constructs/**/*.py"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Infrastructure code was just modified. Please verify the following cost optimization measures are maintained:\n\n**1. Free Tier Eligible Resources (Requirements 9.1):**\n   - ✅ RDS instance type: db.t3.micro (750 hours/month free for 12 months)\n   - ✅ ElastiCache node type: cache.t3.micro (750 hours/month free for 12 months)\n   - ❌ Verify NO larger instance types are being used (db.t3.small, cache.t3.small, etc.)\n   - Check: Search for 'DBInstanceClass' or 'CacheNodeType' in the code\n\n**2. NAT Gateway Check (Requirements 9.2):**\n   - ❌ Verify NO NAT Gateway is being deployed (saves ~$32/month)\n   - ✅ Confirm VPC Endpoints are used instead for AWS service access\n   - ✅ Gateway Endpoints for S3 and DynamoDB (FREE)\n   - ✅ Interface Endpoints for CloudWatch, Systems Manager (~$7/month each)\n   - Check: Search for 'NatGateway' or 'nat_gateway' in the code - should NOT exist\n\n**3. Single-AZ Deployment (Requirements 9.3):**\n   - ✅ RDS: Single-AZ deployment (multi_az=False or not specified)\n   - ✅ ElastiCache: Single node, no replicas (num_cache_nodes=1)\n   - ❌ Verify Multi-AZ is NOT enabled (doubles cost)\n   - Check: Search for 'multi_az=True' or 'MultiAZ: true' - should NOT exist\n   - Check: Search for 'num_cache_clusters' or 'automatic_failover_enabled' - should be disabled\n\n**4. CloudFront Price Class (Requirements 9.11):**\n   - ✅ CloudFront distribution uses PriceClass_100 (North America and Europe only)\n   - ❌ Verify NOT using PriceClass_200 or PriceClass_All (higher cost)\n   - Check: Search for 'price_class' or 'PriceClass' - should be 'PriceClass_100'\n\n**5. Additional Cost Optimization Checks:**\n   - S3 encryption: SSE-S3 (free) not KMS ($1/key/month)\n   - Backup retention: 7 days (not 30+ days)\n   - CloudWatch log retention: 7 days (not indefinite)\n   - VPC Flow Logs: Disabled initially (can add later if needed)\n\n**Cost Savings Summary:**\n- No NAT Gateway: ~$32/month savings\n- Free Tier instances: $0 for first 12 months\n- Single-AZ deployment: 50% cost reduction vs Multi-AZ\n- Gateway Endpoints: FREE (S3, DynamoDB)\n- Target monthly cost: ~$3-10/month during Free Tier, ~$49-60/month after\n\nIf any cost optimization measures are violated, please update the code before committing. These measures are critical for maintaining ShowCore as a low-cost project website."
+  }
+}

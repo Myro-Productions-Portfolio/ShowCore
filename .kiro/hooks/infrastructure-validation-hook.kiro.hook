@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "name": "Infrastructure Code Validation",
+  "description": "Reminds to validate infrastructure code before committing changes",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "infrastructure/**/*.ts",
+      "infrastructure/**/*.py",
+      "*.tf"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Infrastructure code was just modified. Before committing these changes, please remind the user to:\n\n**1. Validate Infrastructure Code:**\n   - Run `cdk synth` (for AWS CDK) or `terraform plan` (for Terraform) to validate the template syntax\n   - Review the generated CloudFormation template or Terraform plan for correctness\n\n**2. Run Unit Tests:**\n   - Execute unit tests for the modified infrastructure components\n   - Ensure all tests pass before committing\n   - Command: `pytest tests/unit/ -v` (for CDK with Python)\n\n**3. Security Group Validation:**\n   - Check that NO security group rules allow 0.0.0.0/0 access on sensitive ports:\n     * Port 22 (SSH)\n     * Port 5432 (PostgreSQL)\n     * Port 6379 (Redis)\n   - Verify all security group rules follow least privilege principle\n   - Review ingress rules have specific source security groups or CIDR blocks\n\n**4. Resource Tagging Compliance:**\n   - Verify ALL resources have required tags:\n     * Project: ShowCore\n     * Phase: Phase1\n     * Environment: (Production/Staging/Development)\n     * ManagedBy: CDK\n     * CostCenter: Engineering\n   - Add component-specific tags where appropriate (Component, BackupRequired, etc.)\n\n**5. Cost Optimization Check:**\n   - Verify NO NAT Gateways are being deployed (use VPC Endpoints instead)\n   - Confirm Free Tier eligible instance types are used (db.t3.micro, cache.t3.micro)\n   - Check encryption uses AWS managed keys (not KMS) for cost savings\n\nOnly proceed with commit after all validations pass. These checks help maintain infrastructure quality, security, and cost optimization."
+  }
+}
