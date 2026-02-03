@@ -24,8 +24,6 @@ Dependencies: None (foundation stack for security)
 """
 
 from aws_cdk import (
-    Stack,
-    Tags,
     RemovalPolicy,
     Duration,
     aws_s3 as s3,
@@ -34,9 +32,10 @@ from aws_cdk import (
     CfnOutput,
 )
 from constructs import Construct
+from .base_stack import ShowCoreBaseStack
 
 
-class ShowCoreSecurityStack(Stack):
+class ShowCoreSecurityStack(ShowCoreBaseStack):
     """
     Security infrastructure stack for ShowCore Phase 1.
     
@@ -68,15 +67,12 @@ class ShowCoreSecurityStack(Stack):
         construct_id: str,
         **kwargs
     ) -> None:
-        super().__init__(scope, construct_id, **kwargs)
-        
-        # Apply standard tags to all resources in this stack
-        Tags.of(self).add("Project", "ShowCore")
-        Tags.of(self).add("Phase", "Phase1")
-        Tags.of(self).add("Environment", self.node.try_get_context("environment") or "production")
-        Tags.of(self).add("ManagedBy", "CDK")
-        Tags.of(self).add("CostCenter", "Engineering")
-        Tags.of(self).add("Component", "Security")
+        super().__init__(
+            scope,
+            construct_id,
+            component="Security",
+            **kwargs
+        )
         
         # Create S3 bucket for CloudTrail logs
         self.cloudtrail_bucket = self._create_cloudtrail_bucket()

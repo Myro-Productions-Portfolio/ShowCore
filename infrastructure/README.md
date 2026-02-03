@@ -527,7 +527,18 @@ Private Subnet Route Table:
 
 ## Testing
 
-ShowCore infrastructure uses three types of tests to ensure correctness:
+ShowCore infrastructure uses a comprehensive testing framework with three types of tests to ensure correctness. The testing framework is configured with pytest and includes utilities for AWS resource validation.
+
+### Testing Framework Setup
+
+The testing framework includes:
+- **pytest**: Test runner with configuration in `pytest.ini`
+- **aws-cdk.assertions**: CDK template validation for unit tests
+- **hypothesis**: Property-based testing framework
+- **boto3**: AWS SDK for integration and property tests
+- **Test utilities**: Helper functions in `tests/utils.py` for AWS resource validation
+
+See `tests/README.md` for complete testing documentation.
 
 ### 1. Unit Tests
 
@@ -572,7 +583,7 @@ Property-based tests verify universal correctness properties that must hold for 
 
 ```bash
 # Run all property tests
-pytest tests/property/ -v
+pytest tests/property/ -v -m property
 
 # Run specific property test
 pytest tests/property/test_security_groups.py -v
@@ -586,23 +597,34 @@ pytest tests/property/test_security_groups.py -v
 
 **Example property test:**
 ```python
+from tests.utils import AWSResourceValidator
+
 def test_security_group_least_privilege():
     """
     Property: No security group allows 0.0.0.0/0 access on sensitive ports.
     
     Validates: Requirements 6.2
     """
-    ec2 = boto3.client('ec2', region_name='us-east-1')
-    security_groups = ec2.describe_security_groups()
+    validator = AWSResourceValidator(region='us-east-1')
+    
+    # Get all security groups in ShowCore VPC
+    vpc = validator.get_vpc_by_tag('Project', 'ShowCore')
+    if not vpc:
+        pytest.skip("ShowCore VPC not found")
+    
+    security_groups = validator.get_security_groups_by_vpc(vpc['VpcId'])
     
     sensitive_ports = [22, 5432, 6379]  # SSH, PostgreSQL, Redis
     
-    for sg in security_groups['SecurityGroups']:
-        for rule in sg.get('IpPermissions', []):
-            from_port = rule.get('FromPort')
-            if from_port in sensitive_ports:
-                for ip_range in rule.get('IpRanges', []):
-                    assert ip_range['CidrIp'] != '0.0.0.0/0'
+    for sg in security_groups:
+        for port in sensitive_ports:
+            has_open_rule = validator.check_security_group_rule(
+                sg['GroupId'],
+                port,
+                cidr='0.0.0.0/0'
+            )
+            assert not has_open_rule, \
+                f"Security group {sg['GroupId']} allows 0.0.0.0/0 on port {port}"
 ```
 
 ### 3. Integration Tests
@@ -611,7 +633,7 @@ Integration tests verify connectivity and functionality between deployed compone
 
 ```bash
 # Run all integration tests (requires deployed infrastructure)
-pytest tests/integration/ -v
+pytest tests/integration/ -v -m integration
 
 # Run specific integration test
 pytest tests/integration/test_rds_connectivity.py -v
@@ -626,14 +648,55 @@ pytest tests/integration/test_rds_connectivity.py -v
 
 **Example integration test:**
 ```python
+from tests.utils import AWSResourceValidator
+
 def test_rds_connectivity():
     """Test RDS PostgreSQL is accessible from private subnet."""
-    # Deploy temporary EC2 instance in private subnet
-    # Install PostgreSQL client
-    # Test connection to RDS endpoint with SSL
-    # Verify SSL/TLS connection is enforced
-    # Terminate test instance
+    validator = AWSResourceValidator(region='us-east-1')
+    
+    # Get RDS instance endpoint
+    db_instance = validator.get_rds_instance('showcore-database-production-rds')
+    if not db_instance:
+        pytest.skip("RDS instance not found")
+    
+    endpoint = db_instance['Endpoint']['Address']
+    port = db_instance['Endpoint']['Port']
+    
+    # Test connection with SSL required
+    # (Implementation requires temporary EC2 instance in private subnet)
     pass
+```
+
+### Test Utilities
+
+The `tests/utils.py` module provides helper functions for integration and property-based tests:
+
+```python
+from tests.utils import AWSResourceValidator, get_account_id
+
+# Initialize validator
+validator = AWSResourceValidator(region='us-east-1')
+
+# VPC and Network
+vpc = validator.get_vpc_by_tag('Project', 'ShowCore')
+security_groups = validator.get_security_groups_by_vpc(vpc['VpcId'])
+vpc_endpoints = validator.get_vpc_endpoints(vpc['VpcId'])
+
+# RDS
+rds_instance = validator.get_rds_instance('showcore-database-production-rds')
+is_encrypted = validator.check_rds_encryption('showcore-database-production-rds')
+
+# ElastiCache
+cache_cluster = validator.get_elasticache_cluster('showcore-redis')
+encryption = validator.check_elasticache_encryption('showcore-redis')
+
+# S3
+encryption_algo = validator.get_bucket_encryption('showcore-backups-123456789012')
+has_versioning = validator.check_bucket_versioning('showcore-backups-123456789012')
+
+# Resource Tagging
+resources = validator.get_resources_by_tag('Project', 'ShowCore')
+tag_status = validator.check_resource_tags(resource_arn, ['Project', 'Phase'])
 ```
 
 ### Run All Tests
@@ -650,6 +713,11 @@ pytest tests/ -vv
 
 # Run specific test by name
 pytest tests/ -k "test_no_nat_gateway"
+
+# Run tests by marker
+pytest tests/ -v -m unit           # Unit tests only
+pytest tests/ -v -m property       # Property tests only
+pytest tests/ -v -m integration    # Integration tests only
 ```
 
 ### Test Coverage Requirements
@@ -658,6 +726,17 @@ pytest tests/ -k "test_no_nat_gateway"
 - **Property tests**: All universal properties must be tested
 - **Integration tests**: All connectivity paths must be tested
 - **Minimum coverage**: 80% code coverage for stack definitions
+
+### Pytest Configuration
+
+The testing framework is configured in `pytest.ini` with:
+- Test discovery patterns
+- Test markers (unit, property, integration, slow, aws)
+- Coverage reporting options
+- Hypothesis settings for property-based testing
+- Console output formatting
+
+See `pytest.ini` for complete configuration details.
 
 ## Management
 
