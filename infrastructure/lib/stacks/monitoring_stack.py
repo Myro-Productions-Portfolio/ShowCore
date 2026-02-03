@@ -20,8 +20,6 @@ Dependencies: None (foundation stack for monitoring)
 
 from typing import List
 from aws_cdk import (
-    Stack,
-    Tags,
     Duration,
     aws_sns as sns,
     aws_cloudwatch as cloudwatch,
@@ -30,9 +28,10 @@ from aws_cdk import (
     CfnOutput,
 )
 from constructs import Construct
+from .base_stack import ShowCoreBaseStack
 
 
-class ShowCoreMonitoringStack(Stack):
+class ShowCoreMonitoringStack(ShowCoreBaseStack):
     """
     Monitoring infrastructure stack for ShowCore Phase 1.
     
@@ -63,19 +62,16 @@ class ShowCoreMonitoringStack(Stack):
         construct_id: str,
         **kwargs
     ) -> None:
-        super().__init__(scope, construct_id, **kwargs)
+        super().__init__(
+            scope,
+            construct_id,
+            component="Monitoring",
+            **kwargs
+        )
         
         # Get configuration from context
         billing_thresholds = self.node.try_get_context("billing_alert_thresholds") or [50, 100]
         alarm_emails = self.node.try_get_context("alarm_email_addresses") or []
-        
-        # Apply standard tags to all resources in this stack
-        Tags.of(self).add("Project", "ShowCore")
-        Tags.of(self).add("Phase", "Phase1")
-        Tags.of(self).add("Environment", self.node.try_get_context("environment") or "production")
-        Tags.of(self).add("ManagedBy", "CDK")
-        Tags.of(self).add("CostCenter", "Engineering")
-        Tags.of(self).add("Component", "Monitoring")
         
         # Create SNS topics for alerts
         self.critical_alerts_topic = self._create_sns_topic(
