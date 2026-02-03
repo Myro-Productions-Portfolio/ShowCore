@@ -470,6 +470,102 @@ When completing a task from tasks.md:
 7. **Merge PR**: `gh pr merge NUMBER --squash --delete-branch`
 8. **Update task status**: Mark as "completed"
 
+## Copy-Paste Command Reference
+
+**IMPORTANT**: When Kiro executes git/GitHub commands, they may timeout or fail. Use this reference to manually execute commands in your terminal.
+
+### Complete Feature Branch Workflow
+
+**Step 1: Create feature branch**
+```bash
+git checkout -b feat/descriptive-name
+```
+
+**Step 2: Stage your changes**
+```bash
+git add path/to/files
+# OR stage all changes
+git add .
+```
+
+**Step 3: Commit changes (Kiro will provide the commit message)**
+```bash
+# Kiro will provide the full commit message - just run it in terminal
+git commit -m "feat(scope): description
+
+- Bullet point 1
+- Bullet point 2
+
+Validates: Requirements X.X"
+```
+
+**Step 4: Push branch to remote**
+```bash
+git push origin feat/descriptive-name
+```
+
+**Step 5: Create pull request**
+```bash
+# Kiro will provide the full PR command - just copy and paste
+gh pr create --base master --title "feat: title" --body "## Overview
+Description here"
+```
+
+**Step 6: Merge pull request (replace NUMBER with actual PR number)**
+```bash
+gh pr merge NUMBER --squash --delete-branch
+```
+
+**Step 7: Update local master**
+```bash
+git checkout master && git pull origin master
+```
+
+### Quick Commands for Common Scenarios
+
+**Check current status:**
+```bash
+git status
+```
+
+**Check current branch:**
+```bash
+git branch --show-current
+```
+
+**Check authentication:**
+```bash
+gh auth status
+```
+
+**List open PRs:**
+```bash
+gh pr list
+```
+
+**View specific PR:**
+```bash
+gh pr view NUMBER
+```
+
+**If PR already exists, just merge it:**
+```bash
+gh pr merge NUMBER --squash --delete-branch
+```
+
+### Workflow Pattern with Kiro
+
+1. **Kiro implements changes** - Kiro writes code, tests, documentation
+2. **Kiro provides commands** - Kiro writes out the exact commands to run
+3. **You execute in terminal** - Copy and paste commands into your terminal
+4. **Kiro confirms completion** - Kiro verifies the workflow completed successfully
+
+**Why this works:**
+- Kiro's command execution may timeout with git/GitHub operations
+- Manual execution in terminal is fast and reliable
+- Kiro still provides the correct commands and workflow
+- You maintain control over git operations
+
 ### ADR Workflow
 
 When creating ADRs:
