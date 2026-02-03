@@ -20,7 +20,7 @@ Key design principles:
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                         AWS Account                              │
-│                      (498618930321)                              │
+│                      (123456789012)                              │
 │                                                                   │
 │  ┌────────────────────────────────────────────────────────────┐ │
 │  │                    VPC (us-east-1)                          │ │
@@ -663,7 +663,7 @@ cdk_config = {
     "app_name": "showcore",
     "environment": "production",
     "region": "us-east-1",
-    "account": "498618930321",
+    "account": "123456789012",  # Use environment variable in actual deployment
     "tags": {
         "Project": "ShowCore",
         "Phase": "Phase1",
@@ -1290,3 +1290,7 @@ Compliance tests validate security and cost optimization requirements.
 - **AWS Config**: Continuous compliance monitoring
 - **AWS Security Hub**: Centralized security findings
 - **Checkov**: Static analysis for infrastructure code
+
+---
+
+**Note**: This design document was last reviewed on 2026-02-03. All architectural decisions should be documented in ADRs located in this spec directory.

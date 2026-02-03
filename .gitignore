@@ -10,12 +10,42 @@ build/
 .next/
 out/
 
-# Environment files
+# Environment files - NEVER commit these (contain secrets)
 .env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
+*.env
+.env.*
+
+# AWS Credentials - NEVER commit these
+.aws/
+aws-credentials.json
+credentials.json
+**/aws-credentials*
+**/credentials.json
+
+# Secrets and Keys - NEVER commit these
+secrets/
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+*.secret
+secrets.yaml
+secrets.yml
+
+# Terraform state files - may contain sensitive data
+*.tfstate
+*.tfstate.*
+*.tfvars
+.terraform/
+
+# CDK context and outputs - may contain account-specific data
+cdk.context.json
+cdk.out/
 
 # IDE
 .idea/

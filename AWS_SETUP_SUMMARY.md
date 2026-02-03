@@ -7,13 +7,13 @@ Successfully configured AWS CLI and created dedicated IAM credentials for the Sh
 
 ### 1. IAM User: `showcore-app`
 - **Purpose**: Dedicated user for ShowCore application deployment and infrastructure management
-- **User ARN**: `arn:aws:iam::498618930321:user/showcore-app`
+- **User ARN**: `arn:aws:iam::123456789012:user/showcore-app`
 - **Tags**: 
   - Project: ShowCore
   - Purpose: ApplicationDeployment
 
 ### 2. IAM Policy: `ShowCoreDeploymentPolicy`
-- **Policy ARN**: `arn:aws:iam::498618930321:policy/ShowCoreDeploymentPolicy`
+- **Policy ARN**: `arn:aws:iam::123456789012:policy/ShowCoreDeploymentPolicy`
 - **Permissions Include**:
   - VPC & Networking (subnets, security groups, NAT gateways)
   - RDS (PostgreSQL database management)
@@ -140,6 +140,6 @@ All AWS-related MCP servers in your Kiro Powers have been updated to use the `sh
 ---
 
 **Created**: February 3, 2026  
-**AWS Account**: 498618930321  
+**AWS Account**: 123456789012  
 **Region**: us-east-1  
 **Project**: ShowCore AWS Migration
