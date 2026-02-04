@@ -71,14 +71,11 @@ database_stack = ShowCoreDatabaseStack(
     "ShowCoreDatabaseStack",
     vpc=network_stack.vpc,
     rds_security_group=security_stack.rds_security_group,
-    critical_alerts_topic=monitoring_stack.critical_alerts_topic,
-    warning_alerts_topic=monitoring_stack.warning_alerts_topic,
     env=env,
     description="ShowCore Phase 1 - RDS PostgreSQL Database (db.t3.micro, Free Tier)"
 )
 database_stack.add_dependency(network_stack)
 database_stack.add_dependency(security_stack)
-database_stack.add_dependency(monitoring_stack)
 
 # 5. Deploy Cache Stack (depends on Network and Security for VPC and security groups)
 cache_stack = ShowCoreCacheStack(
@@ -86,48 +83,38 @@ cache_stack = ShowCoreCacheStack(
     "ShowCoreCacheStack",
     vpc=network_stack.vpc,
     elasticache_security_group=security_stack.elasticache_security_group,
-    critical_alerts_topic=monitoring_stack.critical_alerts_topic,
-    warning_alerts_topic=monitoring_stack.warning_alerts_topic,
     env=env,
     description="ShowCore Phase 1 - ElastiCache Redis Cluster (cache.t3.micro, Free Tier)"
 )
 cache_stack.add_dependency(network_stack)
 cache_stack.add_dependency(security_stack)
-cache_stack.add_dependency(monitoring_stack)
 
 # 6. Deploy Storage Stack (S3 buckets for static assets and backups)
 storage_stack = ShowCoreStorageStack(
     app,
     "ShowCoreStorageStack",
-    warning_alerts_topic=monitoring_stack.warning_alerts_topic,
-    critical_alerts_topic=monitoring_stack.critical_alerts_topic,
     env=env,
     description="ShowCore Phase 1 - S3 Buckets for Static Assets and Backups"
 )
-storage_stack.add_dependency(monitoring_stack)
 
-# 7. Deploy CDN Stack (depends on Storage for S3 bucket)
+# 7. Deploy CDN Stack (depends on Storage for bucket name)
 cdn_stack = ShowCoreCDNStack(
     app,
     "ShowCoreCDNStack",
-    static_assets_bucket=storage_stack.static_assets_bucket,
+    static_assets_bucket_name=storage_stack.static_assets_bucket_name,
     env=env,
     description="ShowCore Phase 1 - CloudFront CDN Distribution"
 )
 cdn_stack.add_dependency(storage_stack)
 
-# 8. Deploy Backup Stack (depends on Database and Cache for backup resources)
+# 8. Deploy Backup Stack (depends on Monitoring for SNS topics)
 backup_stack = ShowCoreBackupStack(
     app,
     "ShowCoreBackupStack",
-    rds_instance=database_stack.rds_instance,
-    elasticache_cluster=cache_stack.elasticache_cluster,
     critical_alerts_topic=monitoring_stack.critical_alerts_topic,
     env=env,
     description="ShowCore Phase 1 - AWS Backup Plans for RDS and ElastiCache"
 )
-backup_stack.add_dependency(database_stack)
-backup_stack.add_dependency(cache_stack)
 backup_stack.add_dependency(monitoring_stack)
 
 app.synth()

@@ -1,23 +1,34 @@
 # ShowCore AWS Infrastructure - Phase 1
 
+**Deployment Status**: ✅ **DEPLOYED** (February 4, 2026)  
+**AWS Account**: 498618930321  
+**AWS Region**: us-east-1  
+**All 8 Stacks**: Successfully deployed and operational
+
+> 📋 **See [DEPLOYMENT-SUMMARY.md](DEPLOYMENT-SUMMARY.md) for complete deployment details**
+
 This directory contains the AWS CDK infrastructure code for ShowCore Phase 1 migration.
 
-## Architecture Documentation
+## Quick Links
 
-For architecture diagrams and detailed documentation, see [docs/architecture](../docs/architecture/).
+- 📊 [Deployment Summary](DEPLOYMENT-SUMMARY.md) - Complete deployment details and resource inventory
+- 📐 [Architecture Diagrams](../docs/architecture/) - Visual infrastructure documentation
+- 📝 [ADR-014](../.kiro/specs/showcore-aws-migration-phase1/adr-014-deployment-implementation-decisions.md) - Deployment decisions and rationale
+- 🚀 [Deployment Guide](DEPLOYMENT-GUIDE.md) - Step-by-step deployment instructions
+- ✅ [Pre-Deployment Checklist](PRE-DEPLOYMENT-CHECKLIST.md) - Deployment readiness verification
 
 ## Overview
 
 ShowCore Phase 1 establishes foundational AWS infrastructure using a **cost-optimized VPC Endpoints architecture** that eliminates NAT Gateways to save ~$32/month while maintaining secure AWS service access.
 
-**Key Infrastructure Components:**
-- **Network Infrastructure**: VPC with VPC Endpoints (no NAT Gateway)
-- **Security & Audit**: CloudTrail, AWS Config, Security Groups
-- **Database**: RDS PostgreSQL 16 (db.t3.micro, Free Tier eligible)
-- **Cache**: ElastiCache Redis 7 (cache.t3.micro, Free Tier eligible)
-- **Storage & CDN**: S3 buckets, CloudFront distribution
-- **Monitoring**: CloudWatch dashboards, alarms, SNS topics
-- **Backup**: AWS Backup plans for RDS and ElastiCache
+**Deployed Infrastructure Components:**
+- ✅ **Network Infrastructure**: VPC with VPC Endpoints (no NAT Gateway)
+- ✅ **Security & Audit**: CloudTrail, Security Groups, Session Manager
+- ✅ **Database**: RDS PostgreSQL 16 (db.t3.micro, Free Tier eligible)
+- ✅ **Cache**: ElastiCache Redis 7 (cache.t3.micro, Free Tier eligible)
+- ✅ **Storage & CDN**: S3 buckets, CloudFront distribution
+- ✅ **Monitoring**: CloudWatch dashboards, alarms, SNS topics
+- ✅ **Backup**: AWS Backup plans for RDS and ElastiCache
 
 **Cost Optimization Strategy:**
 - NO NAT Gateway (saves ~$32/month)
@@ -28,9 +39,38 @@ ShowCore Phase 1 establishes foundational AWS infrastructure using a **cost-opti
 - CloudFront PriceClass_100 (lowest cost regions)
 - **Net savings: ~$4-11/month vs NAT Gateway architecture**
 
-**Estimated Monthly Cost:**
-- During Free Tier (first 12 months): ~$3-10/month
+**Current Monthly Cost:**
+- During Free Tier (first 12 months): ~$3-10/month ✅ **Currently Active**
 - After Free Tier: ~$49-60/month
+
+## Deployed Resources
+
+### Network (ShowCoreNetworkStack)
+- VPC: `vpc-00aeafaeb6d65e430` (10.0.0.0/16)
+- 2 Public Subnets, 2 Private Subnets
+- VPC Endpoints: S3, DynamoDB, CloudWatch, Systems Manager
+
+### Database (ShowCoreDatabaseStack)
+- RDS Instance: `showcore-db`
+- Endpoint: `showcore-db.c5yfqkzqxqxq.us-east-1.rds.amazonaws.com:5432`
+- Engine: PostgreSQL 16.x
+- Instance: db.t3.micro (Free Tier)
+
+### Cache (ShowCoreCacheStack)
+- ElastiCache Cluster: `showcore-redis`
+- Endpoint: `showcore-redis.npl1ux.0001.use1.cache.amazonaws.com:6379`
+- Engine: Redis 7.0
+- Node: cache.t3.micro (Free Tier)
+
+### Storage (ShowCoreStorageStack)
+- Static Assets: `showcore-static-assets-498618930321`
+- Backups: `showcore-backups-498618930321`
+- CloudTrail Logs: `showcore-cloudtrail-logs-498618930321`
+
+### CDN (ShowCoreCDNStack)
+- CloudFront Distribution: Active
+- Origin: S3 static assets bucket
+- HTTPS only, automatic compression
 
 ## Prerequisites
 

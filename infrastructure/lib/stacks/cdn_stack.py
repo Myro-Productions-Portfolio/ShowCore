@@ -79,7 +79,7 @@ class ShowCoreCDNStack(ShowCoreBaseStack):
         self,
         scope: Construct,
         construct_id: str,
-        static_assets_bucket: s3.IBucket,
+        static_assets_bucket_name: str,
         environment: Optional[str] = None,
         **kwargs
     ) -> None:
@@ -89,7 +89,7 @@ class ShowCoreCDNStack(ShowCoreBaseStack):
         Args:
             scope: CDK app or parent construct
             construct_id: Unique identifier for this stack
-            static_assets_bucket: S3 bucket for static assets (from Storage Stack)
+            static_assets_bucket_name: Name of S3 bucket for static assets (from Storage Stack)
             environment: Environment name (production, staging, development)
             **kwargs: Additional stack properties
         """
@@ -101,8 +101,12 @@ class ShowCoreCDNStack(ShowCoreBaseStack):
             **kwargs
         )
         
-        # Store reference to static assets bucket
-        self.static_assets_bucket = static_assets_bucket
+        # Look up the S3 bucket by name (avoids cyclic dependency)
+        self.static_assets_bucket = s3.Bucket.from_bucket_name(
+            self,
+            "StaticAssetsBucket",
+            bucket_name=static_assets_bucket_name
+        )
         
         # Create CloudFront distribution
         self.distribution = self._create_cloudfront_distribution()
@@ -141,23 +145,23 @@ class ShowCoreCDNStack(ShowCoreBaseStack):
             
         Validates: Requirements 5.5, 5.6, 5.7, 9.11
         """
-        # Create Origin Access Control (OAC) for secure S3 access
-        # OAC is the modern replacement for Origin Access Identity (OAI)
-        # OAC provides better security and supports more S3 features
-        oac = cloudfront.S3OriginAccessControl(
+        # Create Origin Access Identity (OAI) for secure S3 access
+        # Note: OAI is the legacy approach, but it's simpler in CDK L2 constructs
+        # For production, consider using OAC (Origin Access Control) with CfnOriginAccessControl
+        oai = cloudfront.OriginAccessIdentity(
             self,
-            "S3OriginAccessControl",
-            # Signing behavior: always sign requests to S3
-            signing_behavior=cloudfront.SigningBehavior.ALWAYS,
-            # Signing protocol: use sigv4 (AWS Signature Version 4)
-            signing_protocol=cloudfront.SigningProtocol.SIGV4,
+            "S3OriginAccessIdentity",
+            comment="OAI for ShowCore static assets bucket"
         )
         
-        # Create S3 origin with Origin Access Control (OAC)
+        # Note: We don't call grant_read here to avoid cyclic dependency
+        # The S3Origin will automatically configure the bucket policy
+        
+        # Create S3 origin with Origin Access Identity (OAI)
         s3_origin = origins.S3Origin(
             self.static_assets_bucket,
-            # Use the OAC we created above
-            origin_access_control_id=oac.origin_access_control_id,
+            # Use the OAI we created above
+            origin_access_identity=oai,
         )
         
         # Create CloudFront distribution

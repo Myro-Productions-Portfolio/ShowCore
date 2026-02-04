@@ -143,8 +143,9 @@ class ShowCoreDatabaseStack(ShowCoreBaseStack):
         # Create RDS PostgreSQL instance (db.t3.micro, single-AZ, Free Tier eligible)
         self.rds_instance = self._create_rds_instance()
         
-        # Create CloudWatch alarms for RDS monitoring
-        self._create_rds_alarms()
+        # CloudWatch alarms are created in MonitoringStack to avoid duplication
+        # Commenting out to prevent "alarm already exists" error
+        # self._create_rds_alarms()
         
         # Export subnet group, parameter group, and RDS instance details for cross-stack references
         self._create_outputs()
@@ -418,7 +419,7 @@ class ShowCoreDatabaseStack(ShowCoreBaseStack):
             alarm_name="showcore-rds-cpu-high",
             alarm_description="RDS CPU utilization > 80% for 5 minutes - may need to scale up instance",
             metric=self.rds_instance.metric_cpu_utilization(
-                period=cloudwatch.Duration.minutes(5),
+                period=Duration.minutes(5),
                 statistic=cloudwatch.Stats.AVERAGE
             ),
             threshold=80,
@@ -439,7 +440,7 @@ class ShowCoreDatabaseStack(ShowCoreBaseStack):
             alarm_description="RDS storage utilization > 85% (< 3 GB free) - need to increase allocated storage",
             metric=self.rds_instance.metric(
                 metric_name="FreeStorageSpace",
-                period=cloudwatch.Duration.minutes(5),
+                period=Duration.minutes(5),
                 statistic=cloudwatch.Stats.MINIMUM
             ),
             # Threshold: 3 GB in bytes (15% of 20 GB)
@@ -480,13 +481,15 @@ class ShowCoreDatabaseStack(ShowCoreBaseStack):
         )
         
         # Export RDS parameter group name
-        CfnOutput(
-            self,
-            "RdsParameterGroupName",
-            value=self.rds_parameter_group.parameter_group_name,
-            export_name="ShowCoreRdsParameterGroupName",
-            description="RDS parameter group name for ShowCore Phase 1"
-        )
+        # Note: ParameterGroup doesn't expose parameter_group_name in L2 construct
+        # Commenting out this output - can be retrieved from RDS instance if needed
+        # CfnOutput(
+        #     self,
+        #     "RdsParameterGroupName",
+        #     value=self.rds_parameter_group.ref,
+        #     export_name="ShowCoreRdsParameterGroupName",
+        #     description="RDS parameter group name for ShowCore Phase 1"
+        # )
         
         # Export RDS instance endpoint
         CfnOutput(

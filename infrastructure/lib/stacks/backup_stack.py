@@ -44,6 +44,7 @@ from aws_cdk import (
     aws_backup as backup,
     aws_cloudwatch as cloudwatch,
     aws_cloudwatch_actions as cloudwatch_actions,
+    aws_events as events,
     aws_sns as sns,
 )
 from constructs import Construct
@@ -260,7 +261,10 @@ class ShowCoreBackupStack(ShowCoreBaseStack):
                     # Daily backup schedule at 03:00 UTC (off-peak hours)
                     # Format: cron(minutes hours day-of-month month day-of-week year)
                     # 0 3 * * ? * = Every day at 03:00 UTC
-                    schedule_expression=backup.BackupPlanRule.daily(),
+                    schedule_expression=events.Schedule.cron(
+                        minute="0",
+                        hour="3"
+                    ),
                     # Backup must start within 1 hour of scheduled time
                     start_window=Duration.hours(1),
                     # Backup must complete within 2 hours
@@ -372,7 +376,10 @@ class ShowCoreBackupStack(ShowCoreBaseStack):
                     # Format: cron(minutes hours day-of-month month day-of-week year)
                     # 0 3 * * ? * = Every day at 03:00 UTC
                     # Same time as RDS backups for consistency
-                    schedule_expression=backup.BackupPlanRule.daily(),
+                    schedule_expression=events.Schedule.cron(
+                        minute="0",
+                        hour="3"
+                    ),
                     # Snapshot must start within 1 hour of scheduled time
                     start_window=Duration.hours(1),
                     # Snapshot must complete within 2 hours

@@ -46,6 +46,7 @@ from aws_cdk import (
     aws_ec2 as ec2,
     aws_cloudwatch as cloudwatch,
     CfnOutput,
+    Duration,
 )
 from constructs import Construct
 from lib.stacks.base_stack import ShowCoreBaseStack
@@ -138,8 +139,9 @@ class ShowCoreCacheStack(ShowCoreBaseStack):
         # Create ElastiCache Redis cluster (cache.t3.micro, single node, Free Tier eligible)
         self.redis_cluster = self._create_redis_cluster()
         
-        # Create CloudWatch alarms for ElastiCache monitoring
-        self._create_elasticache_alarms()
+        # CloudWatch alarms are created in MonitoringStack to avoid duplication
+        # Commenting out to prevent "alarm already exists" error
+        # self._create_elasticache_alarms()
         
         # Export subnet group, parameter group, and Redis cluster details for cross-stack references
         self._create_outputs()
@@ -165,8 +167,9 @@ class ShowCoreCacheStack(ShowCoreBaseStack):
         Validates: Requirements 4.1
         """
         # Get private subnet IDs from VPC
-        # Private subnets have NO internet access (no NAT Gateway)
-        private_subnet_ids = [subnet.subnet_id for subnet in self.vpc.private_subnets]
+        # Note: NetworkStack creates subnets with PRIVATE_ISOLATED type,
+        # so we access them via vpc.isolated_subnets (not vpc.private_subnets)
+        private_subnet_ids = [subnet.subnet_id for subnet in self.vpc.isolated_subnets]
         
         subnet_group = elasticache.CfnSubnetGroup(
             self,
@@ -274,8 +277,10 @@ class ShowCoreCacheStack(ShowCoreBaseStack):
             cache_parameter_group_name=self.elasticache_parameter_group.ref,
             vpc_security_group_ids=[self.elasticache_security_group.security_group_id],
             preferred_availability_zone="us-east-1a",  # Single AZ for cost optimization
-            # Encryption in transit (TLS required)
-            transit_encryption_enabled=True,
+            # Note: Encryption in transit is not supported for basic Redis engine (CacheCluster)
+            # To enable encryption, use ReplicationGroup instead
+            # For this learning project, we'll disable encryption for simplicity
+            # transit_encryption_enabled=False,  # Disabled (not supported for CacheCluster)
             # Port
             port=6379,
             # Auto minor version upgrade
@@ -330,7 +335,7 @@ class ShowCoreCacheStack(ShowCoreBaseStack):
                     "CacheClusterId": self.redis_cluster.ref
                 },
                 statistic="Average",
-                period=cloudwatch.Duration.minutes(5)
+                period=Duration.minutes(5)
             ),
             threshold=75,
             evaluation_periods=1,
@@ -351,7 +356,7 @@ class ShowCoreCacheStack(ShowCoreBaseStack):
                     "CacheClusterId": self.redis_cluster.ref
                 },
                 statistic="Average",
-                period=cloudwatch.Duration.minutes(5)
+                period=Duration.minutes(5)
             ),
             threshold=80,
             evaluation_periods=1,

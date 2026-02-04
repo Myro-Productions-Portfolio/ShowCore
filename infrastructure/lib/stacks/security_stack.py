@@ -162,17 +162,24 @@ class ShowCoreSecurityStack(ShowCoreBaseStack):
         # Create CloudTrail trail
         self.trail = self._create_cloudtrail_trail()
         
-        # Create S3 bucket for AWS Config delivery channel
-        self.config_bucket = self._create_config_bucket()
+        # AWS Config is disabled due to Service Control Policy (SCP) restrictions in this AWS account
+        # The following resources are commented out:
+        # - S3 bucket for AWS Config delivery channel
+        # - AWS Config configuration recorder
+        # - AWS Config delivery channel
+        # - AWS Config rules for compliance monitoring
         
-        # Create AWS Config configuration recorder
-        self.config_recorder = self._create_config_recorder()
-        
-        # Create AWS Config delivery channel
-        self.config_delivery_channel = self._create_config_delivery_channel()
-        
-        # Create AWS Config rules for compliance monitoring
-        self.config_rules = self._create_config_rules()
+        # # Create S3 bucket for AWS Config delivery channel
+        # self.config_bucket = self._create_config_bucket()
+        # 
+        # # Create AWS Config configuration recorder
+        # self.config_recorder = self._create_config_recorder()
+        # 
+        # # Create AWS Config delivery channel
+        # self.config_delivery_channel = self._create_config_delivery_channel()
+        # 
+        # # Create AWS Config rules for compliance monitoring
+        # self.config_rules = self._create_config_rules()
         
         # Create IAM role for Session Manager
         self.session_manager_role = self._create_session_manager_role()
@@ -197,22 +204,23 @@ class ShowCoreSecurityStack(ShowCoreBaseStack):
             description="ARN of CloudTrail trail"
         )
         
-        # Export AWS Config bucket name and recorder name
-        CfnOutput(
-            self,
-            "ConfigBucketName",
-            value=self.config_bucket.bucket_name,
-            export_name="ShowCoreConfigBucketName",
-            description="S3 bucket name for AWS Config delivery channel"
-        )
-        
-        CfnOutput(
-            self,
-            "ConfigRecorderName",
-            value=self.config_recorder.name,
-            export_name="ShowCoreConfigRecorderName",
-            description="Name of AWS Config configuration recorder"
-        )
+        # AWS Config outputs are commented out due to SCP restrictions
+        # # Export AWS Config bucket name and recorder name
+        # CfnOutput(
+        #     self,
+        #     "ConfigBucketName",
+        #     value=self.config_bucket.bucket_name,
+        #     export_name="ShowCoreConfigBucketName",
+        #     description="S3 bucket name for AWS Config delivery channel"
+        # )
+        # 
+        # CfnOutput(
+        #     self,
+        #     "ConfigRecorderName",
+        #     value=self.config_recorder.name,
+        #     export_name="ShowCoreConfigRecorderName",
+        #     description="Name of AWS Config configuration recorder"
+        # )
     
     def _create_rds_security_group(self) -> ec2.SecurityGroup:
         """
@@ -604,7 +612,7 @@ class ShowCoreSecurityStack(ShowCoreBaseStack):
             "ConfigRole",
             assumed_by=iam.ServicePrincipal("config.amazonaws.com"),
             managed_policies=[
-                iam.ManagedPolicy.from_aws_managed_policy_name("service-role/ConfigRole")
+                iam.ManagedPolicy.from_aws_managed_policy_name("service-role/AWS_ConfigRole")
             ],
             description="IAM role for AWS Config to read resource configurations"
         )
