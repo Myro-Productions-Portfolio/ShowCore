@@ -187,7 +187,7 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - **Add to security_stack.py** - no deployment yet
   - _Requirements: 6.3_
 
-- [ ] 4.3 Write CDK code to configure AWS Systems Manager Session Manager (Local Code)
+- [x] 4.3 Write CDK code to configure AWS Systems Manager Session Manager (Local Code)
   - Write code to enable Session Manager for secure instance access without SSH keys
   - Write code to configure Session Manager logging to CloudWatch Logs via Interface Endpoint
   - Write code to create IAM role for Session Manager with required permissions
@@ -195,7 +195,7 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - **Add to security_stack.py** - no deployment yet
   - _Requirements: 6.8, 2.9_
 
-- [ ] 4.4 Write CDK code to create CloudTrail S3 bucket (Local Code)
+- [x] 4.4 Write CDK code to create CloudTrail S3 bucket (Local Code)
   - Write code to create S3 bucket for CloudTrail logs with versioning enabled
   - Write code to enable encryption at rest using SSE-S3 (AWS managed keys, not KMS for cost optimization)
   - Write code to configure bucket policy for CloudTrail write access
@@ -204,7 +204,7 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - **Add to security_stack.py** - no deployment yet
   - _Requirements: 6.5, 1.4, 9.9_
 
-- [ ]* 4.5 Write property test for security group least privilege (Local Tests)
+- [x] 4.5 Write property test for security group least privilege (Local Tests)
   - Write test: no security group has 0.0.0.0/0 on ports 22, 5432, 6379
   - Test will query all security groups using boto3 ec2.describe_security_groups()
   - Test will verify no overly permissive ingress rules on sensitive ports
@@ -212,7 +212,7 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - **This test runs AFTER deployment in Task 15** - validates actual AWS resources
   - **Validates: Requirements 6.2**
 
-- [ ]* 4.6 Write unit tests for security infrastructure CDK code (Local Tests)
+- [x] 4.6 Write unit tests for security infrastructure CDK code (Local Tests)
   - Test security groups have correct ingress rules using Template.has_resource_properties()
   - Test AWS Config is enabled and recording
   - Test CloudTrail is enabled with log file validation
@@ -225,7 +225,7 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
 
 **Note**: Write CDK code to define RDS infrastructure. No AWS deployment yet.
 
-- [ ] 5.1 Write CDK code to define RDS subnet group and parameter group (Local Code)
+- [x] 5.1 Write CDK code to define RDS subnet group and parameter group (Local Code)
   - Write code to create RDS subnet group in private subnets using rds.SubnetGroup
   - Write code to create RDS parameter group for PostgreSQL 16 using rds.ParameterGroup
   - Set rds.force_ssl=1 in parameter group to enforce SSL/TLS connections
@@ -233,7 +233,7 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - **Save code in lib/stacks/database_stack.py** - no deployment yet
   - _Requirements: 3.1, 3.6_
 
-- [ ] 5.2 Write CDK code to define RDS PostgreSQL instance (Local Code)
+- [x] 5.2 Write CDK code to define RDS PostgreSQL instance (Local Code)
   - Write code to create db.t3.micro instance (Free Tier eligible - 750 hours/month for 12 months) using rds.DatabaseInstance
   - Configure single AZ deployment (us-east-1a) for cost optimization (Multi-AZ doubles cost)
   - Allocate 20 GB gp3 storage (Free Tier limit)
@@ -244,7 +244,7 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - **Add to database_stack.py** - no deployment yet
   - _Requirements: 3.1, 3.2, 3.5, 3.9, 9.1, 9.5_
 
-- [ ] 5.3 Write CDK code to configure RDS automated backups (Local Code)
+- [x] 5.3 Write CDK code to configure RDS automated backups (Local Code)
   - Write code to enable automated daily backups with 7-day retention (short retention for cost optimization)
   - Set backup window to 03:00-04:00 UTC (off-peak hours)
   - Enable point-in-time recovery (5-minute granularity)
@@ -252,7 +252,7 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - **Add to database_stack.py** - no deployment yet
   - _Requirements: 3.4_
 
-- [ ] 5.4 Write CDK code to configure RDS monitoring and alarms (Local Code)
+- [x] 5.4 Write CDK code to configure RDS monitoring and alarms (Local Code)
   - Write code to create CloudWatch alarm for CPU utilization > 80% for 5 minutes using cloudwatch.Alarm
   - Write code to create CloudWatch alarm for storage utilization > 85%
   - Configure SNS notifications for alarms (will be created in task 10.1)
@@ -260,7 +260,7 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - **Add to database_stack.py** - no deployment yet
   - _Requirements: 3.7, 3.8, 7.3, 7.5_
 
-- [ ]* 5.5 Write unit tests for RDS CDK code (Local Tests)
+- [x] 5.5 Write unit tests for RDS CDK code (Local Tests)
   - Test RDS instance is db.t3.micro (Free Tier) using Template.has_resource_properties()
   - Test RDS is in single AZ (cost optimization) - MultiAZ should be false
   - Test encryption at rest is enabled with AWS managed keys
@@ -271,7 +271,7 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - **Tests run against CDK synthesized template** - no actual AWS resources
   - _Requirements: 3.1, 3.2, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 9.1, 9.5_
 
-- [ ]* 5.6 Write integration test for RDS connectivity (Post-Deployment Test)
+- [x] 5.6 Write integration test for RDS connectivity (Post-Deployment Test)
   - Write test to deploy test EC2 instance in private subnet using ec2.Instance
   - Write test to install PostgreSQL client (psql)
   - Write test to connect to RDS endpoint using psql with SSL mode=require
@@ -282,10 +282,11 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - _Requirements: 3.3, 3.6_
 
 ### 6. Cache Infrastructure CDK Code (ElastiCache Redis)
+- [x] **Queue all Cache Infrastructure tasks (6.1-6.5)**
 
 **Note**: Write CDK code to define ElastiCache infrastructure. No AWS deployment yet.
 
-- [ ] 6.1 Write CDK code to define ElastiCache subnet group and parameter group (Local Code)
+- [x] 6.1 Write CDK code to define ElastiCache subnet group and parameter group (Local Code)
   - Write code to create ElastiCache subnet group in private subnets using elasticache.CfnSubnetGroup
   - Write code to create ElastiCache parameter group for Redis 7 using elasticache.CfnParameterGroup
   - Configure parameter group to enforce TLS connections (transit-encryption-enabled=yes)
@@ -293,7 +294,7 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - **Save code in lib/stacks/cache_stack.py** - no deployment yet
   - _Requirements: 4.1, 4.5_
 
-- [ ] 6.2 Write CDK code to define ElastiCache Redis cluster (Local Code)
+- [x] 6.2 Write CDK code to define ElastiCache Redis cluster (Local Code)
   - Write code to create cache.t3.micro node (Free Tier eligible - 750 hours/month for 12 months) using elasticache.CfnCacheCluster
   - Configure single node in us-east-1a for cost optimization (no replicas)
   - Enable encryption at rest using AWS managed encryption (not KMS for cost optimization)
@@ -304,14 +305,14 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - **Add to cache_stack.py** - no deployment yet
   - _Requirements: 4.1, 4.2, 4.4, 4.5, 9.1, 9.5_
 
-- [ ] 6.3 Write CDK code to configure ElastiCache automated backups (Local Code)
+- [x] 6.3 Write CDK code to configure ElastiCache automated backups (Local Code)
   - Write code to enable daily automated backups with 7-day retention (short retention for cost optimization)
   - Set backup window to 03:00-04:00 UTC (off-peak hours)
   - Configure snapshot retention limit to 7
   - **Add to cache_stack.py** - no deployment yet
   - _Requirements: 4.8_
 
-- [ ] 6.4 Write CDK code to configure ElastiCache monitoring and alarms (Local Code)
+- [x] 6.4 Write CDK code to configure ElastiCache monitoring and alarms (Local Code)
   - Write code to create CloudWatch alarm for CPU utilization > 75% for 5 minutes using cloudwatch.Alarm
   - Write code to create CloudWatch alarm for memory utilization > 80%
   - Configure SNS notifications for alarms (will be created in task 10.1)
@@ -319,7 +320,7 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - **Add to cache_stack.py** - no deployment yet
   - _Requirements: 4.6, 4.7, 7.3, 7.5_
 
-- [ ]* 6.5 Write unit tests for ElastiCache CDK code (Local Tests)
+- [x] 6.5 Write unit tests for ElastiCache CDK code (Local Tests)
   - Test ElastiCache is cache.t3.micro (Free Tier) using Template.has_resource_properties()
   - Test single node deployment (cost optimization) - NumCacheNodes should be 1
   - Test encryption at rest and in transit are enabled
@@ -330,10 +331,11 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - _Requirements: 4.1, 4.2, 4.4, 4.5, 4.6, 4.7, 4.8, 9.1, 9.5_
 
 ### 7. Checkpoint - Core Infrastructure CDK Code Review
+- [ ] **Queue all Checkpoint tasks (7.1-7.2)**
 
 **Note**: Review CDK code written so far. No AWS deployment yet.
 
-- [ ] 7.1 Review core infrastructure CDK code (Local Review)
+- [x] 7.1 Review core infrastructure CDK code (Local Review)
   - Run all unit tests for network, security, database, and cache stacks: `pytest tests/unit/ -v`
   - Run `cdk synth` to generate CloudFormation templates and verify no errors
   - Review synthesized templates to verify cost optimization measures:
@@ -347,11 +349,26 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - Ask user if any issues or questions arise before proceeding to storage/CDN code
   - _Requirements: All Phase 1 requirements_
 
+- [x] 7.2 📋 ADR Checkpoint: Review and document architectural decisions (ADR Documentation)
+  - Review all architectural decisions made in Tasks 1-6 (network, security, database, cache)
+  - Identify decisions that need ADR documentation:
+    - VPC Endpoints vs NAT Gateway architecture (if not already documented)
+    - Single-AZ vs Multi-AZ deployment strategy
+    - Free Tier instance selection
+    - Encryption key management (AWS managed vs KMS)
+    - Security group design and least privilege approach
+  - For each significant decision, create or update ADR in `.kiro/specs/showcore-aws-migration-phase1/`
+  - Follow ADR format: Status, Context, Decision, Alternatives, Rationale, Consequences
+  - Reference requirements and cost optimization goals
+  - **This checkpoint ensures architectural decisions are documented before proceeding**
+  - _Requirements: 10.1, 10.7_
+
 ### 8. Storage Infrastructure CDK Code (S3 Buckets)
+- [ ] **Queue all Storage Infrastructure tasks (8.1-8.4)**
 
 **Note**: Write CDK code to define S3 infrastructure. No AWS deployment yet.
 
-- [ ] 8.1 Write CDK code to define S3 bucket for static assets (Local Code)
+- [x] 8.1 Write CDK code to define S3 bucket for static assets (Local Code)
   - Write code to create bucket with versioning enabled using s3.Bucket
   - Write code to enable encryption at rest using SSE-S3 (AWS managed keys, not KMS for cost optimization)
   - Write code to configure bucket policy to prevent public access (CloudFront only via OAC)
@@ -361,7 +378,7 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - **Save code in lib/stacks/storage_stack.py** - no deployment yet
   - _Requirements: 5.1, 5.3, 5.4, 9.9_
 
-- [ ] 8.2 Write CDK code to define S3 bucket for backups (Local Code)
+- [x] 8.2 Write CDK code to define S3 bucket for backups (Local Code)
   - Write code to create bucket with versioning enabled using s3.Bucket
   - Write code to enable encryption at rest using SSE-S3 (AWS managed keys, not KMS for cost optimization)
   - Write code to configure bucket policy for private access only (IAM only)
@@ -370,7 +387,7 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - **Add to storage_stack.py** - no deployment yet
   - _Requirements: 5.2, 5.3, 9.9_
 
-- [ ] 8.3 Write CDK code to configure S3 lifecycle policies (Local Code)
+- [x] 8.3 Write CDK code to configure S3 lifecycle policies (Local Code)
   - Write code to configure lifecycle policy to transition backups to Glacier Flexible Retrieval after 30 days
   - Write code to configure lifecycle policy to delete old backups after 90 days (short retention for cost optimization)
   - Write code to configure lifecycle policy to delete old versions after 90 days
@@ -378,7 +395,7 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - **Add to storage_stack.py** - no deployment yet
   - _Requirements: 5.9, 9.10_
 
-- [ ]* 8.4 Write unit tests for S3 CDK code (Local Tests)
+- [x] 8.4 Write unit tests for S3 CDK code (Local Tests)
   - Test S3 buckets exist with versioning enabled using Template.has_resource_properties()
   - Test encryption at rest is enabled using SSE-S3 (not KMS)
   - Test bucket policies prevent public access
@@ -388,10 +405,11 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - _Requirements: 5.1, 5.2, 5.3, 5.4, 5.9, 9.9, 9.10_
 
 ### 9. Content Delivery Network CDK Code (CloudFront)
+- [ ] **Queue all CDN Infrastructure tasks (9.1-9.4)**
 
 **Note**: Write CDK code to define CloudFront infrastructure. No AWS deployment yet.
 
-- [ ] 9.1 Write CDK code to define CloudFront distribution (Local Code)
+- [x] 9.1 Write CDK code to define CloudFront distribution (Local Code)
   - Write code to create distribution with S3 static assets bucket as origin using cloudfront.Distribution
   - Write code to configure Origin Access Control (OAC) for secure S3 access (not legacy OAI)
   - Set PriceClass_100 (North America and Europe only) for cost optimization
@@ -399,7 +417,7 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - **Save code in lib/stacks/cdn_stack.py** - no deployment yet
   - _Requirements: 5.5, 5.7, 9.11_
 
-- [ ] 9.2 Write CDK code to configure CloudFront caching and security (Local Code)
+- [x] 9.2 Write CDK code to configure CloudFront caching and security (Local Code)
   - Write code to configure HTTPS-only viewer protocol policy (redirect HTTP to HTTPS)
   - Set default TTL to 86400 seconds (24 hours)
   - Set max TTL to 31536000 seconds (1 year)
@@ -408,14 +426,14 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - **Add to cdn_stack.py** - no deployment yet
   - _Requirements: 5.6_
 
-- [ ] 9.3 Write CDK code to update S3 bucket policy for CloudFront (Local Code)
+- [x] 9.3 Write CDK code to update S3 bucket policy for CloudFront (Local Code)
   - Write code to update static assets bucket policy to allow CloudFront OAC access
   - Verify direct S3 access is blocked (no public access)
   - Use s3.Bucket.add_to_resource_policy() to grant CloudFront access
   - **Add to cdn_stack.py** - no deployment yet
   - _Requirements: 5.4_
 
-- [ ]* 9.4 Write integration test for CloudFront and S3 (Post-Deployment Test)
+- [x] 9.4 Write integration test for CloudFront and S3 (Post-Deployment Test)
   - Write test to upload test file to S3 static assets bucket using boto3
   - Write test to verify file is accessible via CloudFront URL (HTTPS)
   - Write test to verify HTTPS redirect works (HTTP → HTTPS)
@@ -426,10 +444,11 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - _Requirements: 5.4, 5.5, 5.6_
 
 ### 10. Monitoring and Alerting CDK Code
+- [ ] **Queue all Monitoring Infrastructure tasks (10.1-10.8)**
 
 **Note**: Write CDK code to define monitoring infrastructure. No AWS deployment yet.
 
-- [ ] 10.1 Write CDK code to define SNS topics for alerts (Local Code)
+- [x] 10.1 Write CDK code to define SNS topics for alerts (Local Code)
   - Write code to create critical alerts topic with email subscriptions using sns.Topic
   - Write code to create warning alerts topic with email subscriptions using sns.Topic
   - Write code to create billing alerts topic with email subscriptions using sns.Topic
@@ -438,7 +457,7 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - **Save code in lib/stacks/monitoring_stack.py** - no deployment yet
   - _Requirements: 7.2_
 
-- [ ] 10.2 Write CDK code to define CloudWatch dashboard (Local Code)
+- [x] 10.2 Write CDK code to define CloudWatch dashboard (Local Code)
   - Write code to create dashboard using cloudwatch.Dashboard with name "ShowCore-Phase1-Dashboard"
   - Add RDS metrics: CPUUtilization, DatabaseConnections, ReadLatency, WriteLatency, FreeStorageSpace
   - Add ElastiCache metrics: CPUUtilization, DatabaseMemoryUsagePercentage, Evictions, CacheHits, CacheMisses
@@ -449,7 +468,7 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - **Add to monitoring_stack.py** - no deployment yet
   - _Requirements: 7.1_
 
-- [ ] 10.3 Write CDK code to define CloudWatch alarms for RDS (Local Code)
+- [x] 10.3 Write CDK code to define CloudWatch alarms for RDS (Local Code)
   - Write code to create alarm: CPU utilization > 80% for 5 minutes → critical alert using cloudwatch.Alarm
   - Write code to create alarm: Storage utilization > 85% → warning alert
   - Write code to create alarm: Connection count > 80 → warning alert
@@ -459,7 +478,7 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - **Add to monitoring_stack.py** - no deployment yet
   - _Requirements: 3.7, 3.8, 7.3, 7.5_
 
-- [ ] 10.4 Write CDK code to define CloudWatch alarms for ElastiCache (Local Code)
+- [x] 10.4 Write CDK code to define CloudWatch alarms for ElastiCache (Local Code)
   - Write code to create alarm: CPU utilization > 75% for 5 minutes → critical alert using cloudwatch.Alarm
   - Write code to create alarm: Memory utilization > 80% → critical alert
   - Write code to create alarm: Evictions > 0 → warning alert
@@ -469,7 +488,7 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - **Add to monitoring_stack.py** - no deployment yet
   - _Requirements: 4.6, 4.7, 7.3, 7.5_
 
-- [ ] 10.5 Write CDK code to define CloudWatch alarms for S3 (Local Code)
+- [x] 10.5 Write CDK code to define CloudWatch alarms for S3 (Local Code)
   - Write code to create alarm: Bucket size > 10GB → warning alert using cloudwatch.Alarm
   - Write code to create alarm: 4xx error rate > 5% → warning alert
   - Write code to create alarm: 5xx error rate > 1% → critical alert
@@ -478,7 +497,7 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - **Add to monitoring_stack.py** - no deployment yet
   - _Requirements: 5.8, 7.3_
 
-- [ ] 10.6 Write CDK code to define CloudWatch alarms for billing (Local Code)
+- [x] 10.6 Write CDK code to define CloudWatch alarms for billing (Local Code)
   - Write code to create alarm: Estimated charges > $50 → warning alert using cloudwatch.Alarm
   - Write code to create alarm: Estimated charges > $100 → critical alert
   - Use alarm names: "showcore-billing-50", "showcore-billing-100"
@@ -487,14 +506,14 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - **Add to monitoring_stack.py** - no deployment yet
   - _Requirements: 1.2, 1.3, 9.7, 9.8_
 
-- [ ] 10.7 Write CDK code to configure CloudWatch log retention (Local Code)
+- [x] 10.7 Write CDK code to configure CloudWatch log retention (Local Code)
   - Write code to set log retention to 7 days for cost optimization using logs.LogGroup
   - Configure log groups for RDS, ElastiCache, CloudTrail, VPC Flow Logs (if enabled)
   - Use log group names: "/aws/rds/showcore-db", "/aws/elasticache/showcore-redis", "/aws/cloudtrail/showcore"
   - **Add to monitoring_stack.py** - no deployment yet
   - _Requirements: 7.4_
 
-- [ ]* 10.8 Write unit tests for monitoring CDK code (Local Tests)
+- [x] 10.8 Write unit tests for monitoring CDK code (Local Tests)
   - Test SNS topics exist with subscriptions using Template.has_resource_properties()
   - Test CloudWatch dashboard exists with correct widgets
   - Test CloudWatch alarms exist for all critical metrics (RDS, ElastiCache, S3, billing)
@@ -504,17 +523,18 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - _Requirements: 7.1, 7.2, 7.3, 7.4, 7.5_
 
 ### 11. Backup and Disaster Recovery CDK Code
+- [ ] **Queue all Backup Infrastructure tasks (11.1-11.5)**
 
 **Note**: Write CDK code to define backup infrastructure. No AWS deployment yet.
 
-- [ ] 11.1 Write CDK code to define AWS Backup vault (Local Code)
+- [x] 11.1 Write CDK code to define AWS Backup vault (Local Code)
   - Write code to create backup vault for centralized backup management using backup.BackupVault
   - Write code to enable encryption for backup vault using AWS managed keys (not KMS for cost optimization)
   - Use vault name: "showcore-backup-vault"
   - **Save code in lib/stacks/backup_stack.py** - no deployment yet
   - _Requirements: 8.1, 9.9_
 
-- [ ] 11.2 Write CDK code to define AWS Backup plan for RDS (Local Code)
+- [x] 11.2 Write CDK code to define AWS Backup plan for RDS (Local Code)
   - Write code to configure daily backup schedule (03:00 UTC) using backup.BackupPlan
   - Set backup retention to 7 days (short retention for cost optimization)
   - Tag backup resources with cost allocation tags (Project, Phase, Environment)
@@ -523,7 +543,7 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - **Add to backup_stack.py** - no deployment yet
   - _Requirements: 8.2, 8.4, 8.7_
 
-- [ ] 11.3 Write CDK code to define AWS Backup plan for ElastiCache (Local Code)
+- [x] 11.3 Write CDK code to define AWS Backup plan for ElastiCache (Local Code)
   - Write code to configure daily snapshot schedule (03:00 UTC) using backup.BackupPlan
   - Set snapshot retention to 7 days (short retention for cost optimization)
   - Tag backup resources with cost allocation tags (Project, Phase, Environment)
@@ -532,7 +552,7 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - **Add to backup_stack.py** - no deployment yet
   - _Requirements: 8.3, 8.5, 8.7_
 
-- [ ] 11.4 Write CDK code to define backup failure alarms (Local Code)
+- [x] 11.4 Write CDK code to define backup failure alarms (Local Code)
   - Write code to create CloudWatch alarm for RDS backup job failures using cloudwatch.Alarm
   - Write code to create CloudWatch alarm for ElastiCache backup job failures
   - Configure SNS notifications to critical alerts topic
@@ -541,7 +561,7 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - **Add to backup_stack.py** - no deployment yet
   - _Requirements: 8.6_
 
-- [ ]* 11.5 Write unit tests for backup CDK code (Local Tests)
+- [x] 11.5 Write unit tests for backup CDK code (Local Tests)
   - Test AWS Backup vault exists using Template.has_resource_properties()
   - Test backup plans include RDS and ElastiCache resources
   - Test backup retention is 7 days for both RDS and ElastiCache
@@ -552,10 +572,25 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - _Requirements: 8.1, 8.2, 8.3, 8.4, 8.5, 8.6, 8.7, 9.9_
 
 ### 12. Cost Optimization and Tagging Validation
+- [ ] **Queue all Cost Validation tasks (12.0-12.4)**
 
 **Note**: Validate CDK code for cost optimization. No AWS deployment yet.
 
-- [ ] 12.1 Verify cost optimization measures in CDK code (Local Validation)
+- [x] 12.0 📋 ADR Checkpoint: Review storage, CDN, monitoring, and backup decisions (ADR Documentation)
+  - Review all architectural decisions made in Tasks 8-11 (storage, CDN, monitoring, backup)
+  - Identify decisions that need ADR documentation:
+    - S3 lifecycle policies and retention strategy
+    - CloudFront distribution configuration and price class selection
+    - Monitoring and alerting thresholds
+    - Backup retention and recovery objectives (RTO/RPO)
+    - Cost allocation tagging strategy
+  - For each significant decision, create or update ADR in `.kiro/specs/showcore-aws-migration-phase1/`
+  - Follow ADR format: Status, Context, Decision, Alternatives, Rationale, Consequences
+  - Reference requirements and cost optimization goals
+  - **This checkpoint ensures all pre-deployment architectural decisions are documented**
+  - _Requirements: 10.1, 10.7_
+
+- [x] 12.1 Verify cost optimization measures in CDK code (Local Validation)
   - Run unit test to verify NO NAT Gateway is deployed using Template.resource_count_is("AWS::EC2::NatGateway", 0)
   - Run unit tests to verify Free Tier eligible instance types: db.t3.micro, cache.t3.micro
   - Run unit tests to verify single-AZ deployment for RDS (MultiAZ=false) and ElastiCache (NumCacheNodes=1)
@@ -568,7 +603,7 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - **Run `pytest tests/unit/ -v` to validate all cost optimization measures**
   - _Requirements: 9.1, 9.2, 9.3, 9.4, 9.5, 9.9, 9.11, 9.13_
 
-- [ ] 12.2 Verify tagging in CDK code (Local Validation)
+- [x] 12.2 Verify tagging in CDK code (Local Validation)
   - Run unit tests to verify all resources have standard tags in CDK templates
   - Verify tags: Project, Phase, Environment, ManagedBy, CostCenter
   - Document plan to activate cost allocation tags in AWS Billing console after deployment
@@ -576,7 +611,7 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - **Run `pytest tests/unit/ -v` to validate tagging**
   - _Requirements: 9.6, 1.5_
 
-- [ ]* 12.3 Write property test for resource tagging compliance (Post-Deployment Test)
+- [x] 12.3 Write property test for resource tagging compliance (Post-Deployment Test)
   - Write test: all Phase 1 resources have required tags: Project, Phase, Environment, ManagedBy, CostCenter
   - Test will query all resources using boto3 resourcegroupstaggingapi.get_resources()
   - Test will verify each resource has all 5 required tags
@@ -584,7 +619,7 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - **This test runs AFTER deployment in Task 15** - validates actual AWS resources
   - **Validates: Requirements 9.6**
 
-- [ ] 12.4 Document cost estimates (Local Documentation)
+- [x] 12.4 Document cost estimates (Local Documentation)
   - Document expected Phase 1 costs by service:
     - VPC Endpoints: ~$21-28/month (Interface Endpoints only, Gateway Endpoints FREE)
     - RDS db.t3.micro: ~$0 during Free Tier, ~$15/month after
@@ -598,10 +633,11 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - _Requirements: 9.7, 9.8, 1.5_
 
 ### 13. 🚀 THE BIG DEPLOYMENT - Deploy All Infrastructure to AWS
+- [ ] **Queue Deployment task (13.1)**
 
 **Note**: This is where we actually deploy everything to AWS cloud!
 
-- [ ] 13.1 Deploy complete infrastructure to AWS (ACTUAL CLOUD DEPLOYMENT)
+- [x] 13.1 Deploy complete infrastructure to AWS (ACTUAL CLOUD DEPLOYMENT)
   - **Pre-deployment checks:**
     - Run all unit tests: `pytest tests/unit/ -v` (must pass 100%)
     - Run `cdk synth` to generate CloudFormation templates (must succeed)
@@ -634,6 +670,7 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - _Requirements: All Phase 1 requirements_
 
 ### 14. Integration Testing (Post-Deployment - Test Actual AWS Resources)
+- [ ] **Queue all Integration Testing tasks (14.1-14.5)**
 
 **Note**: These tests run against ACTUAL AWS resources deployed in Task 13.
 
@@ -697,6 +734,7 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - _Requirements: 5.4, 5.5, 5.6_
 
 ### 15. Compliance and Security Validation (Post-Deployment)
+- [ ] **Queue all Compliance Validation tasks (15.1-15.5)**
 
 **Note**: Validate actual AWS resources for compliance and security.
 
@@ -746,8 +784,24 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - _Requirements: 9.6, 1.5_
 
 ### 16. Documentation and Handoff (Post-Deployment)
+- [ ] **Queue all Documentation tasks (16.0-16.4)**
 
 **Note**: Create operational documentation based on deployed infrastructure.
+
+- [ ] 16.0 📋 ADR Checkpoint: Document post-deployment learnings and decisions (ADR Documentation)
+  - Review deployment experience and any decisions made during deployment (Task 13)
+  - Review integration testing results and any architectural adjustments (Tasks 14-15)
+  - Identify decisions that need ADR documentation:
+    - Deployment strategy and stack dependencies
+    - Integration testing approach and findings
+    - Security validation results and any remediation
+    - Performance tuning decisions based on actual metrics
+    - Operational procedures and runbook requirements
+  - For each significant decision or learning, create or update ADR in `.kiro/specs/showcore-aws-migration-phase1/`
+  - Follow ADR format: Status, Context, Decision, Alternatives, Rationale, Consequences
+  - Document lessons learned for Phase 2 planning
+  - **This checkpoint captures deployment and operational learnings**
+  - _Requirements: 10.1, 10.7_
 
 - [ ] 16.1 Create runbook for RDS backup and restore (Documentation)
   - Document manual snapshot procedures: `aws rds create-db-snapshot --db-instance-identifier showcore-db --db-snapshot-identifier showcore-db-manual-snapshot-YYYYMMDD`
@@ -787,6 +841,7 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
   - _Requirements: 10.7, 9.13_
 
 ### 17. Final Validation and Sign-off (Post-Deployment)
+- [ ] **Queue all Final Validation tasks (17.1-17.3)**
 
 **Note**: Final checks on actual AWS infrastructure before Phase 1 completion.
 
@@ -846,6 +901,7 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
 - Unit tests validate CDK templates using `cdk synth` output
 - NO actual AWS resources are created during these tasks
 - Code is version controlled in Git
+- **ADR Checkpoints at Tasks 7.2 and 12.0** ensure architectural decisions are documented
 
 **Phase 2: THE BIG DEPLOYMENT (Task 13)**
 - Run `cdk deploy --all` to deploy everything to AWS at once
@@ -858,6 +914,7 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
 - Property tests validate actual AWS resources
 - Compliance checks validate actual AWS resources
 - Documentation based on deployed infrastructure
+- **ADR Checkpoint at Task 16.0** captures deployment learnings and operational decisions
 
 ### Testing Strategy
 
@@ -884,6 +941,10 @@ The implementation uses AWS CDK with Python for Infrastructure as Code, followin
 - Tasks marked with `*` are optional testing tasks that can be skipped for faster MVP
 - Each task references specific requirements for traceability
 - Checkpoints ensure incremental validation at key milestones (Tasks 7.1, 13.1, 17.3)
+- **ADR Checkpoints (Tasks 7.2, 12.0, 16.0)** ensure architectural decisions are documented at critical phases:
+  - Task 7.2: After core infrastructure design (network, security, database, cache)
+  - Task 12.0: Before deployment (storage, CDN, monitoring, backup)
+  - Task 16.0: After deployment (operational learnings and adjustments)
 - All infrastructure is defined as code using AWS CDK with Python following iac-standards.md
 - Cost optimization is prioritized throughout:
   - NO NAT Gateway (saves ~$32/month)
