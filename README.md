@@ -46,6 +46,38 @@ This is a living portfolio project that will evolve from a simple lift-and-shift
 
 ---
 
+## 🎯 Quick Start - Connect to AWS Infrastructure
+
+**Phase 1 infrastructure is now deployed with FREE secure access!**
+
+### 1. Install Session Manager Plugin
+```bash
+brew install --cask session-manager-plugin
+```
+
+### 2. Start Port Forwarding
+```bash
+./scripts/start-port-forwarding.sh
+```
+
+### 3. Initialize Database (in new terminal)
+```bash
+cd backend
+npm run db:generate
+npm run db:push
+npm run dev
+```
+
+### 📚 Documentation
+- **[SSM Port Forwarding Guide](SSM_PORT_FORWARDING_GUIDE.md)** - Complete setup (START HERE!)
+- **[Connection Status](CONNECTION_STATUS.md)** - What's been configured
+- **[AWS Endpoints](AWS_ENDPOINTS.md)** - Quick reference
+- **[Infrastructure Code](infrastructure/)** - CDK code for all resources
+
+**Cost**: **FREE** with AWS Free Tier! 🎉
+
+---
+
 ## Current State Assessment
 
 ### Existing Infrastructure (On-Premises)
