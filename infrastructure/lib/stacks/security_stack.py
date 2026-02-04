@@ -8,7 +8,6 @@ This stack creates:
 - CloudTrail log file validation
 - AWS Config for continuous compliance monitoring
 - AWS Config rules for security compliance (rds-storage-encrypted, s3-bucket-public-read-prohibited)
-- IAM role for AWS Systems Manager Session Manager with CloudWatch Logs permissions
 
 Cost Optimization:
 - CloudTrail: First trail is free, additional trails $2/month
@@ -17,9 +16,6 @@ Cost Optimization:
 - SSE-S3 encryption: Free (no KMS costs)
 - Security groups: Free
 - AWS Config: First 2 rules free, then $2/rule/month
-- IAM role: Free
-- Session Manager: Free
-- CloudWatch Logs: ~$0.50/GB ingested, ~$0.03/GB stored
 
 Security:
 - Security groups follow least privilege principle
@@ -33,13 +29,10 @@ Security:
 - Log file validation ensures integrity
 - Bucket policy restricts access to CloudTrail service only
 - AWS Config monitors compliance continuously
-- Session Manager provides secure instance access without SSH keys
-- Session Manager logs all session activity to CloudWatch Logs
-- No bastion hosts or open inbound ports required
 
 Dependencies: ShowCoreNetworkStack (requires VPC)
 
-Validates: Requirements 3.3, 4.3, 6.2, 6.3, 6.8, 2.12, 2.9
+Validates: Requirements 3.3, 4.3, 6.2, 6.3, 2.12
 """
 
 from aws_cdk import (
@@ -61,8 +54,7 @@ class ShowCoreSecurityStack(ShowCoreBaseStack):
     Security infrastructure stack for ShowCore Phase 1.
     
     Creates security groups for data tier, CloudTrail for audit logging,
-    AWS Config for continuous compliance monitoring, and IAM role for
-    Session Manager secure instance access.
+    and AWS Config for continuous compliance monitoring.
     
     Security Groups:
     - RDS Security Group: Allows PostgreSQL (5432) only from application tier
@@ -82,9 +74,6 @@ class ShowCoreSecurityStack(ShowCoreBaseStack):
     - SSE-S3 encryption is free (no KMS costs)
     - Log file validation is free
     - AWS Config: First 2 rules free, then $2/rule/month
-    - IAM role is free
-    - Session Manager is free
-    - CloudWatch Logs: ~$0.50/GB ingested, ~$0.03/GB stored
     
     Audit Logging:
     - CloudTrail logs all API calls across all regions
@@ -99,14 +88,6 @@ class ShowCoreSecurityStack(ShowCoreBaseStack):
     - Config delivery channel sends compliance data to S3
     - Configuration recorder tracks resource changes
     
-    Session Manager:
-    - IAM role for EC2 instances to use Session Manager
-    - No SSH keys required for instance access
-    - No bastion hosts required
-    - No open inbound ports required
-    - All session activity logged to CloudWatch Logs
-    - Uses Systems Manager Interface Endpoint for private connectivity
-    
     Resources:
     - RDS Security Group: PostgreSQL access control
     - ElastiCache Security Group: Redis access control
@@ -116,11 +97,10 @@ class ShowCoreSecurityStack(ShowCoreBaseStack):
     - AWS Config Configuration Recorder: Tracks resource changes
     - AWS Config Delivery Channel: Delivers compliance data to S3
     - AWS Config Rules: rds-storage-encrypted, s3-bucket-public-read-prohibited
-    - IAM Role: Session Manager role with CloudWatch Logs permissions
     
     Dependencies: ShowCoreNetworkStack (requires VPC)
     
-    Validates: Requirements 3.3, 4.3, 6.2, 6.3, 6.8, 2.12, 2.9
+    Validates: Requirements 3.3, 4.3, 6.2, 6.3, 2.12
     """
     
     def __init__(
@@ -173,9 +153,6 @@ class ShowCoreSecurityStack(ShowCoreBaseStack):
         
         # Create AWS Config rules for compliance monitoring
         self.config_rules = self._create_config_rules()
-        
-        # Create IAM role for Session Manager
-        self.session_manager_role = self._create_session_manager_role()
         
         # Export security group IDs for cross-stack references
         self._create_security_group_outputs()
@@ -391,24 +368,11 @@ class ShowCoreSecurityStack(ShowCoreBaseStack):
         - Versioning enabled for log integrity
         - SSE-S3 encryption at rest (free, no KMS costs)
         - Block all public access
-        - Lifecycle policy to delete logs after 90 days (cost optimization)
+        - Lifecycle policy to transition old logs to Glacier after 90 days
         - Bucket policy allows CloudTrail service to write logs
-        
-        Cost Optimization:
-        - SSE-S3 encryption is free (no KMS costs)
-        - Short retention period (90 days) reduces storage costs
-        - S3 storage costs: ~$0.023/GB/month
-        
-        Security:
-        - Versioning enabled for log integrity
-        - Log file validation enabled in CloudTrail trail
-        - Bucket policy restricts access to CloudTrail service only
-        - Block all public access
         
         Returns:
             S3 Bucket construct for CloudTrail logs
-            
-        Validates: Requirements 6.5, 1.4, 9.9
         """
         bucket = s3.Bucket(
             self,
@@ -420,9 +384,19 @@ class ShowCoreSecurityStack(ShowCoreBaseStack):
             removal_policy=RemovalPolicy.RETAIN,  # Keep logs on stack deletion
             lifecycle_rules=[
                 s3.LifecycleRule(
+                    id="TransitionOldLogsToGlacier",
+                    enabled=True,
+                    transitions=[
+                        s3.Transition(
+                            storage_class=s3.StorageClass.GLACIER,
+                            transition_after=Duration.days(90)
+                        )
+                    ]
+                ),
+                s3.LifecycleRule(
                     id="DeleteOldLogs",
                     enabled=True,
-                    expiration=Duration.days(90)  # Delete logs after 90 days (cost optimization)
+                    expiration=Duration.days(365)  # Delete logs after 1 year
                 )
             ]
         )
@@ -725,107 +699,3 @@ class ShowCoreSecurityStack(ShowCoreBaseStack):
         rules.append(s3_public_read_rule)
         
         return rules
-
-    def _create_session_manager_role(self) -> iam.Role:
-        """
-        Create IAM role for AWS Systems Manager Session Manager.
-        
-        Session Manager provides secure, auditable instance management without
-        requiring SSH keys, bastion hosts, or open inbound ports. It uses the
-        Systems Manager Interface Endpoint to connect to instances in private
-        subnets without internet access.
-        
-        Configuration:
-        - IAM role with AmazonSSMManagedInstanceCore managed policy
-        - CloudWatch Logs permissions for session logging
-        - No SSH keys required for instance access
-        - Session logs sent to CloudWatch Logs via Interface Endpoint
-        
-        Security Benefits:
-        - No SSH keys to manage or rotate
-        - No bastion hosts required (eliminates attack surface)
-        - No inbound ports required (security groups can be fully locked down)
-        - All session activity logged to CloudWatch Logs for audit
-        - IAM-based access control (who can start sessions)
-        - Session Manager Interface Endpoint provides private connectivity
-        
-        Cost:
-        - IAM role: Free
-        - Session Manager: Free
-        - CloudWatch Logs: ~$0.50/GB ingested, ~$0.03/GB stored
-        - Systems Manager Interface Endpoint: ~$7/month (already created in NetworkStack)
-        
-        Usage:
-        - Attach this role to EC2 instances that need Session Manager access
-        - Users connect via: aws ssm start-session --target <instance-id>
-        - No SSH keys needed, no bastion hosts needed
-        - All connections go through Systems Manager Interface Endpoint
-        
-        Returns:
-            IAM Role construct for Session Manager
-            
-        Validates: Requirements 6.8, 2.9
-        """
-        # Create IAM role for EC2 instances to use Session Manager
-        session_manager_role = iam.Role(
-            self,
-            "SessionManagerRole",
-            role_name="showcore-session-manager-role",
-            assumed_by=iam.ServicePrincipal("ec2.amazonaws.com"),
-            description="IAM role for EC2 instances to use Session Manager for secure access without SSH keys",
-            managed_policies=[
-                # AmazonSSMManagedInstanceCore provides core Session Manager functionality
-                # Allows instances to communicate with Systems Manager service
-                iam.ManagedPolicy.from_aws_managed_policy_name(
-                    "AmazonSSMManagedInstanceCore"
-                )
-            ]
-        )
-        
-        # Add CloudWatch Logs permissions for session logging
-        # Session Manager can log all session activity to CloudWatch Logs
-        # This provides audit trail of who accessed which instances and what commands were run
-        session_manager_role.add_to_policy(
-            iam.PolicyStatement(
-                sid="SessionManagerCloudWatchLogs",
-                effect=iam.Effect.ALLOW,
-                actions=[
-                    "logs:CreateLogGroup",
-                    "logs:CreateLogStream",
-                    "logs:PutLogEvents",
-                    "logs:DescribeLogGroups",
-                    "logs:DescribeLogStreams"
-                ],
-                resources=[
-                    f"arn:aws:logs:{self.region}:{self.account}:log-group:/aws/ssm/*"
-                ],
-                conditions={
-                    "StringEquals": {
-                        "aws:RequestedRegion": self.region
-                    }
-                }
-            )
-        )
-        
-        # Add S3 permissions for session logs (optional, if storing logs in S3)
-        # This is optional - can be added later if needed
-        # For now, we only log to CloudWatch Logs via Interface Endpoint
-        
-        # Export role ARN for use by other stacks (e.g., when creating EC2 instances)
-        CfnOutput(
-            self,
-            "SessionManagerRoleArn",
-            value=session_manager_role.role_arn,
-            export_name="ShowCoreSessionManagerRoleArn",
-            description="IAM role ARN for Session Manager - attach to EC2 instances for secure access without SSH keys"
-        )
-        
-        CfnOutput(
-            self,
-            "SessionManagerRoleName",
-            value=session_manager_role.role_name,
-            export_name="ShowCoreSessionManagerRoleName",
-            description="IAM role name for Session Manager"
-        )
-        
-        return session_manager_role

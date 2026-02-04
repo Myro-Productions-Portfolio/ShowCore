@@ -90,10 +90,6 @@ class ShowCoreBaseStack(Stack):
         # Store component for use by child stacks
         self.component = component
         
-        # Set default removal policy (RETAIN for production, DESTROY for dev/staging)
-        from aws_cdk import RemovalPolicy
-        self.removal_policy = RemovalPolicy.RETAIN if self._env_name == "production" else RemovalPolicy.DESTROY
-        
         # Apply standard tags to all resources in this stack
         self._apply_standard_tags()
     
