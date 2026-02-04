@@ -25,6 +25,7 @@ from lib.stacks.cache_stack import ShowCoreCacheStack
 from lib.stacks.storage_stack import ShowCoreStorageStack
 from lib.stacks.cdn_stack import ShowCoreCDNStack
 from lib.stacks.backup_stack import ShowCoreBackupStack
+from lib.stacks.ssm_access_stack import ShowCoreSSMAccessStack
 
 app = cdk.App()
 
@@ -101,7 +102,7 @@ storage_stack = ShowCoreStorageStack(
 cdn_stack = ShowCoreCDNStack(
     app,
     "ShowCoreCDNStack",
-    static_assets_bucket_name=storage_stack.static_assets_bucket_name,
+    static_assets_bucket_name=storage_stack.static_assets_bucket.bucket_name,
     env=env,
     description="ShowCore Phase 1 - CloudFront CDN Distribution"
 )
@@ -116,5 +117,18 @@ backup_stack = ShowCoreBackupStack(
     description="ShowCore Phase 1 - AWS Backup Plans for RDS and ElastiCache"
 )
 backup_stack.add_dependency(monitoring_stack)
+
+# 9. Deploy SSM Access Stack (depends on Network and Security for VPC and security groups)
+ssm_access_stack = ShowCoreSSMAccessStack(
+    app,
+    "ShowCoreSSMAccessStack",
+    vpc=network_stack.vpc,
+    rds_security_group=security_stack.rds_security_group,
+    redis_security_group=security_stack.elasticache_security_group,
+    env=env,
+    description="ShowCore Phase 1 - SSM Access Instance for Port Forwarding (t3.nano, Free Tier)"
+)
+ssm_access_stack.add_dependency(network_stack)
+ssm_access_stack.add_dependency(security_stack)
 
 app.synth()
