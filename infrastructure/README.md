@@ -2,6 +2,10 @@
 
 This directory contains the AWS CDK infrastructure code for ShowCore Phase 1 migration.
 
+## Architecture Documentation
+
+For architecture diagrams and detailed documentation, see [docs/architecture](../docs/architecture/).
+
 ## Overview
 
 ShowCore Phase 1 establishes foundational AWS infrastructure using a **cost-optimized VPC Endpoints architecture** that eliminates NAT Gateways to save ~$32/month while maintaining secure AWS service access.
