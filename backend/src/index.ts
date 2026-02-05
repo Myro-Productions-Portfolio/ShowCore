@@ -5,6 +5,7 @@ import { trpcServer } from '@hono/trpc-server'
 import { serve } from '@hono/node-server'
 import { appRouter } from './trpc/router.js'
 import { createContext } from './trpc/context.js'
+import { clerkAuthMiddleware } from './middleware/clerk-auth.js'
 
 const app = new Hono()
 
@@ -44,6 +45,7 @@ app.use('*', async (c, next) => {
 
 // Middleware
 app.use('*', logger())
+app.use('*', clerkAuthMiddleware) // Add Clerk authentication
 app.use('/*', cors({
   origin: (origin) => {
     const allowedOrigins = [

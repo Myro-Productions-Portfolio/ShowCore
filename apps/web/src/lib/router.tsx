@@ -20,6 +20,7 @@ const PasswordResetRequestPage = lazy(() => import('@/pages/PasswordResetRequest
 const PasswordResetPage = lazy(() => import('@/pages/PasswordResetPage'))
 const EmailVerificationPage = lazy(() => import('@/pages/EmailVerificationPage'))
 const ProfileCompletionPage = lazy(() => import('@/pages/ProfileCompletionPage'))
+const SSOCallbackPage = lazy(() => import('@/pages/SSOCallbackPage'))
 
 export const router = createBrowserRouter([
   // Authentication routes (standalone, no AppLayout)
@@ -29,6 +30,7 @@ export const router = createBrowserRouter([
   { path: '/reset-password', element: <ErrorBoundary><PasswordResetPage /></ErrorBoundary> },
   { path: '/verify-email', element: <ErrorBoundary><EmailVerificationPage /></ErrorBoundary> },
   { path: '/complete-profile', element: <ErrorBoundary><ProfileCompletionPage /></ErrorBoundary> },
+  { path: '/sso-callback', element: <ErrorBoundary><SSOCallbackPage /></ErrorBoundary> },
 
   // App routes (with AppLayout)
   {
