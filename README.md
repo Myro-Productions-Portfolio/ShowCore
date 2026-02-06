@@ -157,7 +157,7 @@ Comprehensive settings interface allowing users to manage account preferences, s
    - AWS Config compliance monitoring
 
 4. **Documentation**
-   - 9 Architectural Decision Records (ADRs)
+   - 16 Architectural Decision Records (ADRs)
    - Architecture diagrams (network flow, infrastructure)
    - Comprehensive README and deployment guides
    - Security sanitization guide for public repository
@@ -204,7 +204,7 @@ Comprehensive settings interface allowing users to manage account preferences, s
 - ✅ Property tests (security group validation)
 - ✅ Integration tests (connectivity validation)
 - ✅ Architecture diagrams and documentation
-- ✅ 9 Architectural Decision Records (ADRs)
+- ✅ 16 Architectural Decision Records (ADRs)
 
 **Pending Deployment**:
 - [ ] Deploy infrastructure to AWS (`cdk deploy --all`)
@@ -321,6 +321,13 @@ The ShowCore Phase 1 AWS infrastructure is fully documented with comprehensive a
 - [ADR-007](/.kiro/specs/showcore-aws-migration-phase1/adr-007-free-tier-instance-selection.md): Free Tier instance selection
 - [ADR-008](/.kiro/specs/showcore-aws-migration-phase1/adr-008-encryption-key-management.md): AWS managed keys vs KMS
 - [ADR-009](/.kiro/specs/showcore-aws-migration-phase1/adr-009-security-group-least-privilege.md): Security group design
+- [ADR-010](/.kiro/specs/showcore-aws-migration-phase1/adr-010-s3-lifecycle-policies.md): S3 lifecycle policies
+- [ADR-011](/.kiro/specs/showcore-aws-migration-phase1/adr-011-cloudfront-price-class.md): CloudFront price class selection
+- [ADR-012](/.kiro/specs/showcore-aws-migration-phase1/adr-012-backup-retention-rto-rpo.md): Backup retention, RTO, and RPO
+- [ADR-013](/.kiro/specs/showcore-aws-migration-phase1/adr-013-cost-allocation-tagging.md): Cost allocation tagging strategy
+- [ADR-014](/.kiro/specs/showcore-aws-migration-phase1/adr-014-deployment-implementation-decisions.md): Deployment implementation decisions
+- [ADR-015](/.kiro/specs/showcore-aws-migration-phase1/adr-015-session-manager-database-access.md): Session Manager for database access
+- [ADR-016](/.kiro/specs/showcore-aws-migration-phase1/adr-016-clerk-oauth-implementation.md): Clerk OAuth implementation
 
 **Quick Links:**
 - [Architecture Overview](docs/architecture/ARCHITECTURE_OVERVIEW.md) - High-level summary
@@ -384,6 +391,13 @@ ShowCore/
 │   │       ├── adr-007-free-tier-instance-selection.md
 │   │       ├── adr-008-encryption-key-management.md
 │   │       ├── adr-009-security-group-least-privilege.md
+│   │       ├── adr-010-s3-lifecycle-policies.md
+│   │       ├── adr-011-cloudfront-price-class.md
+│   │       ├── adr-012-backup-retention-rto-rpo.md
+│   │       ├── adr-013-cost-allocation-tagging.md
+│   │       ├── adr-014-deployment-implementation-decisions.md
+│   │       ├── adr-015-session-manager-database-access.md
+│   │       ├── adr-016-clerk-oauth-implementation.md
 │   │       └── SECURITY-SANITIZATION-GUIDE.md
 │   └── steering/            # AI assistant guidelines
 ├── .github/workflows/       # (Coming soon) CI/CD pipelines
