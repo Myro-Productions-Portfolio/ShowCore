@@ -76,3 +76,6 @@ coverage/
 .cache/
 *.tsbuildinfo
 .vercel
+server/lib/secrets.ts
+.env.docker
+CREDENTIALS_STATUS.md
